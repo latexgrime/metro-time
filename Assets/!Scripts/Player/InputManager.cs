@@ -1,4 +1,5 @@
 ﻿using System;
+using _Scripts.Player;
 using NALEO._Scripts.Camera;
 using NALEO._Scripts.Player;
 using UnityEngine;
