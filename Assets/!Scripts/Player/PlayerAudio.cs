@@ -1,3 +1,4 @@
+using _Scripts.Player;
 using UnityEngine;
 
 namespace NALEO._Scripts.Player

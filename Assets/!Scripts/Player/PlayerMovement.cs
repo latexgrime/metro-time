@@ -1,10 +1,9 @@
 using System.Collections;
+using NALEO._Scripts;
+using NALEO._Scripts.Player;
 using UnityEngine;
-using UnityEngine.Android;
-using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
 
-namespace NALEO._Scripts.Player
+namespace _Scripts.Player
 {
     /// <summary>
     ///     Script in charge of handling the input for the movement of the player.
@@ -33,9 +32,10 @@ namespace NALEO._Scripts.Player
         [SerializeField] private float sprintSpeed = 14f;
         
         [Header("- Crouching")] 
-        [SerializeField] private float crouchSpeed;
-        [SerializeField] private float crouchYScale;
-        private float _defaultYScale;
+        [SerializeField] private float crouchSpeed = 3.5f;
+        [SerializeField] private float crouchYScale = 0.5f;
+        private float _startYScale;
+        private bool _isCrouching = false;
         
         [Header("- Dash Settings")]
         [SerializeField] private float dashSpeed = 20f;
@@ -78,7 +78,7 @@ namespace NALEO._Scripts.Player
 
             _rb.freezeRotation = true;
             _readyToJump = true;
-            _defaultYScale = transform.localScale.y;
+            _startYScale = transform.localScale.y;
             _moveSpeed = walkSpeed;
         }
 
@@ -99,6 +99,8 @@ namespace NALEO._Scripts.Player
         
         private void HandleStateTransitions()
         {
+            _previousState = _currentState;
+            
             if (_inputManager.jumpInput && _readyToJump && _grounded)
             {
                 _readyToJump = false;
@@ -160,18 +162,21 @@ namespace NALEO._Scripts.Player
                 case PlayerState.Crouching:
                     if (!_grounded)
                         TransitionToState(PlayerState.InAir);
-                    
-                    else if (!_inputManager.crouchInput && !_inputManager.sprintInput && 
-                             (_inputManager.horizontalInput > 0 || _inputManager.verticalInput > 0))
-                        TransitionToState(PlayerState.Walking);
-                    
-                    else if (!_inputManager.crouchInput && _inputManager.sprintInput)
-                        TransitionToState(PlayerState.Sprinting);
-                    
-                    else if (!_inputManager.crouchInput && 
-                             _inputManager.horizontalInput == 0 && _inputManager.verticalInput == 0)
-                        TransitionToState(PlayerState.Idle);
-                    
+                
+                    else if (!_inputManager.crouchInput)
+                    {
+                        // Check if there's enough space to stand up.
+                        if (!Physics.Raycast(transform.position, Vector3.up, 
+                                playerHeight * 1.1f, GroundLayer))
+                        {
+                            if (_inputManager.sprintInput)
+                                TransitionToState(PlayerState.Sprinting);
+                            else if (_inputManager.horizontalInput != 0 || _inputManager.verticalInput != 0)
+                                TransitionToState(PlayerState.Walking);
+                            else
+                                TransitionToState(PlayerState.Idle);
+                        }
+                    }
                     break;
                 
                 case PlayerState.Jumping:
@@ -238,7 +243,7 @@ namespace NALEO._Scripts.Player
             switch (state)
             {
                 case PlayerState.Crouching:
-                    transform.localScale = new Vector3(transform.localScale.x, _defaultYScale, transform.localScale.z);
+                    ExitCrouch();
                     break;
             
                 case PlayerState.Jumping:
@@ -246,7 +251,6 @@ namespace NALEO._Scripts.Player
                     break;
             
                 case PlayerState.Dashing:
-                    // Any cleanup needed after dashing
                     break;
             }
         }
@@ -275,11 +279,38 @@ namespace NALEO._Scripts.Player
 
         private void Crouch()
         {
+            if (_isCrouching) return; // [Crouch fix] Prevent multiple crouch attempts.
+        
+            _isCrouching = true;
             _moveSpeed = crouchSpeed;
-            transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
+        
+            // Store current scale.
+            Vector3 newScale = transform.localScale;
+            newScale.y = _startYScale * crouchYScale;
+            transform.localScale = newScale;
+        
+            // Add downward force to quickly enter crouch.
             _rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
         }
 
+        private void ExitCrouch()
+        {
+            if (!_isCrouching) return; // Prevent multiple uncrouch attempts.
+    
+            _isCrouching = false;
+    
+            // Calculate the height difference before changing scale.
+            float heightDifference = (_startYScale - transform.localScale.y) * playerHeight;
+    
+            // Restore original scale
+            Vector3 newScale = transform.localScale;
+            newScale.y = _startYScale;
+            transform.localScale = newScale;
+    
+            // Teleport the player up by the height difference.
+            transform.position += Vector3.up * heightDifference;
+        }
+        
         private void Walk()
         {
             _moveSpeed = walkSpeed;
