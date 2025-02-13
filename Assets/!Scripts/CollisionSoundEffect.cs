@@ -1,8 +1,7 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-namespace NALEO._Scripts
+namespace _Scripts
 {
     public class ObjectCollisionHandler : MonoBehaviour
     {

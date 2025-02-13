@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace NALEO._Scripts.Camera
+namespace _Scripts.Camera
 {
     /// <summary>
     ///     This scripts just sets the position of the camera holder to the cameraTargetPosition.

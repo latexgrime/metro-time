@@ -1,7 +1,9 @@
 using System;
+using _Scripts.Player;
+using NALEO._Scripts;
 using UnityEngine;
 
-namespace NALEO._Scripts.Camera
+namespace _Scripts.Camera
 {
     /// <summary>
     ///     This script is in charge on handling the Input for the camera and handling the camera itself.
