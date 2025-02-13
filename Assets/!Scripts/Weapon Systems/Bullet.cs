@@ -4,15 +4,12 @@ namespace _Scripts.Weapon_Systems
 {
     public class Bullet : MonoBehaviour
     {
-        [Header("Bullet Properties")]
-        public float damage;
+        [Header("Bullet Properties")] public float damage;
         public float speed;
         public float lifetime = 3f;
-        
-        [Header("Effects")]
-        public TrailRenderer trailRenderer;
-        public GameObject impactEffect;
-        
+
+        [Header("Effects")] public GameObject impactEffect; // This should be set from WeaponData
+
         private void Start()
         {
             // Destroy bullet after lifetime.
@@ -21,10 +18,10 @@ namespace _Scripts.Weapon_Systems
 
         private void OnCollisionEnter(Collision collision)
         {
-            // Handle impact effect.
+            // Handle impact effect using weapon data's prefab
             if (impactEffect != null)
             {
-                GameObject impact = Instantiate(impactEffect, collision.contacts[0].point, 
+                GameObject impact = Instantiate(impactEffect, collision.contacts[0].point,
                     Quaternion.LookRotation(collision.contacts[0].normal));
                 Destroy(impact, 2f); // Cleanup impact effect.
             }

@@ -101,16 +101,37 @@ namespace _Scripts.Weapon_Systems
 
         private void ShootPhysicalBullet()
         {
+            // Get the shoot point position.
             Transform shootPoint = _currentWeapon.GetShootPoint();
-    
-            // Calculate spread.
-            Vector3 spread = Random.insideUnitSphere * _currentWeaponData.spread;
-            Vector3 direction = (_mainCamera.transform.forward + spread).normalized;
+
+            // Create a ray from the center of the screen.
+            Ray centerRay = _mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+
+            // Calculate direction from shoot point to the point the ray hits.
+            Vector3 direction;
+            RaycastHit hit;
+            if (Physics.Raycast(centerRay, out hit, _currentWeaponData.range))
+            {
+                // Direction is from shoot point to the hit point.
+                direction = (hit.point - shootPoint.position).normalized;
+            }
+            else
+            {
+                // If no hit, use the ray direction.
+                direction = centerRay.direction;
+            }
+
+            // Apply spread.
+            if (_currentWeaponData.spread > 0)
+            {
+                direction += Random.insideUnitSphere * _currentWeaponData.spread;
+                direction.Normalize();
+            }
 
             // Create bullet.
             GameObject bullet = Instantiate(_currentWeaponData.bulletPrefab, 
                 shootPoint.position, Quaternion.LookRotation(direction));
-    
+
             // Set up bullet properties.
             Bullet bulletComponent = bullet.GetComponent<Bullet>();
             if (bulletComponent != null)
@@ -118,6 +139,7 @@ namespace _Scripts.Weapon_Systems
                 bulletComponent.damage = _currentWeaponData.damage;
                 bulletComponent.speed = _currentWeaponData.bulletSpeed;
                 bulletComponent.lifetime = _currentWeaponData.bulletLifetime;
+                bulletComponent.impactEffect = _currentWeaponData.impactEffectPrefab;
             }
 
             // Add force to bullet.
@@ -131,16 +153,21 @@ namespace _Scripts.Weapon_Systems
         private void ShootRaycast()
         {
             // Implementation of raycast in case the physical bullet brings the performance down too much.
-            Vector3 shootDirection = CalculateShootDirection();
-            if (Physics.Raycast(_mainCamera.transform.position, shootDirection, out RaycastHit hit, 
-                    _currentWeaponData.range))
+            Ray centerRay = _mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+    
+            // Use the ray for the raycast instead of camera's forward direction
+            if (Physics.Raycast(centerRay, out RaycastHit hit, _currentWeaponData.range))
             {
                 HandleHit(hit);
             }
         }
         private Vector3 CalculateShootDirection()
         {
-            var direction = _mainCamera.transform.forward;
+            // Create a ray from the center of the screen.
+            Ray centerRay = _mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+    
+            // Calculate spread.
+            Vector3 direction = centerRay.direction;
             if (_currentWeaponData.spread > 0)
             {
                 direction += Random.insideUnitSphere * _currentWeaponData.spread;
