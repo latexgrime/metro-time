@@ -208,7 +208,18 @@ namespace _Scripts.Weapon_Systems
             if (_currentAmmo == _currentWeaponData.magazineSize) return;
 
             _isReloading = true;
-            if (_currentWeaponData.reloadSound != null) _audioSource.PlayOneShot(_currentWeaponData.reloadSound);
+    
+            // Play reload sound.
+            if (_currentWeaponData.reloadSound != null) 
+                _audioSource.PlayOneShot(_currentWeaponData.reloadSound);
+    
+            // Get the Animator component.
+            Animator animator = _currentWeapon.GetComponent<Animator>();
+            if (animator != null)
+            {
+                // Trigger reload animation.
+                animator.SetTrigger("Reload");
+            }
 
             Invoke(nameof(FinishReload), _currentWeaponData.reloadTime);
         }
@@ -217,6 +228,18 @@ namespace _Scripts.Weapon_Systems
         {
             _currentAmmo = _currentWeaponData.magazineSize;
             _isReloading = false;
+    
+            // Reset reload animation.
+            Animator animator = _currentWeapon.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.ResetTrigger("Reload");
+            }
+        }
+        
+        public Weapon GetCurrentWeapon()
+        {
+            return _currentWeapon;
         }
     }
 }

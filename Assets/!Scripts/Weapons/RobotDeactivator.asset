@@ -27,11 +27,16 @@ MonoBehaviour:
   recoilX: -2
   recoilY: 2
   recoilZ: 0.35
-  shootSound: {fileID: 8300000, guid: b14fdf56c82861f4797b00223f7c7e73, type: 3}
-  reloadSound: {fileID: 8300000, guid: c3dc79ed1d6ef5749a58deb56403c196, type: 3}
+  shootSound: {fileID: 8300000, guid: 185450f095601e149a726af53332d285, type: 3}
+  reloadSound: {fileID: 8300000, guid: 4951152a1d8388a4db5dc428fcc92acb, type: 3}
   muzzleFlashPrefab: {fileID: 2831285941179162300, guid: 4399809ecbe1fda4888d52486935f39a, type: 3}
   impactEffectPrefab: {fileID: 5250884515042193913, guid: 6357ec9189c437647a90b9c6a55820c3, type: 3}
   bulletPrefab: {fileID: 5831947927473502719, guid: 3b40d8d407d9192448bef9814610a053, type: 3}
   bulletSpeed: 1000
   bulletLifetime: 3
   usePhysicalBullets: 1
+  idleAnimation: {fileID: 7400000, guid: 8d6542d1f9608e241b3ccdafa7309e02, type: 2}
+  reloadAnimation: {fileID: 7400000, guid: cfd1dff48e7cb2842aeb5df4ad36ac49, type: 2}
+  fireAnimation: {fileID: 0}
+  reloadAnimationSpeed: 1
+  fireAnimationSpeed: 1

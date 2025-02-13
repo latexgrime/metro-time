@@ -42,5 +42,16 @@ namespace _Scripts.Weapon_Systems
         public float bulletSpeed = 30f;
         public float bulletLifetime = 3f;
         public bool usePhysicalBullets = true; // Toggle between raycast and physical typa bullet.
+        
+        [Header("Animations")]
+        public AnimationClip idleAnimation;
+        public AnimationClip walkAnimation;
+        public AnimationClip sprintAnimation;
+        public AnimationClip reloadAnimation;
+        public AnimationClip fireAnimation; // (This is most probably not going to be used but I'll leave a trigger just in case).
+        public float reloadAnimationSpeed = 1f;
+        public float fireAnimationSpeed = 1f;
+        public float walkAnimationSpeed = 1f;
+        public float sprintAnimationSpeed = 1f;
     }
 }

@@ -1,11 +1,14 @@
-﻿using UnityEngine;
+﻿using _Scripts.Weapon_Systems;
+using UnityEngine;
 
 namespace _Scripts.Player
 {
     public class InputManager : MonoBehaviour
     {
         private PlayerControls _playerControls;
-
+        private WeaponHandler _weaponHandler;
+        private CharacterController _characterController;
+        
         public Vector2 movementInput;
         public Vector2 cameraInput;
 
@@ -30,6 +33,12 @@ namespace _Scripts.Player
         public bool shootInput;
         public float weaponScrollInput;
 
+        private void Start()
+        {
+            _weaponHandler = GetComponent<WeaponHandler>();
+            _characterController = GetComponent<CharacterController>();
+        }
+        
         private void OnEnable()
         {
             if (_playerControls == null)
@@ -86,6 +95,23 @@ namespace _Scripts.Player
         {
             UpdateMovementInput();
             UpdateCameraInput();
+            
+            // Calculate movement speed.
+            Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            float movementSpeed = movement.magnitude;
+
+            // Check if sprinting.
+            bool isSprinting = Input.GetKey(KeyCode.LeftShift) && movementSpeed > 0;
+
+            // Update weapon animation state.
+            if (_weaponHandler != null)
+            {
+                Weapon currentWeapon = _weaponHandler.GetCurrentWeapon();
+                if (currentWeapon != null)
+                {
+                    currentWeapon.UpdateMovementState(isSprinting, movementSpeed);
+                }
+            }
         }
 
         private void UpdateMovementInput()
