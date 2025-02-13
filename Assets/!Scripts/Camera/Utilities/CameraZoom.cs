@@ -1,3 +1,5 @@
+using _Scripts.Camera;
+using _Scripts.Player;
 using UnityEngine;
 
 namespace NALEO._Scripts.Camera.Utilities

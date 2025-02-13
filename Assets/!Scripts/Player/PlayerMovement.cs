@@ -1,6 +1,5 @@
 using System.Collections;
 using NALEO._Scripts;
-using NALEO._Scripts.Player;
 using UnityEngine;
 
 namespace _Scripts.Player

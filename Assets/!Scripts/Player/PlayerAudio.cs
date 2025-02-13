@@ -1,7 +1,6 @@
-using _Scripts.Player;
 using UnityEngine;
 
-namespace NALEO._Scripts.Player
+namespace _Scripts.Player
 {
     public class PlayerAudio : MonoBehaviour
     {
