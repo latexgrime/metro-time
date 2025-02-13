@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - PlayerCollider
+  - Target
+  - Wall
   layers:
   - Default
   - TransparentFX
