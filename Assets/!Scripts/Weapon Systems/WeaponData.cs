@@ -36,5 +36,11 @@ namespace _Scripts.Weapon_Systems
         public AudioClip reloadSound;
         public ParticleSystem muzzleFlashPrefab;
         public GameObject impactEffectPrefab;
+        
+        [Header("Bullet Properties")]
+        public GameObject bulletPrefab;
+        public float bulletSpeed = 30f;
+        public float bulletLifetime = 3f;
+        public bool usePhysicalBullets = true; // Toggle between raycast and physical typa bullet.
     }
 }

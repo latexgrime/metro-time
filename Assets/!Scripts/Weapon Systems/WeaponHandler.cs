@@ -46,8 +46,8 @@ namespace _Scripts.Weapon_Systems
         private void Update()
         {
             if (_currentWeapon == null || _isReloading || !canShoot) return;
-
-            if (_inputManager.throwInput) // Using throwInput as shoot for now
+            
+            if (_inputManager.shootInput)
             {
                 if (_currentWeaponData.isAutomatic)
                 {
@@ -58,8 +58,8 @@ namespace _Scripts.Weapon_Systems
                     Shoot();
                 }
             }
-
-            if (_inputManager.interactInput && !_isReloading) // Using interact as reload for now
+            
+            if (_inputManager.reloadInput && !_isReloading)
                 StartReload();
         }
 
@@ -74,23 +74,70 @@ namespace _Scripts.Weapon_Systems
             _nextTimeToFire = Time.time + 1f / _currentWeaponData.fireRate;
             _currentAmmo--;
 
-            // Effects.
+            // Play effects.
             _currentWeapon.PlayMuzzleFlash();
-            if (_currentWeaponData.shootSound != null) _audioSource.PlayOneShot(_currentWeaponData.shootSound);
-
-            // Handle multiple bullets.
-            for (var i = 0; i < _currentWeaponData.bulletsPerShot; i++)
+            if (_currentWeaponData.shootSound != null)
             {
-                var shootDirection = CalculateShootDirection();
-                if (Physics.Raycast(_mainCamera.transform.position, shootDirection, out var hit,
-                        _currentWeaponData.range)) HandleHit(hit);
+                _audioSource.PlayOneShot(_currentWeaponData.shootSound);
             }
 
-            // Notify recoil system.
-            var recoil = GetComponent<WeaponRecoil>();
-            if (recoil != null) recoil.ApplyRecoil(_currentWeaponData);
+            // Handle shooting logic.
+            if (_currentWeaponData.usePhysicalBullets)
+            {
+                ShootPhysicalBullet();
+            }
+            else
+            {
+                ShootRaycast();
+            }
+
+            // Apply recoil.
+            WeaponRecoil recoil = GetComponent<WeaponRecoil>();
+            if (recoil != null)
+            {
+                recoil.ApplyRecoil(_currentWeaponData);
+            }
         }
 
+        private void ShootPhysicalBullet()
+        {
+            Transform shootPoint = _currentWeapon.GetShootPoint();
+    
+            // Calculate spread.
+            Vector3 spread = Random.insideUnitSphere * _currentWeaponData.spread;
+            Vector3 direction = (_mainCamera.transform.forward + spread).normalized;
+
+            // Create bullet.
+            GameObject bullet = Instantiate(_currentWeaponData.bulletPrefab, 
+                shootPoint.position, Quaternion.LookRotation(direction));
+    
+            // Set up bullet properties.
+            Bullet bulletComponent = bullet.GetComponent<Bullet>();
+            if (bulletComponent != null)
+            {
+                bulletComponent.damage = _currentWeaponData.damage;
+                bulletComponent.speed = _currentWeaponData.bulletSpeed;
+                bulletComponent.lifetime = _currentWeaponData.bulletLifetime;
+            }
+
+            // Add force to bullet.
+            Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
+            if (bulletRb != null)
+            {
+                bulletRb.linearVelocity = direction * _currentWeaponData.bulletSpeed;
+            }
+        }
+
+        private void ShootRaycast()
+        {
+            // Implementation of raycast in case the physical bullet brings the performance down too much.
+            Vector3 shootDirection = CalculateShootDirection();
+            if (Physics.Raycast(_mainCamera.transform.position, shootDirection, out RaycastHit hit, 
+                    _currentWeaponData.range))
+            {
+                HandleHit(hit);
+            }
+        }
         private Vector3 CalculateShootDirection()
         {
             var direction = _mainCamera.transform.forward;
@@ -114,7 +161,6 @@ namespace _Scripts.Weapon_Systems
                 Debug.DrawRay(hit.point, hit.normal * 0.5f, Color.yellow, debugLineDuration);
 
                 if (showHitInfo)
-                    // Log hit information
                     Debug.Log($"Hit object: {hit.collider.gameObject.name} " +
                               $"at position: {hit.point} " +
                               $"with surface normal: {hit.normal} " +
