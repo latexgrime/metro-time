@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b0c04f08c72d5e47bd1d0b8bca37f8b, type: 3}
-  m_Name: RobotDeactivator
+  m_Name: SMGRobotDeactivator
   m_EditorClassIdentifier: 
   weaponName: RobotDeactivator
   weaponType: 1
@@ -36,7 +36,11 @@ MonoBehaviour:
   bulletLifetime: 3
   usePhysicalBullets: 1
   idleAnimation: {fileID: 7400000, guid: 8d6542d1f9608e241b3ccdafa7309e02, type: 2}
+  walkAnimation: {fileID: 0}
+  sprintAnimation: {fileID: 0}
   reloadAnimation: {fileID: 7400000, guid: cfd1dff48e7cb2842aeb5df4ad36ac49, type: 2}
   fireAnimation: {fileID: 0}
   reloadAnimationSpeed: 1
   fireAnimationSpeed: 1
+  walkAnimationSpeed: 1
+  sprintAnimationSpeed: 1
