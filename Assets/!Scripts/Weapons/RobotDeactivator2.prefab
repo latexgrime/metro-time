@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d16ce7a1219b2b646888aa5a931d8ab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 11400000, guid: f6bcb36ba43f07040ae273056de4f2e5, type: 2}
+  weaponData: {fileID: 11400000, guid: ec5b2d25c5381eb4dab777fb698db803, type: 2}
 --- !u!95 &7012196157909272455
 Animator:
   serializedVersion: 7

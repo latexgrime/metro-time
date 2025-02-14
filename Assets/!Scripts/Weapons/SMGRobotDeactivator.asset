@@ -20,7 +20,7 @@ MonoBehaviour:
   range: 100
   spread: 0.01
   bulletsPerShot: 1
-  maxAmmo: 30
+  maxAmmo: 90
   magazineSize: 30
   reloadTime: 2
   isAutomatic: 1

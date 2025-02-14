@@ -10,6 +10,7 @@ namespace _Scripts.Weapon_Systems
         private WeaponManager _weaponManager;
         private UnityEngine.Camera _mainCamera;
         private AudioSource _audioSource;
+        private PlayerControls _playerControls;
 
         private Weapon _currentWeapon;
         private WeaponData _currentWeaponData;
@@ -17,6 +18,11 @@ namespace _Scripts.Weapon_Systems
         private float _nextTimeToFire;
         private bool _isReloading;
         private int _currentAmmo;
+        private int _totalAmmoLeft;
+        private float _lastScrollValue = 0f;
+        private bool _hasShot;
+        
+        
 
         [Header("State")] public bool canShoot = true;
 
@@ -41,6 +47,7 @@ namespace _Scripts.Weapon_Systems
             _currentWeapon = weapon;
             _currentWeaponData = weapon.GetWeaponData();
             _currentAmmo = _currentWeaponData.magazineSize;
+            _totalAmmoLeft = _currentWeaponData.maxAmmo - _currentWeaponData.magazineSize;
             _isReloading = false;
             _nextTimeToFire = 0f;
         }
@@ -48,34 +55,60 @@ namespace _Scripts.Weapon_Systems
         private void Update()
         {
             if (_currentWeapon == null || _isReloading || !canShoot) return;
-            
-            // Check if player is sprinting
+        
+            // Check if player is sprinting.
             if (_playerMovement.CurrentState == PlayerState.Sprinting)
             {
-                // Don't allow shooting while sprinting
+                // Don't allow shooting while sprinting.
                 return;
             }
-            
+        
             if (_inputManager.shootInput)
             {
-                // If player starts shooting while sprinting, force them to walk
+                // If player starts shooting while sprinting, force them to walk.
                 if (_playerMovement.CurrentState == PlayerState.Sprinting)
                 {
                     _playerMovement.ForceWalkState();
                 }
 
-                if (_currentWeaponData.isAutomatic)
-                {
-                    if (Time.time >= _nextTimeToFire) Shoot();
-                }
-                else if (Time.time >= _nextTimeToFire)
+                // Handle weapon shoot mode [Automatic or not]. 
+                if (_currentWeaponData.isAutomatic && Time.time >= _nextTimeToFire)
                 {
                     Shoot();
                 }
+                else if (!_currentWeaponData.isAutomatic && Time.time >= _nextTimeToFire && !_hasShot)
+                {
+                    Shoot();
+                    _hasShot = true;
+                }
             }
-            
+            else
+            {
+                _hasShot = false;
+            }
+        
             if (_inputManager.reloadInput && !_isReloading)
                 StartReload();
+
+            // Handle weapon switching - only trigger on scroll value change.
+            if (_inputManager.weaponScrollInput != 0 && _lastScrollValue == 0)
+            {
+                int currentIndex = _weaponManager.GetCurrentWeaponIndex();
+                int numberOfWeapons = _weaponManager.GetWeaponCount();
+            
+                if (_inputManager.weaponScrollInput > 0)
+                {
+                    int newIndex = (currentIndex + 1) % numberOfWeapons;
+                    _weaponManager.EquipWeapon(newIndex);
+                }
+                else
+                {
+                    int newIndex = (currentIndex - 1 + numberOfWeapons) % numberOfWeapons;
+                    _weaponManager.EquipWeapon(newIndex);
+                }
+            }
+        
+            _lastScrollValue = _inputManager.weaponScrollInput;
         }
 
         private void Shoot()
@@ -220,7 +253,8 @@ namespace _Scripts.Weapon_Systems
 
         private void StartReload()
         {
-            if (_currentAmmo == _currentWeaponData.magazineSize) return;
+            // Only reload if we have ammo left and magazine isn't full.
+            if (_currentAmmo == _currentWeaponData.magazineSize || _totalAmmoLeft <= 0) return;
 
             _isReloading = true;
     
@@ -232,7 +266,6 @@ namespace _Scripts.Weapon_Systems
             Animator animator = _currentWeapon.GetComponent<Animator>();
             if (animator != null)
             {
-                // Trigger reload animation.
                 animator.SetTrigger("Reload");
             }
 
@@ -241,7 +274,12 @@ namespace _Scripts.Weapon_Systems
 
         private void FinishReload()
         {
-            _currentAmmo = _currentWeaponData.magazineSize;
+            int ammoNeeded = _currentWeaponData.magazineSize - _currentAmmo;
+            int ammoToAdd = Mathf.Min(ammoNeeded, _totalAmmoLeft);
+        
+            _currentAmmo += ammoToAdd;
+            _totalAmmoLeft -= ammoToAdd;
+        
             _isReloading = false;
     
             // Reset reload animation.
@@ -252,9 +290,31 @@ namespace _Scripts.Weapon_Systems
             }
         }
         
+        
+        // Stuff for UI access [to be implemented].
         public Weapon GetCurrentWeapon()
         {
             return _currentWeapon;
+        }
+        
+        public int GetCurrentAmmo()
+        {
+            return _currentAmmo;
+        }
+
+        public int GetTotalAmmoLeft()
+        {
+            return _totalAmmoLeft;
+        }
+
+        public int GetMagazineSize()
+        {
+            return _currentWeaponData?.magazineSize ?? 0;
+        }
+
+        public WeaponData GetCurrentWeaponData()
+        {
+            return _currentWeaponData;
         }
     }
 }

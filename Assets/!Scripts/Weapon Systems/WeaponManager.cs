@@ -56,5 +56,15 @@ namespace _Scripts.Weapon_Systems
         {
             return _currentWeapon;
         }
+        
+        public int GetCurrentWeaponIndex()
+        {
+            return _currentWeaponIndex;
+        }
+
+        public int GetWeaponCount()
+        {
+            return availableWeapons.Count;
+        }
     }
 }

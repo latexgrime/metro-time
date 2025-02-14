@@ -20,13 +20,13 @@ MonoBehaviour:
   range: 100
   spread: 0.01
   bulletsPerShot: 1
-  maxAmmo: 30
-  magazineSize: 30
+  maxAmmo: 40
+  magazineSize: 8
   reloadTime: 1
   isAutomatic: 0
-  recoilX: -2
-  recoilY: 2
-  recoilZ: 0.35
+  recoilX: -10
+  recoilY: 10
+  recoilZ: 15
   shootSound: {fileID: 8300000, guid: 185450f095601e149a726af53332d285, type: 3}
   reloadSound: {fileID: 8300000, guid: 4951152a1d8388a4db5dc428fcc92acb, type: 3}
   muzzleFlashPrefab: {fileID: 2831285941179162300, guid: 4399809ecbe1fda4888d52486935f39a, type: 3}
@@ -40,7 +40,7 @@ MonoBehaviour:
   sprintAnimation: {fileID: 0}
   reloadAnimation: {fileID: 7400000, guid: cfd1dff48e7cb2842aeb5df4ad36ac49, type: 2}
   fireAnimation: {fileID: 0}
-  reloadAnimationSpeed: 2
+  reloadAnimationSpeed: 3
   fireAnimationSpeed: 1
   walkAnimationSpeed: 1
   sprintAnimationSpeed: 2

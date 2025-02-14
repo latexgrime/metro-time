@@ -81,6 +81,7 @@ namespace _Scripts.Player
                 _playerControls.PlayerActions.Shoot.canceled += i => shootInput = false;
 
                 _playerControls.PlayerActions.WeaponScroll.performed += i => weaponScrollInput = i.ReadValue<float>();
+                _playerControls.PlayerActions.WeaponScroll.canceled += i => weaponScrollInput = 0f;
             }
 
             _playerControls.Enable();
