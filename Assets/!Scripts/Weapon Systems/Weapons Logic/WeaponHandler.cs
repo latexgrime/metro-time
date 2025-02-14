@@ -11,6 +11,7 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
         private UnityEngine.Camera _mainCamera;
         private AudioSource _audioSource;
         private PlayerControls _playerControls;
+        private WeaponStateManager _weaponStateManager;
 
         private Weapon _currentWeapon;
         private WeaponData _currentWeaponData;
@@ -40,18 +41,32 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
             _mainCamera = UnityEngine.Camera.main;
             _audioSource = GetComponent<AudioSource>();
             _playerMovement = GetComponent<PlayerMovement>();
+            _weaponStateManager = GetComponent<WeaponStateManager>();
         }
 
         public void OnWeaponEquipped(Weapon weapon)
         {
             _currentWeapon = weapon;
             _currentWeaponData = weapon.GetWeaponData();
-            _currentAmmo = _currentWeaponData.magazineSize;
-            _totalAmmoLeft = _currentWeaponData.maxAmmo - _currentWeaponData.magazineSize;
-            _isReloading = false;
+    
+            // Get the saved state for this weapon.
+            WeaponState state = _weaponStateManager.GetWeaponState(_weaponManager.GetCurrentWeaponIndex());
+            if (state != null)
+            {
+                _currentAmmo = state.currentAmmo;
+                _totalAmmoLeft = state.totalAmmoLeft;
+                _isReloading = state.isReloading;
+            }
+            else
+            {
+                // To avoid errors: fallback to default values if no state exists.
+                _currentAmmo = _currentWeaponData.magazineSize;
+                _totalAmmoLeft = _currentWeaponData.maxAmmo - _currentWeaponData.magazineSize;
+                _isReloading = false;
+            }
             _nextTimeToFire = 0f;
         }
-
+        
         private void Update()
         {
             if (_currentWeapon == null || _isReloading || !canShoot) return;
@@ -115,6 +130,7 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
         {
             if (_currentAmmo <= 0)
             {
+                SaveCurrentWeaponState();
                 StartReload();
                 return;
             }
@@ -287,6 +303,21 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
             if (animator != null)
             {
                 animator.ResetTrigger("Reload");
+            }
+            
+            SaveCurrentWeaponState();
+        }
+        
+        private void SaveCurrentWeaponState()
+        {
+            if (_weaponStateManager != null)
+            {
+                _weaponStateManager.UpdateWeaponState(
+                    _weaponManager.GetCurrentWeaponIndex(),
+                    _currentAmmo,
+                    _totalAmmoLeft,
+                    _isReloading
+                );
             }
         }
         
