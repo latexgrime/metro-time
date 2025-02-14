@@ -8,7 +8,7 @@ namespace _Scripts.Weapon_Systems
         public float speed;
         public float lifetime = 3f;
 
-        [Header("Effects")] public GameObject impactEffect; // This should be set from WeaponData
+        [Header("Effects")] public GameObject impactEffect;
 
         private void Start()
         {
