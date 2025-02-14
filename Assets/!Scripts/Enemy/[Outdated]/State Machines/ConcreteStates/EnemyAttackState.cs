@@ -14,7 +14,7 @@ public class EnemyAttackState : EnemyState
     private float bulletSpeed = 10f;
     public EnemyAttackState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
-        playerTransform = GameObject.FindGameObjectWithTag("PlayerTarget").transform;
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     public override void EnterState()

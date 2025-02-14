@@ -1,4 +1,5 @@
 using _Scripts.Player;
+using _Scripts.Player.Movement;
 using UnityEngine;
 
 namespace _Scripts.Enemy.Interfaces

@@ -9,7 +9,7 @@ public class EnemyChaseState : EnemyState
     private float movementSpeed = 1.75f;
     public EnemyChaseState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
-        playerTransform = GameObject.FindGameObjectWithTag("PlayerTarget").transform;
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     public override void EnterState()

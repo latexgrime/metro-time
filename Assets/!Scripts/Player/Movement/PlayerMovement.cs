@@ -1,8 +1,7 @@
 using System.Collections;
-using NALEO._Scripts;
 using UnityEngine;
 
-namespace _Scripts.Player
+namespace _Scripts.Player.Movement
 {
     /// <summary>
     ///     Script in charge of handling the input for the movement of the player.
@@ -58,6 +57,8 @@ namespace _Scripts.Player
         private bool _grounded;
         private bool _wasGrounded;
         private bool _isShootingBlocked = false;
+        private bool _movementEnabled = true;
+        private float _moveSpeedMultiplier = 1f;
 
         private PlayerState _currentState;
         public PlayerState CurrentState => _currentState;
@@ -323,12 +324,19 @@ namespace _Scripts.Player
 
         private void MovePlayer()
         {
+            if (!_movementEnabled) 
+            {
+                _rb.linearVelocity = Vector3.zero;
+                return;
+            }
+
             _horizontalInput = _inputManager.horizontalInput;
             _verticalInput = _inputManager.verticalInput;
-            
+        
             _moveDirection = camOrientation.forward * _verticalInput + camOrientation.right * _horizontalInput;
 
-            
+            float effectiveSpeed = _moveSpeed * _moveSpeedMultiplier;
+        
             switch (_currentState)
             {
                 case PlayerState.Idle:
@@ -336,17 +344,17 @@ namespace _Scripts.Player
                 case PlayerState.Sprinting:
                 case PlayerState.Crouching:
                     if (OnSlope() && !_exitingSlope)
-                        ApplyOnSlopeForce();
+                        _rb.AddForce(GetSlopeMoveDirection() * (effectiveSpeed * 80f), ForceMode.Force);
                     else if (_grounded)
-                        ApplyOnGroundForce();
+                        _rb.AddForce(_moveDirection.normalized * (effectiveSpeed * 50f), ForceMode.Force);
                     break;
 
                 case PlayerState.InAir:
-                    ApplyOnAirForce();
+                    _rb.AddForce(_moveDirection.normalized * (effectiveSpeed * 50f * airMultiplier), ForceMode.Force);
                     break;
-            
+        
                 case PlayerState.Dashing:
-                    Dash();
+                    if (_movementEnabled) Dash();
                     break;
             }
         }
@@ -479,6 +487,16 @@ namespace _Scripts.Player
                 TransitionToState(PlayerState.Walking);
                 _isShootingBlocked = true;
             }
+        }
+        
+        public void SetMovementEnabled(bool enabled)
+        {
+            _movementEnabled = enabled;
+        }
+
+        public void SetMovementSpeedMultiplier(float multiplier)
+        {
+            _moveSpeedMultiplier = Mathf.Clamp(multiplier, 0f, 1f);
         }
     }
 }

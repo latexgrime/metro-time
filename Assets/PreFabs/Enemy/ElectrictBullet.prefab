@@ -9768,8 +9768,9 @@ GameObject:
   - component: {fileID: 2214542996896520312}
   - component: {fileID: 2214542996896520315}
   - component: {fileID: 2214542996896520314}
+  - component: {fileID: 881726159934470860}
   m_Layer: 0
-  m_Name: FX_Shoot_Laser_02_projectile
+  m_Name: ElectrictBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14614,6 +14615,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &881726159934470860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2214542996896520317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd9d08ce633d0b74088cff629682b6f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4494251175239741066
 GameObject:
   m_ObjectHideFlags: 0
