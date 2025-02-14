@@ -5,6 +5,7 @@ namespace _Scripts.Weapon_Systems
 {
     public class WeaponHandler : MonoBehaviour
     {
+        private PlayerMovement _playerMovement;
         private InputManager _inputManager;
         private WeaponManager _weaponManager;
         private UnityEngine.Camera _mainCamera;
@@ -32,6 +33,7 @@ namespace _Scripts.Weapon_Systems
             _weaponManager = GetComponent<WeaponManager>();
             _mainCamera = UnityEngine.Camera.main;
             _audioSource = GetComponent<AudioSource>();
+            _playerMovement = GetComponent<PlayerMovement>();
         }
 
         public void OnWeaponEquipped(Weapon weapon)
@@ -47,8 +49,21 @@ namespace _Scripts.Weapon_Systems
         {
             if (_currentWeapon == null || _isReloading || !canShoot) return;
             
+            // Check if player is sprinting
+            if (_playerMovement.CurrentState == PlayerState.Sprinting)
+            {
+                // Don't allow shooting while sprinting
+                return;
+            }
+            
             if (_inputManager.shootInput)
             {
+                // If player starts shooting while sprinting, force them to walk
+                if (_playerMovement.CurrentState == PlayerState.Sprinting)
+                {
+                    _playerMovement.ForceWalkState();
+                }
+
                 if (_currentWeaponData.isAutomatic)
                 {
                     if (Time.time >= _nextTimeToFire) Shoot();

@@ -7,7 +7,7 @@ namespace _Scripts.Player
     {
         private PlayerControls _playerControls;
         private WeaponHandler _weaponHandler;
-        private CharacterController _characterController;
+        private PlayerMovement _playerMovement;
         
         public Vector2 movementInput;
         public Vector2 cameraInput;
@@ -36,7 +36,7 @@ namespace _Scripts.Player
         private void Start()
         {
             _weaponHandler = GetComponent<WeaponHandler>();
-            _characterController = GetComponent<CharacterController>();
+            _playerMovement = GetComponent<PlayerMovement>(); 
         }
         
         private void OnEnable()
@@ -96,12 +96,29 @@ namespace _Scripts.Player
             UpdateMovementInput();
             UpdateCameraInput();
             
+            UpdateWeaponAnimationState();
+        }
+
+        private void UpdateWeaponAnimationState()
+        {
             // Calculate movement speed.
-            Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            Vector3 movement = new Vector3(horizontalInput, 0, verticalInput);
             float movementSpeed = movement.magnitude;
 
-            // Check if sprinting.
-            bool isSprinting = Input.GetKey(KeyCode.LeftShift) && movementSpeed > 0;
+            // Check if sprinting and grounded.
+            bool isSprinting = Input.GetKey(KeyCode.LeftShift) && 
+                               movementSpeed > 0 && 
+                               _playerMovement.CurrentState != PlayerState.InAir && 
+                               _playerMovement.CurrentState != PlayerState.Jumping;
+
+            // If we're in the air or jumping, force movementSpeed to walking speed.
+            if (_playerMovement.CurrentState == PlayerState.InAir || 
+                _playerMovement.CurrentState == PlayerState.Jumping)
+            {
+                // Normalize movement speed to walking when in air.
+                movementSpeed = Mathf.Min(movementSpeed, 0.5f);
+                isSprinting = false;
+            }
 
             // Update weapon animation state.
             if (_weaponHandler != null)
