@@ -1,4 +1,4 @@
-namespace NALEO._Scripts.Player
+namespace _Scripts.Player
 {
     public enum PlayerState
     {

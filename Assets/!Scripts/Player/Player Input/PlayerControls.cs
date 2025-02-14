@@ -203,6 +203,42 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""ff11ce28-2d06-489e-8cea-0c4044d5bcb8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""2eb00e49-3b21-4cd1-ac57-04cfbf9499a8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""ff061ec5-989c-4fd4-aec8-6c1b1a65f382"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""WeaponScroll"",
+                    ""type"": ""Value"",
+                    ""id"": ""2fb9d4dd-d5c4-4efb-a4f4-7cbac9304a4e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -348,6 +384,50 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0aa520af-2c70-418d-b60d-815605587346"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e0a0708-4b33-46a9-889b-589b0ae86f94"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f7a73e4b-6db1-4e78-a13f-02cd39bbd5dc"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc01e68e-01aa-4106-a381-ec847a90a36f"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WeaponScroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -367,6 +447,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
         m_PlayerActions_ZoomCamera = m_PlayerActions.FindAction("ZoomCamera", throwIfNotFound: true);
         m_PlayerActions_Crouch = m_PlayerActions.FindAction("Crouch", throwIfNotFound: true);
+        m_PlayerActions_Reload = m_PlayerActions.FindAction("Reload", throwIfNotFound: true);
+        m_PlayerActions_Aim = m_PlayerActions.FindAction("Aim", throwIfNotFound: true);
+        m_PlayerActions_Shoot = m_PlayerActions.FindAction("Shoot", throwIfNotFound: true);
+        m_PlayerActions_WeaponScroll = m_PlayerActions.FindAction("WeaponScroll", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -495,6 +579,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Interact;
     private readonly InputAction m_PlayerActions_ZoomCamera;
     private readonly InputAction m_PlayerActions_Crouch;
+    private readonly InputAction m_PlayerActions_Reload;
+    private readonly InputAction m_PlayerActions_Aim;
+    private readonly InputAction m_PlayerActions_Shoot;
+    private readonly InputAction m_PlayerActions_WeaponScroll;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -506,6 +594,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_PlayerActions_Interact;
         public InputAction @ZoomCamera => m_Wrapper.m_PlayerActions_ZoomCamera;
         public InputAction @Crouch => m_Wrapper.m_PlayerActions_Crouch;
+        public InputAction @Reload => m_Wrapper.m_PlayerActions_Reload;
+        public InputAction @Aim => m_Wrapper.m_PlayerActions_Aim;
+        public InputAction @Shoot => m_Wrapper.m_PlayerActions_Shoot;
+        public InputAction @WeaponScroll => m_Wrapper.m_PlayerActions_WeaponScroll;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -536,6 +628,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Crouch.started += instance.OnCrouch;
             @Crouch.performed += instance.OnCrouch;
             @Crouch.canceled += instance.OnCrouch;
+            @Reload.started += instance.OnReload;
+            @Reload.performed += instance.OnReload;
+            @Reload.canceled += instance.OnReload;
+            @Aim.started += instance.OnAim;
+            @Aim.performed += instance.OnAim;
+            @Aim.canceled += instance.OnAim;
+            @Shoot.started += instance.OnShoot;
+            @Shoot.performed += instance.OnShoot;
+            @Shoot.canceled += instance.OnShoot;
+            @WeaponScroll.started += instance.OnWeaponScroll;
+            @WeaponScroll.performed += instance.OnWeaponScroll;
+            @WeaponScroll.canceled += instance.OnWeaponScroll;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -561,6 +665,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Crouch.started -= instance.OnCrouch;
             @Crouch.performed -= instance.OnCrouch;
             @Crouch.canceled -= instance.OnCrouch;
+            @Reload.started -= instance.OnReload;
+            @Reload.performed -= instance.OnReload;
+            @Reload.canceled -= instance.OnReload;
+            @Aim.started -= instance.OnAim;
+            @Aim.performed -= instance.OnAim;
+            @Aim.canceled -= instance.OnAim;
+            @Shoot.started -= instance.OnShoot;
+            @Shoot.performed -= instance.OnShoot;
+            @Shoot.canceled -= instance.OnShoot;
+            @WeaponScroll.started -= instance.OnWeaponScroll;
+            @WeaponScroll.performed -= instance.OnWeaponScroll;
+            @WeaponScroll.canceled -= instance.OnWeaponScroll;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -592,5 +708,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnZoomCamera(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
+        void OnWeaponScroll(InputAction.CallbackContext context);
     }
 }
