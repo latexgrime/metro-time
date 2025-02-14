@@ -7,6 +7,7 @@ TagManager:
   - PlayerCollider
   - Target
   - Wall
+  - PlayerTarget
   layers:
   - Default
   - TransparentFX
