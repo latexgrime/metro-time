@@ -30,22 +30,20 @@ namespace _Scripts.Enemy.Enemy_Types
         {
             base.Update();
             UpdateAnimator();
-            UpdateHoverMotion(); // Call the base hover motion
-            UpdateWobble(); // Add additional wobble
+            UpdateHoverMotion();
+            UpdateWobble();
         }
 
         private void UpdateWobble()
         {
             if (isDeactivated) return;
 
-            // Create a smooth wobble effect using sin waves
             float wobbleX = Mathf.Sin(Time.time * wobbleSpeed) * wobbleAmount;
             float wobbleZ = Mathf.Cos(Time.time * wobbleSpeed * 0.7f) * wobbleAmount;
 
-            // Apply the wobble to the rotation, maintaining the original Y rotation
             transform.eulerAngles = new Vector3(
                 _startRotation.x + wobbleX,
-                transform.eulerAngles.y, // Keep the current Y rotation so the enemy can still face the player
+                transform.eulerAngles.y,
                 _startRotation.z + wobbleZ
             );
         }
