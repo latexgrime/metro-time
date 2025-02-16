@@ -4262,7 +4262,7 @@ MonoBehaviour:
   timeBeforeDecay: 1
   stunAppliedSound: {fileID: 8300000, guid: 50b228a265966e042a27e291dcfa0a79, type: 3}
   slowAppliedSound: {fileID: 8300000, guid: 9fd8a7715018d8e4296fb8678b900f59, type: 3}
-  statusBuildupSound: {fileID: 8300000, guid: 0d37333ae44b18f459db18ca622f25f2, type: 3}
+  statusBuildupSound: {fileID: 8300000, guid: ba745cdc8321bb6429b16855c29cab12, type: 3}
 --- !u!114 &1991372841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4280,8 +4280,6 @@ MonoBehaviour:
   slowIntensity: 0.5
   stunVFX: {fileID: 46482184}
   slowVFX: {fileID: 1881191683}
-  stunSound: {fileID: 0}
-  slowSound: {fileID: 0}
 --- !u!4 &1991372848 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1628928532243125579, guid: 53a82b4acdac53e459aed457c1ff29b8, type: 3}

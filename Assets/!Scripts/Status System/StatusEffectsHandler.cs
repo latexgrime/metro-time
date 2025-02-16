@@ -19,10 +19,6 @@ namespace _Scripts.Status_System
         [SerializeField] private ParticleSystem stunVFX;
         [SerializeField] private ParticleSystem slowVFX;
 
-        [Header("- Audio Effects")]
-        [SerializeField] private AudioClip stunSound;
-        [SerializeField] private AudioClip slowSound;
-
         public float StunDuration => stunDuration;
         public float SlowDuration => slowDuration;
 
@@ -50,9 +46,6 @@ namespace _Scripts.Status_System
             if (stunVFX != null)
                 stunVFX.Play();
 
-            if (_audioSource != null && stunSound != null)
-                _audioSource.PlayOneShot(stunSound);
-
             if (_playerMovement != null)
                 _playerMovement.enabled = false;
 
@@ -72,9 +65,6 @@ namespace _Scripts.Status_System
         {
             if (slowVFX != null)
                 slowVFX.Play();
-
-            if (_audioSource != null && slowSound != null)
-                _audioSource.PlayOneShot(slowSound);
 
             if (_playerMovement != null)
                 _playerMovement.SetMovementSpeedMultiplier(slowIntensity);
