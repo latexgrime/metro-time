@@ -1,4 +1,5 @@
 ﻿using _Scripts.Player.Movement;
+using _Scripts.Status_System;
 using _Scripts.Weapon_Systems;
 using _Scripts.Weapon_Systems.Weapons_Logic;
 using UnityEngine;
@@ -105,6 +106,7 @@ namespace _Scripts.Player
 
         private void UpdateWeaponAnimationState()
         {
+            // Check if movement is disabled or player is stunned/slowed
             if (!_playerMovement._movementEnabled)
             {
                 if (_weaponHandler != null)
@@ -117,7 +119,7 @@ namespace _Scripts.Player
                 }
                 return;
             }
-            
+    
             // Calculate movement speed.
             Vector3 movement = new Vector3(horizontalInput, 0, verticalInput);
             float movementSpeed = movement.magnitude;
@@ -127,6 +129,15 @@ namespace _Scripts.Player
                                movementSpeed > 0 && 
                                _playerMovement.CurrentState != PlayerState.InAir && 
                                _playerMovement.CurrentState != PlayerState.Jumping;
+
+            // Prevent sprinting if player is stunned or slowed
+            StatusEffectHandler statusEffectHandler = GetComponent<StatusEffectHandler>();
+            if (statusEffectHandler != null && 
+                (statusEffectHandler.IsSlowed || statusEffectHandler.IsStunned))
+            {
+                isSprinting = false;
+                movementSpeed = Mathf.Min(movementSpeed, 0.5f);
+            }
 
             // If we're in the air or jumping, force movementSpeed to walking speed.
             if (_playerMovement.CurrentState == PlayerState.InAir || 

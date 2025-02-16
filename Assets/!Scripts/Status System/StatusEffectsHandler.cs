@@ -18,6 +18,9 @@ namespace _Scripts.Status_System
         [Header("- Visual Effects")]
         [SerializeField] private ParticleSystem stunVFX;
         [SerializeField] private ParticleSystem slowVFX;
+        
+        public bool IsSlowed { get; private set; } = false;
+        public bool IsStunned { get; private set; } = false;
 
         public float StunDuration => stunDuration;
         public float SlowDuration => slowDuration;
@@ -43,6 +46,8 @@ namespace _Scripts.Status_System
 
         private IEnumerator StunCoroutine()
         {
+            IsStunned = true;
+            
             if (stunVFX != null)
                 stunVFX.Play();
 
@@ -53,6 +58,7 @@ namespace _Scripts.Status_System
                 _rb.linearVelocity = Vector3.zero;
 
             yield return new WaitForSeconds(stunDuration);
+            IsStunned = false;
 
             if (_playerMovement != null)
                 _playerMovement.enabled = true;
@@ -63,6 +69,9 @@ namespace _Scripts.Status_System
 
         private IEnumerator SlowdownCoroutine()
         {
+            IsSlowed = true;
+
+            
             if (slowVFX != null)
                 slowVFX.Play();
 
@@ -70,6 +79,7 @@ namespace _Scripts.Status_System
                 _playerMovement.SetMovementSpeedMultiplier(slowIntensity);
 
             yield return new WaitForSeconds(slowDuration);
+            IsSlowed = false;
 
             if (_playerMovement != null)
                 _playerMovement.SetMovementSpeedMultiplier(1f);
