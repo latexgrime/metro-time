@@ -14683,7 +14683,7 @@ MonoBehaviour:
   stunBuildupAmount: 35
   projectileSound: {fileID: 8300000, guid: 4dcffc96575d8fa45a526f50e7dd11fd, type: 3}
   impactSound: {fileID: 8300000, guid: a543af2c3d892e34fa311118fa406853, type: 3}
-  impactEffectPrefab: {fileID: 0}
+  impactEffectPrefab: {fileID: 5250884515042193913, guid: 6357ec9189c437647a90b9c6a55820c3, type: 3}
 --- !u!82 &2341142236372794684
 AudioSource:
   m_ObjectHideFlags: 0

@@ -62,11 +62,14 @@ namespace _Scripts.Enemy.Enemy_Types.Electric__Stun_
                 }
             }
 
-            // Hide the projectile but keep it alive for sound.
-            if (_meshRenderer != null) _meshRenderer.enabled = false;
-            if (_collider != null) _collider.enabled = false;
-    
-            // Destroy after sound finishes.
+            // Disable Particle System emission
+            ParticleSystem[] particleSystems = GetComponentsInChildren<ParticleSystem>();
+            foreach (ParticleSystem ps in particleSystems)
+            {
+                ps.Stop(); // Stop emission
+            }
+
+            // Destroy after sound finishes
             float soundDuration = impactSound != null ? impactSound.length : 0f;
             Destroy(gameObject, soundDuration);
         }

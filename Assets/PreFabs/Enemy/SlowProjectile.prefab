@@ -9835,6 +9835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slowBuildupAmount: 15
+  impactEffectPrefab: {fileID: 944750204202798419, guid: aade510ae69706e4c82949b144f64b00, type: 3}
   projectileSound: {fileID: 8300000, guid: 243e6cc9660b3df40b4f95679ed16d66, type: 3}
   impactSound: {fileID: 8300000, guid: 10c4b20661283e04ab930714774fb05e, type: 3}
 --- !u!82 &4379923732884975311

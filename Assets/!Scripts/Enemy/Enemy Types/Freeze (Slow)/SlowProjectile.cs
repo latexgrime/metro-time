@@ -56,14 +56,17 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
                 StatusEffectManager statusManager = collision.gameObject.GetComponent<StatusEffectManager>();
                 if (statusManager != null)
                 {
-                    statusManager.AddSlowBuildup(slowBuildupAmount);
+                    statusManager.AddStunBuildup(slowBuildupAmount);
                 }
             }
 
-            // Hide the projectile but keep it alive for sound
-            if (_meshRenderer != null) _meshRenderer.enabled = false;
-            if (_collider != null) _collider.enabled = false;
-    
+            // Disable Particle System emission
+            ParticleSystem[] particleSystems = GetComponentsInChildren<ParticleSystem>();
+            foreach (ParticleSystem ps in particleSystems)
+            {
+                ps.Stop(); // Stop emission
+            }
+
             // Destroy after sound finishes
             float soundDuration = impactSound != null ? impactSound.length : 0f;
             Destroy(gameObject, soundDuration);
