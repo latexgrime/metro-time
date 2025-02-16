@@ -20,6 +20,11 @@ namespace _Scripts.Enemy
         [SerializeField] protected float bobAmount = 0.5f;
         [SerializeField] protected float bobSpeed = 2f;
         
+        protected bool _animationsEnabled = true;
+        protected bool _movementEnabled = true;
+        protected float _moveSpeedMultiplier = 1f;
+        protected float _animationSpeedMultiplier = 1f;
+        
         
         protected Transform player;
         protected NavMeshAgent agent;
@@ -44,6 +49,43 @@ namespace _Scripts.Enemy
             }
         }
 
+        public void SetAnimationEnabled(bool enabled)
+        {
+            _animationsEnabled = enabled;
+            if (!enabled && animator != null)
+            {
+                animator.SetFloat("MovementSpeed", 0f);
+                animator.SetBool("isAttacking", false);
+            }
+        }
+
+        public void SetMovementEnabled(bool enabled)
+        {
+            _movementEnabled = enabled;
+            if (!enabled && agent != null)
+            {
+                agent.isStopped = true;
+            }
+        }
+
+        public void SetMovementSpeedMultiplier(float multiplier)
+        {
+            _moveSpeedMultiplier = Mathf.Clamp(multiplier, 0f, 1f);
+            if (agent != null)
+            {
+                agent.speed = moveSpeed * _moveSpeedMultiplier;
+            }
+        }
+
+        public void SetAnimationSpeed(float multiplier)
+        {
+            _animationSpeedMultiplier = multiplier;
+            if (animator != null)
+            {
+                animator.speed = multiplier;
+            }
+        }
+        
         protected virtual void Update()
         {
             if (isDeactivated) return;
@@ -83,10 +125,28 @@ namespace _Scripts.Enemy
         
         protected virtual void UpdateAnimator()
         {
-            if (animator != null)
+            if (animator != null && _animationsEnabled)
             {
                 float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-                animator.SetBool("isAttacking", distanceToPlayer <= attackRange);
+        
+                // Only set animation parameters if we're not disabled
+                if (!isDeactivated)
+                {
+                    animator.SetBool("isAttacking", distanceToPlayer <= attackRange);
+            
+                    // Handle movement animations
+                    if (_movementEnabled)
+                    {
+                        Vector3 velocity = agent != null ? agent.velocity : Vector3.zero;
+                        float speed = velocity.magnitude;
+                        animator.SetFloat("MovementSpeed", speed * _moveSpeedMultiplier * _animationSpeedMultiplier);
+                    }
+                    else
+                    {
+                        animator.SetFloat("MovementSpeed", 0f);
+                    }
+                }
+        
                 animator.SetBool("isDeactivated", isDeactivated);
             }
         }
@@ -183,6 +243,8 @@ namespace _Scripts.Enemy
             }
         }
     }
+    
+    
 
     public enum EnemyState
     {

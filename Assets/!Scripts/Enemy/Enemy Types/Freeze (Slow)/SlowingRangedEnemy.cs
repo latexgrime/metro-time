@@ -18,7 +18,7 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
         
         private float _nextAttackTime;
         private Vector3 _startRotation;
-
+        
         protected override void Start()
         {
             base.Start();
