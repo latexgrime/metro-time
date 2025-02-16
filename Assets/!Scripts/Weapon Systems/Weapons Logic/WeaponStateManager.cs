@@ -10,10 +10,6 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
         private void Awake()
         {
             _weaponManager = GetComponent<WeaponManager>();
-        }
-
-        private void Start()
-        {
             InitializeWeaponStates();
         }
 

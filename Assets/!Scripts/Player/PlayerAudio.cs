@@ -1,3 +1,4 @@
+using _Scripts.Player.Movement;
 using UnityEngine;
 
 namespace _Scripts.Player

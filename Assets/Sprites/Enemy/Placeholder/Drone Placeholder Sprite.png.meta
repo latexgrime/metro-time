@@ -1,0 +1,1283 @@
+fileFormatVersion: 2
+guid: 483c95e5458ddc34782a0783ba336319
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1151
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 195e3cdfedbb3514f83164983b5e2d82
+      internalID: -714065221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_1
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 1151
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d383f0ebb5ece844fbb36efb82d3e162
+      internalID: 1796027017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_2
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 1151
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e39d9f704368474f8d7e14509a98b59
+      internalID: 706808789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_3
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 1151
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6c043304a17e364182e1e56ea68b94b
+      internalID: 1415636614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_4
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 1151
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27a6564d6c461a04fb636e8ac1d74128
+      internalID: 472602971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_5
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 1151
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19ae8bad8e9a17e42b4836a3443d7f6d
+      internalID: 1587453795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_6
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 1151
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bfaf84ff04a2f141892d11e3d6d7de0
+      internalID: 860276052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 980
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 533d9945ad23de645845d4e30e8a9ef1
+      internalID: 1207284994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_8
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 980
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93f82f0706bc3854baa57a713ddea229
+      internalID: 322330801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_9
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 980
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e07ad34a13585e408679e923e83e118
+      internalID: 2050009859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_10
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 980
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5896711366e31ea4cbad0ecdccc65d2b
+      internalID: -750896297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_11
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 980
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23f4648f4d9f0ff459929ffeb44a2fb1
+      internalID: 1740007420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_12
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 980
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c313139b1c5ebe4f98195263050075e
+      internalID: 597796148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_13
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 980
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8f498d8c66ad38469568dd7b46c468e
+      internalID: -941370474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 809
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f4c39de59df8454fad2d2504eb99220
+      internalID: 923104014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_15
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 809
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93539ab4934186047a1bb27a3d38c037
+      internalID: -1853174564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_16
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 809
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3307303009db7ac4ba7846d23ab93340
+      internalID: -189944941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_17
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 809
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 101c0377dde0f944eb0d900c73d5cd69
+      internalID: 1936905441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_18
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 809
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3752cb3a15d61aa4faf434989c46ae15
+      internalID: -1037985756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_19
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 809
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0811e84fd1ad4054caf26befc7cb2a20
+      internalID: -1267586771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_20
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 809
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 319b9e0740ba9b8409d32dd5d8cb4024
+      internalID: -753313258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 638
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a4a01c6b6655b643bf27224cdf3c29c
+      internalID: 851280325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_22
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 638
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55586d824c9cc9943bc0a513c40e6f68
+      internalID: -1538796042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_23
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 638
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bfa1dc2992eb904f835c24a0e3d565e
+      internalID: 1655047169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_24
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 638
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffc53a269829d1d46b806b55f4bf30d9
+      internalID: 991656315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_25
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 638
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 510d663f73235f149b007e5dcd9ec9c7
+      internalID: 225527223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_26
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 638
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4b2f4eaa2677f549af0e1a6a50f8757
+      internalID: 504193196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_27
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 638
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0081d6ff70a6a444f83cd26ff8144f98
+      internalID: -1059992373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 467
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1805d4019beb8684297548f3aa68fd5c
+      internalID: -1398373740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_29
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 467
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbea03a3b6e9a8846a36bcc2684b6e79
+      internalID: 2138756032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_30
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 467
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cafad8fec9d8fb43965fbe51ce41490
+      internalID: -140753903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_31
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 467
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d71da81ded462d245af372cd1063a63b
+      internalID: -790258585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_32
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 467
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abc539603ad4e8d428b51cc1ad201714
+      internalID: -1590592951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_33
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 467
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb3d1da6540c4fa4ab4270ad6cd91320
+      internalID: 902950834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_34
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 467
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 170939890e0794a4da5b291063d54466
+      internalID: 1177454130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 296
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db3c4a9d796bdaf4787be806d981feb4
+      internalID: 353218528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_36
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 296
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60a100dd98787bb4cae5307c3e4f66c7
+      internalID: 1160023976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_37
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 296
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9bbb6d1d7acb6d45bd449bdbb16c022
+      internalID: -1588050631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_38
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 296
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ab77e58adeafd4478d0a86cdf21e5c0
+      internalID: -741244218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_39
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 296
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bab497e5488f800458e1458c2a08b6c6
+      internalID: 776655360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_40
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 296
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a00e3309ebf1f9949a0784fb68ab8260
+      internalID: -241343897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_41
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 296
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe3bf5020916c674b8421f0a8ce978bf
+      internalID: 337319460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 125
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c4fa33e8c6a0474dbd85ea68b04b5fe
+      internalID: -1255126807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_43
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 125
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea50670a704a7d841963635a400f4019
+      internalID: -733947624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_44
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 125
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdd39ff7a8bdb4043bc902cb234b4f40
+      internalID: 895716232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_45
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 125
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f6c90544e39bbe46aec8c87c3611f12
+      internalID: 1027929975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_46
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 125
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca5f3fc3e4f6b1c40852e41a94e061bf
+      internalID: 1494184203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_47
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 125
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25ca8a433c258164e8f4b47ab905b2a3
+      internalID: -589053948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Placeholder Sprite_48
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 125
+        width: 171
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a223d1212552e3a439398dd4298bb089
+      internalID: -82641195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: f37a69b218e17db408ce5a22a49a7fcd
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Drone Placeholder Sprite_0: -714065221
+      Drone Placeholder Sprite_1: 1796027017
+      Drone Placeholder Sprite_10: -750896297
+      Drone Placeholder Sprite_11: 1740007420
+      Drone Placeholder Sprite_12: 597796148
+      Drone Placeholder Sprite_13: -941370474
+      Drone Placeholder Sprite_14: 923104014
+      Drone Placeholder Sprite_15: -1853174564
+      Drone Placeholder Sprite_16: -189944941
+      Drone Placeholder Sprite_17: 1936905441
+      Drone Placeholder Sprite_18: -1037985756
+      Drone Placeholder Sprite_19: -1267586771
+      Drone Placeholder Sprite_2: 706808789
+      Drone Placeholder Sprite_20: -753313258
+      Drone Placeholder Sprite_21: 851280325
+      Drone Placeholder Sprite_22: -1538796042
+      Drone Placeholder Sprite_23: 1655047169
+      Drone Placeholder Sprite_24: 991656315
+      Drone Placeholder Sprite_25: 225527223
+      Drone Placeholder Sprite_26: 504193196
+      Drone Placeholder Sprite_27: -1059992373
+      Drone Placeholder Sprite_28: -1398373740
+      Drone Placeholder Sprite_29: 2138756032
+      Drone Placeholder Sprite_3: 1415636614
+      Drone Placeholder Sprite_30: -140753903
+      Drone Placeholder Sprite_31: -790258585
+      Drone Placeholder Sprite_32: -1590592951
+      Drone Placeholder Sprite_33: 902950834
+      Drone Placeholder Sprite_34: 1177454130
+      Drone Placeholder Sprite_35: 353218528
+      Drone Placeholder Sprite_36: 1160023976
+      Drone Placeholder Sprite_37: -1588050631
+      Drone Placeholder Sprite_38: -741244218
+      Drone Placeholder Sprite_39: 776655360
+      Drone Placeholder Sprite_4: 472602971
+      Drone Placeholder Sprite_40: -241343897
+      Drone Placeholder Sprite_41: 337319460
+      Drone Placeholder Sprite_42: -1255126807
+      Drone Placeholder Sprite_43: -733947624
+      Drone Placeholder Sprite_44: 895716232
+      Drone Placeholder Sprite_45: 1027929975
+      Drone Placeholder Sprite_46: 1494184203
+      Drone Placeholder Sprite_47: -589053948
+      Drone Placeholder Sprite_48: -82641195
+      Drone Placeholder Sprite_5: 1587453795
+      Drone Placeholder Sprite_6: 860276052
+      Drone Placeholder Sprite_7: 1207284994
+      Drone Placeholder Sprite_8: 322330801
+      Drone Placeholder Sprite_9: 2050009859
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
