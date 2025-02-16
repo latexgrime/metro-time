@@ -4916,6 +4916,8 @@ GameObject:
   - component: {fileID: 4840880294674937118}
   - component: {fileID: -2037044817925203604}
   - component: {fileID: 4379923732884975311}
+  - component: {fileID: 1319941783627573984}
+  - component: {fileID: -5198897984335032537}
   m_Layer: 0
   m_Name: SlowProjectile
   m_TagString: Untagged
@@ -9833,8 +9835,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slowBuildupAmount: 15
-  projectileSound: {fileID: 0}
-  impactSound: {fileID: 0}
+  projectileSound: {fileID: 8300000, guid: 243e6cc9660b3df40b4f95679ed16d66, type: 3}
+  impactSound: {fileID: 8300000, guid: 10c4b20661283e04ab930714774fb05e, type: 3}
 --- !u!82 &4379923732884975311
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9932,6 +9934,56 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!54 &1319941783627573984
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4840880294674937119}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &-5198897984335032537
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4840880294674937119}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 1}
 --- !u!1 &6308267584761583770
 GameObject:
   m_ObjectHideFlags: 0

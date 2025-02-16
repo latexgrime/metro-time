@@ -5,23 +5,25 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
 {
     public class SlowingRangedEnemy : BaseEnemy
     {
-        [Header("- Attack Settings")]
+        [Header("- Attack Settings")] 
         [SerializeField] private GameObject slowProjectilePrefab;
         [SerializeField] private Transform projectileSpawnPoint;
-        [SerializeField] private float projectileSpeed = 15f;
-        [SerializeField] private float attackCooldown = 3f;
+        [SerializeField] private float projectileSpeed = 20f;
+        [SerializeField] private float attackCooldown = 2f;
         [SerializeField] private float projectileLifetime = 5f;
-        [SerializeField] private int projectilesPerBurst = 3;
-        [SerializeField] private float burstDelay = 0.2f;
+
+        [Header("- Wobble Settings")]
+        [SerializeField] private float wobbleAmount = 5f;
+        [SerializeField] private float wobbleSpeed = 3f;
         
         private float _nextAttackTime;
-        private int _projectilesShot;
-        private float _lastProjectileTime;
+        private Vector3 _startRotation;
 
         protected override void Start()
         {
             base.Start();
             animator = GetComponentInChildren<Animator>();
+            _startRotation = transform.eulerAngles;
         }
 
         protected override void Update()
@@ -29,63 +31,50 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
             base.Update();
             UpdateAnimator();
             UpdateHoverMotion();
+            UpdateWobble();
+        }
+
+        private void UpdateWobble()
+        {
+            if (isDeactivated) return;
+
+            float wobbleX = Mathf.Sin(Time.time * wobbleSpeed) * wobbleAmount;
+            float wobbleZ = Mathf.Cos(Time.time * wobbleSpeed * 0.7f) * wobbleAmount;
+
+            transform.eulerAngles = new Vector3(
+                _startRotation.x + wobbleX,
+                transform.eulerAngles.y, 
+                _startRotation.z + wobbleZ
+            );
         }
 
         protected override void Attack()
         {
             if (Time.time >= _nextAttackTime)
             {
-                _projectilesShot = 0;
-                _lastProjectileTime = Time.time;
-            }
-            
-            if (_projectilesShot < projectilesPerBurst && Time.time >= _lastProjectileTime + burstDelay)
-            {
-                FireProjectile();
-                _projectilesShot++;
-                _lastProjectileTime = Time.time;
-                
-                if (_projectilesShot >= projectilesPerBurst)
-                {
-                    _nextAttackTime = Time.time + attackCooldown;
-                }
-            }
-        }
+                var directionToPlayer = (player.position - transform.position).normalized;
+                transform.forward = new Vector3(directionToPlayer.x, 0, directionToPlayer.z);
 
-        private void FireProjectile()
-        {
-            if (slowProjectilePrefab == null || projectileSpawnPoint == null)
-            {
-                Debug.LogWarning("Missing projectile prefab or spawn point reference!");
-                return;
-            }
+                // Trigger attack animation if we have one
+                if (animator != null) animator.SetTrigger("shoot");
 
-            Vector3 directionToPlayer = (player.position - transform.position).normalized;
-            transform.forward = new Vector3(directionToPlayer.x, 0, directionToPlayer.z);
-            
-            Vector3 spreadDirection = Quaternion.Euler(0, Random.Range(-15f, 15f), 0) * directionToPlayer;
+                // Shoot projectile
+                var projectile = Instantiate(slowProjectilePrefab,
+                    projectileSpawnPoint.position,
+                    Quaternion.LookRotation(directionToPlayer));
 
-            GameObject projectile = Instantiate(slowProjectilePrefab, 
-                projectileSpawnPoint.position, 
-                Quaternion.LookRotation(spreadDirection));
+                var slowProjectile = projectile.GetComponent<SlowProjectile>();
+                if (slowProjectile != null) 
+                    slowProjectile.Initialize(projectileSpeed, projectileLifetime);
 
-            SlowProjectile slowProjectile = projectile.GetComponent<SlowProjectile>();
-            if (slowProjectile != null)
-            {
-                slowProjectile.Initialize(projectileSpeed, projectileLifetime);
-            }
-            else
-            {
-                Debug.LogWarning("SlowProjectile component not found on instantiated prefab!");
+                _nextAttackTime = Time.time + attackCooldown;
             }
         }
 
         protected override void UpdateAnimator()
         {
-            if (animator != null)
-            {
+            if (animator != null) 
                 animator.SetBool("isDeactivated", isDeactivated);
-            }
         }
     }
 }
