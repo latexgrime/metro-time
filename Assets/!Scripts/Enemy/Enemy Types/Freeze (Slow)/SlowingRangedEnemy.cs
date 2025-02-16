@@ -1,7 +1,9 @@
-using _Scripts.StatusSystem;
+using System;
+using _Scripts.Status_System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-namespace _Scripts.Enemy.Enemy_Types
+namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
 {
     public class SlowingRangedEnemy : BaseEnemy
     {
@@ -60,49 +62,6 @@ namespace _Scripts.Enemy.Enemy_Types
             {
                 slowProjectile.Initialize(projectileSpeed, projectileLifetime);
             }
-        }
-    }
-
-    // Projectile class.
-    public class SlowProjectile : MonoBehaviour
-    {
-        private float speed;
-        private float lifetime;
-        private float damage = 5f;
-        
-        private void OnCollisionEnter(Collision collision)
-        {
-            // Check if the player was hit.
-            if (collision.gameObject.CompareTag("Player"))
-            {
-                // Apply slow effect.
-                StatusEffectHandler statusHandler = collision.gameObject.GetComponent<StatusEffectHandler>();
-                if (statusHandler != null)
-                {
-                    statusHandler.ApplySlowdown();
-                }
-            }
-
-            // ADD SLOW EFFECT PARTICLE SYSTEM OR VFX HERE.
-
-            // Destroy projectile on any collision.
-            Destroy(gameObject);
-        }
-
-        public void Initialize(float projectileSpeed, float projectileLifetime)
-        {
-            speed = projectileSpeed;
-            lifetime = projectileLifetime;
-            
-            // Set up rigidbody movement.
-            Rigidbody rb = GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.linearVelocity = transform.forward * speed;
-            }
-
-            // Destroy after lifetime. 
-            Destroy(gameObject, lifetime);
         }
     }
 }

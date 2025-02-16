@@ -6,13 +6,13 @@ namespace _Scripts.Enemy
 {
     public abstract class BaseEnemy : MonoBehaviour, IShieldable
     {
-        [Header("Shield Settings")]
+        [Header("- Shield Settings")]
         [SerializeField] protected float maxShield = 100f;
         [SerializeField] protected float currentShield;
         [SerializeField] protected float shieldRegenRate = 5f;
         [SerializeField] protected float shieldRegenDelay = 3f;
         
-        [Header("Movement Settings")]
+        [Header("- Movement Settings")]
         [SerializeField] protected float detectionRange = 15f;
         [SerializeField] protected float attackRange = 10f;
         [SerializeField] protected float moveSpeed = 5f;
