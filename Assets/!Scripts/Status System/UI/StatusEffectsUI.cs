@@ -5,6 +5,10 @@ namespace _Scripts.Status_System.UI
 {
     public class StatusEffectUI : MonoBehaviour
     {
+        [Header("- Effect Group References")]
+        [SerializeField] private GameObject stunEffectGroup;
+        [SerializeField] private GameObject freezeEffectGroup;
+
         [Header("- Status Bar References")]
         [SerializeField] private Slider stunBar;
         [SerializeField] private Slider slowBar;
@@ -24,7 +28,6 @@ namespace _Scripts.Status_System.UI
 
         private void Start()
         {
-            // Set up initial colors through code in case anyone forgets to do it in the scene view/inspector.
             if (stunBar != null)
             {
                 stunBar.fillRect.GetComponent<Image>().color = stunBarColor;
@@ -35,14 +38,14 @@ namespace _Scripts.Status_System.UI
                 slowBar.fillRect.GetComponent<Image>().color = slowBarColor;
             }
 
-            // Initially hide icons.
+            SetStunGroupActive(false);
+            SetFreezeGroupActive(false);
             if (stunIcon != null) stunIcon.enabled = false;
             if (slowIcon != null) slowIcon.enabled = false;
         }
 
         private void Update()
         {
-            // Pulse active effect icons.
             float pulse = Mathf.Lerp(pulseMinAlpha, pulseMaxAlpha, 
                 (Mathf.Sin(Time.time * pulseSpeed) + 1) * 0.5f);
 
@@ -61,17 +64,22 @@ namespace _Scripts.Status_System.UI
             }
         }
 
-        // Methods in case we need them in the future.
         public void UpdateStunBar(float value)
         {
             if (stunBar != null)
+            {
                 stunBar.value = value;
+                SetStunGroupActive(value > 0);
+            }
         }
 
         public void UpdateSlowBar(float value)
         {
             if (slowBar != null)
+            {
                 slowBar.value = value;
+                SetFreezeGroupActive(value > 0);
+            }
         }
 
         public void SetStunIconActive(bool active)
@@ -84,6 +92,18 @@ namespace _Scripts.Status_System.UI
         {
             if (slowIcon != null)
                 slowIcon.enabled = active;
+        }
+
+        private void SetStunGroupActive(bool active)
+        {
+            if (stunEffectGroup != null)
+                stunEffectGroup.SetActive(active);
+        }
+
+        private void SetFreezeGroupActive(bool active)
+        {
+            if (freezeEffectGroup != null)
+                freezeEffectGroup.SetActive(active);
         }
     }
 }

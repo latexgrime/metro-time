@@ -7,17 +7,18 @@ namespace _Scripts.Status_System
 {
     public class StatusEffectManager : MonoBehaviour
     {
-        [Header("- Dependencies")]
+        [Header("Dependencies")]
         [SerializeField] private StatusEffectUI statusUI;
         private AudioSource _audioSource;
         private PlayerMovement _playerMovement;
         private StatusEffectHandler _statusEffectHandler;
 
-        [Header("- Status Thresholds")]
+        [Header("Status Thresholds")]
         [SerializeField] private float maxStatusValue = 100f;
         [SerializeField] private float barDecayRate = 0.5f;
+        [SerializeField] private float timeBeforeDecay = 1f;
 
-        [Header("- Audio")]
+        [Header("Audio")]
         [SerializeField] private AudioClip stunAppliedSound;
         [SerializeField] private AudioClip slowAppliedSound;
         [SerializeField] private AudioClip statusBuildupSound;
@@ -26,28 +27,31 @@ namespace _Scripts.Status_System
         private float _currentSlowValue;
         private bool _isStunned;
         private bool _isSlowed;
+        private float _lastHitTime;
 
         private void Start()
         {
             _audioSource = GetComponent<AudioSource>();
             _playerMovement = GetComponent<PlayerMovement>();
             _statusEffectHandler = GetComponent<StatusEffectHandler>();
+            _lastHitTime = Time.time;
         }
 
         private void Update()
         {
-            DecayStatusValues();
+            if (!_isStunned && !_isSlowed && Time.time - _lastHitTime > timeBeforeDecay)
+            {
+                DecayStatusValues();
+            }
+            
             UpdateUI();
             CheckStatusEffects();
         }
 
         private void DecayStatusValues()
         {
-            if (!_isStunned)
-                _currentStunValue = Mathf.Max(0, _currentStunValue - barDecayRate * Time.deltaTime);
-
-            if (!_isSlowed)
-                _currentSlowValue = Mathf.Max(0, _currentSlowValue - barDecayRate * Time.deltaTime);
+            _currentStunValue = Mathf.Max(0, _currentStunValue - barDecayRate * Time.deltaTime);
+            _currentSlowValue = Mathf.Max(0, _currentSlowValue - barDecayRate * Time.deltaTime);
         }
 
         private void UpdateUI()
@@ -63,16 +67,21 @@ namespace _Scripts.Status_System
         private void CheckStatusEffects()
         {
             if (_currentStunValue >= maxStatusValue && !_isStunned)
+            {
                 ApplyStunEffect();
+            }
 
             if (_currentSlowValue >= maxStatusValue && !_isSlowed)
+            {
                 ApplySlowEffect();
+            }
         }
 
         public void AddStunBuildup(float amount)
         {
             if (_isStunned) return;
 
+            _lastHitTime = Time.time;
             _currentStunValue = Mathf.Min(_currentStunValue + amount, maxStatusValue);
             PlayBuildupSound();
         }
@@ -81,6 +90,7 @@ namespace _Scripts.Status_System
         {
             if (_isSlowed) return;
 
+            _lastHitTime = Time.time;
             _currentSlowValue = Mathf.Min(_currentSlowValue + amount, maxStatusValue);
             PlayBuildupSound();
         }

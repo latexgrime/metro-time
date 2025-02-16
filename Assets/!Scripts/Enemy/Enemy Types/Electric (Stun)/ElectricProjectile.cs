@@ -38,10 +38,10 @@ namespace _Scripts.Enemy.Enemy_Types.Electric__Stun_
             // Check if we hit the player.
             if (collision.gameObject.CompareTag("Player"))
             {
-                // Apply stun buildup.
                 StatusEffectManager statusManager = collision.gameObject.GetComponent<StatusEffectManager>();
                 if (statusManager != null)
                 {
+                    Debug.Log($"Adding Stun Buildup: {stunBuildupAmount}");
                     statusManager.AddStunBuildup(stunBuildupAmount);
                 }
             }
