@@ -56,18 +56,18 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
                 StatusEffectManager statusManager = collision.gameObject.GetComponent<StatusEffectManager>();
                 if (statusManager != null)
                 {
-                    statusManager.AddStunBuildup(slowBuildupAmount);
+                    statusManager.AddSlowBuildup(slowBuildupAmount);
                 }
             }
 
-            // Disable Particle System emission
+            // Disable Particle System emission.
             ParticleSystem[] particleSystems = GetComponentsInChildren<ParticleSystem>();
             foreach (ParticleSystem ps in particleSystems)
             {
-                ps.Stop(); // Stop emission
+                ps.Stop();
             }
 
-            // Destroy after sound finishes
+            // Destroy after sound finishes.
             float soundDuration = impactSound != null ? impactSound.length : 0f;
             Destroy(gameObject, soundDuration);
         }
