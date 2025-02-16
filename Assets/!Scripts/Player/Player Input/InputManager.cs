@@ -17,7 +17,8 @@ namespace _Scripts.Player
         [Header("Camera Input")] public float cameraInputX;
         public float cameraInputY;
 
-        [Header("Moving Input")] public float moveAmount;
+        [Header("Moving Input")] 
+        public float moveAmount;
         public float verticalInput;
         public float horizontalInput;
 
@@ -104,6 +105,19 @@ namespace _Scripts.Player
 
         private void UpdateWeaponAnimationState()
         {
+            if (!_playerMovement._movementEnabled)
+            {
+                if (_weaponHandler != null)
+                {
+                    Weapon currentWeapon = _weaponHandler.GetCurrentWeapon();
+                    if (currentWeapon != null)
+                    {
+                        currentWeapon.UpdateMovementState(false, 0f);
+                    }
+                }
+                return;
+            }
+            
             // Calculate movement speed.
             Vector3 movement = new Vector3(horizontalInput, 0, verticalInput);
             float movementSpeed = movement.magnitude;

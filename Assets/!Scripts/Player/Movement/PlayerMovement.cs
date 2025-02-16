@@ -11,6 +11,7 @@ namespace _Scripts.Player.Movement
         private PlayerAudio _playerAudio;
         private InputManager _inputManager;
         private AudioSource _audioSource;
+        private Animator _animator;
         private Rigidbody _rb;
 
         [Header("- Movement")] 
@@ -57,7 +58,7 @@ namespace _Scripts.Player.Movement
         private bool _grounded;
         private bool _wasGrounded;
         private bool _isShootingBlocked = false;
-        private bool _movementEnabled = true;
+        public bool _movementEnabled = true;
         private float _moveSpeedMultiplier = 1f;
 
         private PlayerState _currentState;
@@ -76,7 +77,8 @@ namespace _Scripts.Player.Movement
             _audioSource = GetComponent<AudioSource>();
             _inputManager = GetComponent<InputManager>();
             _playerAudio = FindFirstObjectByType<PlayerAudio>();
-
+            _animator = GetComponentInChildren<Animator>();
+            
             _rb.freezeRotation = true;
             _readyToJump = true;
             _startYScale = transform.localScale.y;
@@ -87,6 +89,7 @@ namespace _Scripts.Player.Movement
         {
             GroundCheck();
             HandleStateTransitions();
+            UpdateAnimations();
             SpeedControl();
             HandleDrag();
 
@@ -100,15 +103,22 @@ namespace _Scripts.Player.Movement
         
         private void HandleStateTransitions()
         {
+            // If movement is disabled, force idle state and skip other transitions [for the running animation happening when the player is stunned].
+            if (!_movementEnabled)
+            {
+                TransitionToState(PlayerState.Idle);
+                return;
+            }
+
             _previousState = _currentState;
-            
+    
             if (_inputManager.jumpInput && _readyToJump && _grounded)
             {
                 _readyToJump = false;
                 TransitionToState(PlayerState.Jumping);
                 return;
             }
-            
+    
             if (_inputManager.dashInput && _canDash && !_isDashing)
             {
                 TransitionToState(PlayerState.Dashing);
@@ -327,6 +337,8 @@ namespace _Scripts.Player.Movement
             if (!_movementEnabled) 
             {
                 _rb.linearVelocity = Vector3.zero;
+                _horizontalInput = 0;
+                _verticalInput = 0;
                 return;
             }
 
@@ -498,5 +510,37 @@ namespace _Scripts.Player.Movement
         {
             _moveSpeedMultiplier = Mathf.Clamp(multiplier, 0f, 1f);
         }
+        
+        private void UpdateAnimations()
+        {
+            if (_animator == null) return;
+
+            if (_movementEnabled)
+            {
+                // Calculate total movement magnitude.
+                float horizontalMovement = Mathf.Abs(_horizontalInput);
+                float verticalMovement = Mathf.Abs(_verticalInput);
+                float totalMovement = Mathf.Clamp01(horizontalMovement + verticalMovement);
+
+                // Update animation states.
+                _animator.SetBool("isRunning", _currentState == PlayerState.Sprinting);
+                _animator.SetBool("isWalking", _currentState == PlayerState.Walking);
+                _animator.SetFloat("MovementSpeed", totalMovement);
+                _animator.SetBool("isJumping", _currentState == PlayerState.Jumping);
+                _animator.SetBool("isInAir", _currentState == PlayerState.InAir);
+            }
+            else
+            {
+                // Force all movement animations to stop when movement is disabled.
+                _animator.SetBool("isRunning", false);
+                _animator.SetBool("isWalking", false);
+                _animator.SetFloat("MovementSpeed", 0f);
+        
+                // Keep jump/air states as they are.
+                _animator.SetBool("isJumping", _currentState == PlayerState.Jumping);
+                _animator.SetBool("isInAir", _currentState == PlayerState.InAir);
+            }
+        }
+        
     }
 }
