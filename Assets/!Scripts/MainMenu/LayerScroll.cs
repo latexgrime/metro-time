@@ -1,16 +1,30 @@
 using UnityEngine;
 
-public class LayerScroll : MonoBehaviour
+namespace Mainmenu.ImageScroll
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    /// <summary>
+    /// 
+    /// </summary>
 
-    // Update is called once per frame
-    void Update()
+    public class LayerScroll : MonoBehaviour
     {
-        
+        #region Variables
+        [SerializeField] private Transform[] layers;
+        [SerializeField] private float[] speedMultipliers;
+        [SerializeField] private float baseSpeed = 2f;
+        #endregion
+
+        void Update()
+        {
+            for (int i = 0; i < layers.Length; i++)
+            {
+                layers[i].position += Vector3.left * baseSpeed * speedMultipliers[i] * Time.deltaTime;
+
+                if (layers[i].position.x < -10f)
+                {
+                    layers[i].position += new Vector3(20f, 0, 0);
+                }
+            }
+        }
     }
 }
