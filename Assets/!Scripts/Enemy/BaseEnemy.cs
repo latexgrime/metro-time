@@ -16,21 +16,32 @@ namespace _Scripts.Enemy
         [SerializeField] protected float detectionRange = 15f;
         [SerializeField] protected float attackRange = 10f;
         [SerializeField] protected float moveSpeed = 5f;
+        [SerializeField] protected float hoverHeight = 2f; 
+        [SerializeField] protected float bobAmount = 0.5f;
+        [SerializeField] protected float bobSpeed = 2f;
+        
         
         protected Transform player;
         protected NavMeshAgent agent;
+        protected Animator  animator;
         protected bool isDeactivated;
         protected float lastDamageTime;
         protected EnemyState currentState = EnemyState.Patrol;
-
+        protected Vector3 startPosition;
+        
         protected virtual void Start()
         {
             currentShield = maxShield;
+            animator = GetComponent<Animator>();
             agent = GetComponent<NavMeshAgent>();
             player = GameObject.FindGameObjectWithTag("Player").transform;
+            startPosition = transform.position;
             
             if (agent != null)
+            {
+                agent.baseOffset = hoverHeight;
                 agent.speed = moveSpeed;
+            }
         }
 
         protected virtual void Update()
@@ -60,6 +71,26 @@ namespace _Scripts.Enemy
                 currentState = EnemyState.Patrol;
         }
 
+        protected virtual void UpdateHoverMotion()
+        {
+            // Add a bobbing motion to make it look more natural.
+            if (agent != null)
+            {
+                float newHeight = hoverHeight + Mathf.Sin(Time.time * bobSpeed) * bobAmount;
+                agent.baseOffset = newHeight;
+            }
+        }
+        
+        protected virtual void UpdateAnimator()
+        {
+            if (animator != null)
+            {
+                float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+                animator.SetBool("isAttacking", distanceToPlayer <= attackRange);
+                animator.SetBool("isDeactivated", isDeactivated);
+            }
+        }
+        
         protected virtual void UpdateBehavior()
         {
             switch (currentState)
@@ -130,14 +161,26 @@ namespace _Scripts.Enemy
             isDeactivated = false;
             currentShield = maxShield;
             if (agent != null)
+            {
                 agent.isStopped = false;
+            }
+            if (animator != null)
+            {
+                animator.SetTrigger("reactivate");
+            }
         }
 
         protected virtual void Deactivate()
         {
             isDeactivated = true;
-            currentState = EnemyState.Deactivated;
-            // Play deactivation animation/effects.
+            if (agent != null)
+            {
+                agent.isStopped = true;
+            }
+            if (animator != null)
+            {
+                animator.SetTrigger("deactivate");
+            }
         }
     }
 
