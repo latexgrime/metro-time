@@ -57,6 +57,7 @@ namespace _Scripts.Player
         private bool _exitingSlope;
         private bool _grounded;
         private bool _wasGrounded;
+        private bool _isShootingBlocked = false;
 
         private PlayerState _currentState;
         public PlayerState CurrentState => _currentState;
@@ -116,16 +117,13 @@ namespace _Scripts.Player
             switch (_currentState)
             {
                 case PlayerState.Idle:
-
                     if (!_grounded)
                         TransitionToState(PlayerState.InAir);
-
                     else if (_inputManager.horizontalInput != 0 || _inputManager.verticalInput != 0)
                         TransitionToState(PlayerState.Walking);
-                    
-                    else if (_inputManager.sprintInput && (_inputManager.horizontalInput > 0 || _inputManager.verticalInput > 0))
+                    else if (_inputManager.sprintInput && !_isShootingBlocked && 
+                             (_inputManager.horizontalInput > 0 || _inputManager.verticalInput > 0))
                         TransitionToState(PlayerState.Sprinting);
-                    
                     else if (_inputManager.crouchInput)
                         TransitionToState(PlayerState.Crouching);
                     break;
@@ -133,13 +131,11 @@ namespace _Scripts.Player
                 case PlayerState.Walking:
                     if (!_grounded)
                         TransitionToState(PlayerState.InAir);
-                    
-                    else if (_inputManager.sprintInput && (_inputManager.horizontalInput > 0 || _inputManager.verticalInput > 0))
+                    else if (_inputManager.sprintInput && !_isShootingBlocked && 
+                             (_inputManager.horizontalInput > 0 || _inputManager.verticalInput > 0))
                         TransitionToState(PlayerState.Sprinting);
-                    
                     else if (_inputManager.crouchInput)
                         TransitionToState(PlayerState.Crouching);
-                    
                     else if (_inputManager.horizontalInput == 0 && _inputManager.verticalInput == 0)
                         TransitionToState(PlayerState.Idle);
                     break;
@@ -191,6 +187,11 @@ namespace _Scripts.Player
                     if (_grounded)
                         TransitionToState(PlayerState.Walking);
                     break;
+            }
+            
+            if (!_inputManager.shootInput && _isShootingBlocked)
+            {
+                _isShootingBlocked = false;
             }
         }
 
@@ -469,6 +470,15 @@ namespace _Scripts.Player
         {
             _readyToJump = true;
             _exitingSlope = false;
+        }
+        
+        public void ForceWalkState()
+        {
+            if (_currentState == PlayerState.Sprinting)
+            {
+                TransitionToState(PlayerState.Walking);
+                _isShootingBlocked = true;
+            }
         }
     }
 }
