@@ -19,7 +19,7 @@ public class PauseMenu : MonoBehaviour
     private HDAdditionalCameraData cameraData;
     private bool isPaused = false;
 
-    void Awake()
+    void Start()
     {
         cameraData = UnityEngine.Camera.main.GetComponent<HDAdditionalCameraData>();
 
@@ -46,7 +46,6 @@ public class PauseMenu : MonoBehaviour
 
         // Ensure HDRP applies DLSS settings
         cameraData.deepLearningSuperSamplingUseCustomAttributes = true;
-        //cameraData.RequestRenderNextFrame();
 
         // Update UI text for sharpness percentage
         dlssSharpnessValueText.text = $"{(dlssSharpness * 100):0}%";
@@ -123,7 +122,6 @@ public class PauseMenu : MonoBehaviour
 
         // Force HDRP to apply DLSS settings
         cameraData.deepLearningSuperSamplingUseCustomAttributes = true;
-        //cameraData.RequestRenderNextFrame();
 
         PlayerPrefs.SetInt("DLSS_Enabled", isEnabled ? 1 : 0);
         PlayerPrefs.Save();
@@ -140,7 +138,7 @@ public class PauseMenu : MonoBehaviour
         PlayerPrefs.SetInt("DLSS_Mode", modeIndex);
         PlayerPrefs.Save();
 
-        Debug.Log($"DLSS Mode Set To: {modeIndex}");
+        Debug.Log($"DLSS Mode Set To: {cameraData.deepLearningSuperSamplingQuality}");
     }
 
     public void ToggleOptimalSettings()
@@ -151,7 +149,7 @@ public class PauseMenu : MonoBehaviour
         PlayerPrefs.SetInt("DLSS_Optimal", isOptimal ? 1 : 0);
         PlayerPrefs.Save();
 
-        // Hide dropdown when "Use Optimal Settings" is ON.
+        // Hide dropdown when "Use Optimal Settings" is ON
         dlssModeDropdown.gameObject.SetActive(!isOptimal);
 
         Debug.Log($"DLSS Optimal Settings: {isOptimal}");
@@ -165,7 +163,7 @@ public class PauseMenu : MonoBehaviour
         PlayerPrefs.SetFloat("DLSS_Sharpness", sharpness);
         PlayerPrefs.Save();
 
-        // Update UI percentage.
+        // Update UI percentage
         dlssSharpnessValueText.text = $"{(sharpness * 100):0}%";
 
         Debug.Log($"DLSS Sharpness Set To: {sharpness}");
