@@ -26,7 +26,6 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         settingsPanel.SetActive(false);
 
-        // Load saved DLSS settings or set default values
         bool dlssEnabled = PlayerPrefs.GetInt("DLSS_Enabled", 0) == 1;
         dlssToggle.isOn = dlssEnabled;
         cameraData.allowDynamicResolution = dlssEnabled;
@@ -44,17 +43,14 @@ public class PauseMenu : MonoBehaviour
         dlssSharpnessSlider.value = dlssSharpness;
         cameraData.deepLearningSuperSamplingSharpening = dlssSharpness;
 
-        // Ensure HDRP applies DLSS settings
         cameraData.deepLearningSuperSamplingUseCustomAttributes = true;
 
-        // Update UI text for sharpness percentage
         dlssSharpnessValueText.text = $"{(dlssSharpness * 100):0}%";
-
-        // Hide dropdown if "Use Optimal Settings" is enabled
         dlssModeDropdown.gameObject.SetActive(!optimalEnabled);
 
-        Debug.Log("DLSS Settings Loaded & UI Updated.");
+        Debug.Log($"PlayerPrefs Loaded: DLSS_Enabled = {dlssEnabled}, DLSS_Mode = {dlssMode}, DLSS_Optimal = {optimalEnabled}, DLSS_Sharpness = {dlssSharpness}");
     }
+
 
     void Update()
     {
@@ -116,29 +112,29 @@ public class PauseMenu : MonoBehaviour
     {
         bool isEnabled = dlssToggle.isOn;
 
-        // Ensure Dynamic Resolution is enabled before applying DLSS
         cameraData.allowDynamicResolution = isEnabled;
         cameraData.allowDeepLearningSuperSampling = isEnabled;
-
-        // Force HDRP to apply DLSS settings
         cameraData.deepLearningSuperSamplingUseCustomAttributes = true;
 
         PlayerPrefs.SetInt("DLSS_Enabled", isEnabled ? 1 : 0);
         PlayerPrefs.Save();
+
+        Debug.Log($"PlayerPrefs Saved: DLSS_Enabled = {isEnabled}");
     }
+
 
     public void ChangeDLSSMode()
     {
         int modeIndex = dlssModeDropdown.value;
 
-        // Explicitly assign DLSS Quality Mode to force HDRP update.
         cameraData.deepLearningSuperSamplingQuality = (uint)modeIndex;
         cameraData.deepLearningSuperSamplingUseCustomQualitySettings = true;
 
         PlayerPrefs.SetInt("DLSS_Mode", modeIndex);
         PlayerPrefs.Save();
-    }
 
+        Debug.Log($"PlayerPrefs Saved: DLSS_Mode = {modeIndex}");
+    }
 
     public void ToggleOptimalSettings()
     {
@@ -148,23 +144,26 @@ public class PauseMenu : MonoBehaviour
         PlayerPrefs.SetInt("DLSS_Optimal", isOptimal ? 1 : 0);
         PlayerPrefs.Save();
 
-        // Hide dropdown when "Use Optimal Settings" is ON
         dlssModeDropdown.gameObject.SetActive(!isOptimal);
+
+        Debug.Log($"PlayerPrefs Saved: DLSS_Optimal = {isOptimal}");
     }
+
 
     public void AdjustDLSSSharpness()
     {
         float sharpness = dlssSharpnessSlider.value;
 
-        // Explicitly assign sharpness and force HDRP update.
         cameraData.deepLearningSuperSamplingSharpening = sharpness;
         cameraData.deepLearningSuperSamplingUseCustomAttributes = true;
 
         PlayerPrefs.SetFloat("DLSS_Sharpness", sharpness);
         PlayerPrefs.Save();
 
-        // Update UI percentage.
         dlssSharpnessValueText.text = $"{(sharpness * 100):0}%";
+
+        Debug.Log($"PlayerPrefs Saved: DLSS_Sharpness = {sharpness}");
     }
+
 
 }
