@@ -35,9 +35,6 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
                 shieldable.TakeShieldDamage(damage);
             }
 
-            // Debug hit information.
-            Debug.Log($"Bullet hit: {collision.gameObject.name} at {collision.contacts[0].point}");
-
             // Destroy the bullet.
             Destroy(gameObject);
         }

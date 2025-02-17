@@ -1,6 +1,8 @@
 using _Scripts.Player;
 using _Scripts.Player.Movement;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 
 namespace _Scripts.Weapon_Systems.Weapons_Logic
 {
@@ -265,7 +267,6 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
 
             // Handle damage.
             var damageable = hit.collider.GetComponent<IDamageable>();
-            if (damageable != null) damageable.TakeDamage(_currentWeaponData.damage);
         }
 
         private void StartReload()

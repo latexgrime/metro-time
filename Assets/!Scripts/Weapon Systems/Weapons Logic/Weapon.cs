@@ -73,11 +73,11 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
         {
             if (_muzzleFlash != null) _muzzleFlash.Play();
             
-            // Trigger fire animation.
+            /*/
             if (_animator != null)
             {
                 _animator.SetTrigger("Fire");
-            }
+            }*/
         }
 
         // Method to get the Animator for external access if needed for other scripts (most probably the handler in the future if we implement more).

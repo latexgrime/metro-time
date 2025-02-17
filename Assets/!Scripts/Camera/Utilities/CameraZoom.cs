@@ -37,9 +37,12 @@ namespace NALEO._Scripts.Camera.Utilities
 
         private void Update()
         {
+            if (Time.timeScale == 0f) return;
+
             CheckZoomInput();
             SetFieldOfViewValue();
         }
+
 
         private void SetFieldOfViewValue()
         {
