@@ -20,27 +20,44 @@ namespace _Scripts.Enemy
         [SerializeField] protected float bobAmount = 0.5f;
         [SerializeField] protected float bobSpeed = 2f;
         
+        [Header("- Deactivation Physics")]
+        [SerializeField] protected float deactivationForce = 5f;
+        [SerializeField] protected float deactivationTorque = 2f;
+        
         protected bool _animationsEnabled = true;
         protected bool _movementEnabled = true;
         protected float _moveSpeedMultiplier = 1f;
         protected float _animationSpeedMultiplier = 1f;
-        
+        protected float lastDamageTime;
+        protected bool isDeactivated;
+        protected bool hasDeactivationPhysicsApplied;
+        protected bool isFriendly;
+        public bool IsFriendly() => isFriendly;
+
         
         protected Transform player;
         protected NavMeshAgent agent;
-        protected Animator  animator;
-        protected bool isDeactivated;
-        protected float lastDamageTime;
+        protected Animator animator;
+        protected Rigidbody rb;
+        protected Collider mainCollider;
         protected EnemyState currentState = EnemyState.Patrol;
         protected Vector3 startPosition;
         
         protected virtual void Start()
         {
             currentShield = maxShield;
-            animator = GetComponent<Animator>();
+            animator = GetComponentInChildren<Animator>();
             agent = GetComponent<NavMeshAgent>();
+            rb = GetComponent<Rigidbody>();
             player = GameObject.FindGameObjectWithTag("Player").transform;
             startPosition = transform.position;
+
+            // Configure initial physics.
+            if (rb != null)
+            {
+                rb.isKinematic = true;
+                rb.interpolation = RigidbodyInterpolation.Interpolate;
+            }
             
             if (agent != null)
             {
@@ -90,9 +107,15 @@ namespace _Scripts.Enemy
         {
             if (isDeactivated) return;
 
-            RegenerateShield();
-            UpdateState();
-            UpdateBehavior();
+            if (!isFriendly)
+            {
+                RegenerateShield();
+                UpdateState();
+                UpdateBehavior();
+            }
+        
+            // Tjis is to keep hovering when friendly.
+            UpdateHoverMotion();
         }
 
         protected virtual void UpdateState()
@@ -206,6 +229,8 @@ namespace _Scripts.Enemy
 
         public virtual void TakeShieldDamage(float damage)
         {
+            if (isDeactivated) return;
+
             lastDamageTime = Time.time;
             currentShield -= damage;
 
@@ -219,11 +244,24 @@ namespace _Scripts.Enemy
         public virtual void Reactivate()
         {
             isDeactivated = false;
+            hasDeactivationPhysicsApplied = false;
             currentShield = maxShield;
+            
+            if (rb != null)
+            {
+                rb.isKinematic = true;
+                rb.useGravity = false;
+                rb.linearVelocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+                transform.rotation = Quaternion.identity;
+            }
+            
             if (agent != null)
             {
-                agent.isStopped = false;
+                agent.enabled = true;
+                agent.Warp(transform.position);
             }
+            
             if (animator != null)
             {
                 animator.SetTrigger("reactivate");
@@ -232,20 +270,30 @@ namespace _Scripts.Enemy
 
         protected virtual void Deactivate()
         {
+            if (isDeactivated) return;
+        
             isDeactivated = true;
+            // Set to friendly when deactivated.
+            isFriendly = true; 
+        
+            // Stop the agent but keep it enabled for hover effect.
             if (agent != null)
             {
                 agent.isStopped = true;
             }
+        
+            // Update animation state.
             if (animator != null)
             {
+                animator.SetBool("isFriendly", true);
                 animator.SetTrigger("deactivate");
             }
+        
+            SendMessage("OnBecameFriendly", SendMessageOptions.DontRequireReceiver);
         }
+        
     }
     
-    
-
     public enum EnemyState
     {
         Patrol,
