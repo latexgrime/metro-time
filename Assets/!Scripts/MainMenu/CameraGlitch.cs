@@ -14,9 +14,7 @@ namespace Mainmenu.Camera
         [SerializeField] private float glitchAmount = 0.05f;
         [SerializeField] private float glitchSpeed = 1f;
         [SerializeField] private float glitchIntervalMinimum = 3f;
-        [SerializeField] private float glitchIntervalMaximum = 5f;
-        [SerializeField] private float cameraZPosition = -3.46f;
-        [SerializeField] private float cameraYPosition = 1.58f;
+        [SerializeField] private float glitchIntervalMaximum = 8f;
         private float _nextGlitchTime;
         private bool _isGlitching;
         #endregion
@@ -47,8 +45,8 @@ namespace Mainmenu.Camera
 
             while (timeElapsed < shakeDuration)
             {
-                float shakeX = Random.Range(-glitchAmount, glitchAmount);
-                transform.position = originalPosition = new Vector3(shakeX, cameraYPosition, cameraZPosition);
+                float glitchY = Random.Range(-glitchAmount, glitchAmount);
+                transform.position += new Vector3(0,glitchY, 0);
 
                 timeElapsed += Time.deltaTime;
                 yield return null;
