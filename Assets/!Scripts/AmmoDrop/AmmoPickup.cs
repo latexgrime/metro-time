@@ -10,75 +10,115 @@ namespace _Scripts.AmmoDrop
         [SerializeField] private float bobSpeed = 2f;
         [SerializeField] private float bobHeight = 0.2f;
         [SerializeField] private float pickupRadius = 2f;
-        
+        [SerializeField] private float floatingOffset = .5f;
+
+        [Header("- Physics Settings")]
+        [SerializeField] private float gravity = 20f;
+        [SerializeField] private LayerMask groundLayer;
+        [SerializeField] private float _raycastDistance = 10f;
+
         [Header("- Ammo Settings")]
         [SerializeField] private int ammoAmount = 30;
-        
+
         [Header("- Effects")]
         [SerializeField] private GameObject pickupEffect;
         [SerializeField] private AudioClip pickupSound;
-        
+
+        private Vector3 _velocity;
+        private bool _hasLanded;
         private Vector3 _startPosition;
         private AudioSource _audioSource;
-        
+
         private void Start()
         {
-            _startPosition = transform.position;
             _audioSource = GetComponent<AudioSource>();
             if (_audioSource == null)
             {
                 _audioSource = gameObject.AddComponent<AudioSource>();
             }
         }
-        
+
+        public void Initialize(Vector3 initialVelocity)
+        {
+            _velocity = initialVelocity;
+            _hasLanded = false;
+        }
+
         private void Update()
         {
-            // Rotate the pickup.
-            transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
-            
-            // Bob up and down.
-            float newY = _startPosition.y + Mathf.Sin(Time.time * bobSpeed) * bobHeight;
-            transform.position = new Vector3(transform.position.x, newY, transform.position.z);
-            
-            // Check for nearby player.
+            if (!_hasLanded)
+            {
+                // Apply gravity.
+                _velocity.y -= gravity * Time.deltaTime;
+
+                // Update position.
+                Vector3 newPosition = transform.position + _velocity * Time.deltaTime;
+                
+                // Check for ground using raycast.
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, Vector3.down, out hit, _raycastDistance, groundLayer))
+                {
+                    // If we're about to go below ground level, land the ammo with offset.
+                    if (newPosition.y <= hit.point.y + floatingOffset)
+                    {
+                        newPosition.y = hit.point.y + floatingOffset;
+                        _hasLanded = true;
+                        _startPosition = newPosition;
+                        _velocity = Vector3.zero;
+                    }
+                }
+                
+                transform.position = newPosition;
+            }
+            else
+            {
+                // Rotate the pickup.
+                transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+
+                // Bob up and down around the floating offset.
+                float newY = _startPosition.y + Mathf.Sin(Time.time * bobSpeed) * bobHeight;
+                transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+            }
+
+            // Check for nearby player - now checks the parent of colliders for WeaponStateManager.
             Collider[] colliders = Physics.OverlapSphere(transform.position, pickupRadius);
             foreach (Collider col in colliders)
             {
-                if (col.CompareTag("Player"))
+                // Check the collider's object and its parent for the WeaponStateManager.
+                WeaponStateManager weaponManager = col.GetComponent<WeaponStateManager>();
+                if (weaponManager == null && col.transform.parent != null)
                 {
-                    WeaponStateManager weaponManager = col.GetComponent<WeaponStateManager>();
-                    if (weaponManager != null)
-                    {
-                        AddAmmoToWeapons(weaponManager);
-                        PlayPickupEffects();
-                        Destroy(gameObject);
-                        break;
-                    }
+                    weaponManager = col.transform.parent.GetComponent<WeaponStateManager>();
+                }
+
+                if (weaponManager != null)
+                {
+                    AddAmmoToWeapons(weaponManager);
+                    PlayPickupEffects();
+                    Destroy(gameObject);
+                    break;
                 }
             }
         }
-        
+
         private void AddAmmoToWeapons(WeaponStateManager weaponManager)
         {
-            // Get current weapon index and state.
-            WeaponHandler weaponHandler = weaponManager.GetComponent<WeaponHandler>();
+            var weaponHandler = weaponManager.GetComponent<WeaponHandler>();
             if (weaponHandler == null) return;
-            
-            int currentWeaponIndex = weaponManager.GetComponent<WeaponManager>().GetCurrentWeaponIndex();
-            WeaponState currentState = weaponManager.GetWeaponState(currentWeaponIndex);
-            
+
+            var currentWeaponIndex = weaponManager.GetComponent<WeaponManager>().GetCurrentWeaponIndex();
+            var currentState = weaponManager.GetWeaponState(currentWeaponIndex);
+
             if (currentState != null)
             {
-                WeaponData weaponData = weaponHandler.GetCurrentWeaponData();
+                var weaponData = weaponHandler.GetCurrentWeaponData();
                 if (weaponData != null)
                 {
-                    // Add ammo up to the max.
                     currentState.totalAmmoLeft = Mathf.Min(
                         currentState.totalAmmoLeft + ammoAmount,
                         weaponData.maxAmmo - currentState.currentAmmo
                     );
-                    
-                    // Update the weapon state.
+
                     weaponManager.UpdateWeaponState(
                         currentWeaponIndex,
                         currentState.currentAmmo,
@@ -93,23 +133,21 @@ namespace _Scripts.AmmoDrop
         {
             ammoAmount = amount;
         }
-        
+
         private void PlayPickupEffects()
         {
             if (pickupEffect != null)
             {
                 Instantiate(pickupEffect, transform.position, Quaternion.identity);
             }
-            
+
             if (pickupSound != null)
             {
                 AudioSource.PlayClipAtPoint(pickupSound, transform.position);
             }
-        }
-        
+        } 
         private void OnDrawGizmosSelected()
         {
-            // Draw pickup radius in editor.
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, pickupRadius);
         }
