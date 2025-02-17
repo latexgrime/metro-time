@@ -1,3 +1,4 @@
+using _Scripts.AmmoDrop;
 using _Scripts.Enemy.Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
@@ -23,6 +24,9 @@ namespace _Scripts.Enemy
         [Header("- Deactivation Physics")]
         [SerializeField] protected float deactivationForce = 5f;
         [SerializeField] protected float deactivationTorque = 2f;
+        
+        [Header("- Drops")]
+        [SerializeField] protected AmmoDropper ammoDropper;
         
         protected bool _animationsEnabled = true;
         protected bool _movementEnabled = true;
@@ -271,24 +275,30 @@ namespace _Scripts.Enemy
         protected virtual void Deactivate()
         {
             if (isDeactivated) return;
-        
+
             isDeactivated = true;
             // Set to friendly when deactivated.
-            isFriendly = true; 
-        
+            isFriendly = true;
+
+            // Drop ammo when deactivated.
+            if (ammoDropper != null)
+            {
+                ammoDropper.DropAmmo();
+            }
+
             // Stop the agent but keep it enabled for hover effect.
             if (agent != null)
             {
                 agent.isStopped = true;
             }
-        
+
             // Update animation state.
             if (animator != null)
             {
                 animator.SetBool("isFriendly", true);
                 animator.SetTrigger("deactivate");
             }
-        
+
             SendMessage("OnBecameFriendly", SendMessageOptions.DontRequireReceiver);
         }
         
