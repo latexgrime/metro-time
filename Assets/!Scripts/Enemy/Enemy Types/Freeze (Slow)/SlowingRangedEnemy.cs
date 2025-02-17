@@ -55,10 +55,8 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
                 var directionToPlayer = (player.position - transform.position).normalized;
                 transform.forward = new Vector3(directionToPlayer.x, 0, directionToPlayer.z);
 
-                // Trigger attack animation if we have one
                 if (animator != null) animator.SetTrigger("shoot");
 
-                // Shoot projectile
                 var projectile = Instantiate(slowProjectilePrefab,
                     projectileSpawnPoint.position,
                     Quaternion.LookRotation(directionToPlayer));

@@ -28,18 +28,20 @@ namespace _Scripts.Enemy
         protected bool _movementEnabled = true;
         protected float _moveSpeedMultiplier = 1f;
         protected float _animationSpeedMultiplier = 1f;
+        protected float lastDamageTime;
+        protected bool isDeactivated;
+        protected bool hasDeactivationPhysicsApplied;
+        protected bool isFriendly;
+        public bool IsFriendly() => isFriendly;
+
         
         protected Transform player;
         protected NavMeshAgent agent;
         protected Animator animator;
         protected Rigidbody rb;
-        protected bool isDeactivated;
-        protected float lastDamageTime;
-        protected bool hasDeactivationPhysicsApplied;
+        protected Collider mainCollider;
         protected EnemyState currentState = EnemyState.Patrol;
         protected Vector3 startPosition;
-        protected Collider mainCollider;
-
         
         protected virtual void Start()
         {
@@ -105,9 +107,15 @@ namespace _Scripts.Enemy
         {
             if (isDeactivated) return;
 
-            RegenerateShield();
-            UpdateState();
-            UpdateBehavior();
+            if (!isFriendly)
+            {
+                RegenerateShield();
+                UpdateState();
+                UpdateBehavior();
+            }
+        
+            // Tjis is to keep hovering when friendly.
+            UpdateHoverMotion();
         }
 
         protected virtual void UpdateState()
@@ -262,29 +270,26 @@ namespace _Scripts.Enemy
 
         protected virtual void Deactivate()
         {
+            if (isDeactivated) return;
+        
             isDeactivated = true;
-            
+            // Set to friendly when deactivated.
+            isFriendly = true; 
+        
+            // Stop the agent but keep it enabled for hover effect.
             if (agent != null)
             {
-                agent.enabled = false;
+                agent.isStopped = true;
             }
-            
-            if (rb != null && !hasDeactivationPhysicsApplied)
-            {
-                rb.isKinematic = false;
-                rb.useGravity = true;
-                
-                Vector3 randomDir = Random.insideUnitSphere.normalized;
-                rb.AddForce(randomDir * deactivationForce + Vector3.up * deactivationForce * 0.5f, ForceMode.Impulse);
-                rb.AddTorque(Random.insideUnitSphere * deactivationTorque, ForceMode.Impulse);
-                
-                hasDeactivationPhysicsApplied = true;
-            }
-            
+        
+            // Update animation state.
             if (animator != null)
             {
+                animator.SetBool("isFriendly", true);
                 animator.SetTrigger("deactivate");
             }
+        
+            SendMessage("OnBecameFriendly", SendMessageOptions.DontRequireReceiver);
         }
         
     }

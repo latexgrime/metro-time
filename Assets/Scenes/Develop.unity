@@ -4364,6 +4364,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1764744621479596219}
+    - targetCorrespondingSourceObject: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1764744621479596220}
   m_SourcePrefab: {fileID: 100100000, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
 --- !u!1 &1764744621479596212 stripped
 GameObject:
@@ -4387,6 +4390,23 @@ MonoBehaviour:
   pulseSpeed: 2
   pulseIntensity: 0.2
   shieldScale: 1.2
+--- !u!114 &1764744621479596220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764744621479596212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fd1bdb0ac868c147ac9de2b1cbe5820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  friendlyTint: {r: 0, g: 1, b: 0, a: 1}
+  friendlyParticlePrefab: {fileID: 2961485694660685364, guid: c68fd2abc984ae14497614537e1901b3, type: 3}
+  particleLifetime: 2
+  friendlyTransformSound: {fileID: 8300000, guid: 204719d6995d1f24bb0e6983071f41e1, type: 3}
+  soundVolume: 1
 --- !u!1001 &3595047643136422863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4446,6 +4466,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3595047643136422865}
+    - targetCorrespondingSourceObject: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3595047643136422866}
   m_SourcePrefab: {fileID: 100100000, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
 --- !u!1 &3595047643136422864 stripped
 GameObject:
@@ -4469,6 +4492,23 @@ MonoBehaviour:
   pulseSpeed: 2
   pulseIntensity: 0.2
   shieldScale: 1.2
+--- !u!114 &3595047643136422866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3595047643136422864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fd1bdb0ac868c147ac9de2b1cbe5820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  friendlyTint: {r: 0.5, g: 1, b: 0.5, a: 1}
+  friendlyParticlePrefab: {fileID: 2961485694660685364, guid: c68fd2abc984ae14497614537e1901b3, type: 3}
+  particleLifetime: 2
+  friendlyTransformSound: {fileID: 8300000, guid: 204719d6995d1f24bb0e6983071f41e1, type: 3}
+  soundVolume: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
