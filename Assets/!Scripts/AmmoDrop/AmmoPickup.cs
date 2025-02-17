@@ -114,17 +114,29 @@ namespace _Scripts.AmmoDrop
                 var weaponData = weaponHandler.GetCurrentWeaponData();
                 if (weaponData != null)
                 {
-                    currentState.totalAmmoLeft = Mathf.Min(
-                        currentState.totalAmmoLeft + ammoAmount,
-                        weaponData.maxAmmo - currentState.currentAmmo
-                    );
+                    // Calculate max ammo that can be added based on weapon's max capacity.
+                    int maxPossibleAmmo = weaponData.maxAmmo;
+                    int currentTotalAmmo = currentState.currentAmmo + currentState.totalAmmoLeft;
+                    int ammoSpace = maxPossibleAmmo - currentTotalAmmo;
+            
+                    // Only add ammo if there's space.
+                    if (ammoSpace > 0)
+                    {
+                        // Add ammo to reserve, limited by available space.
+                        int ammoToAdd = Mathf.Min(ammoAmount, ammoSpace);
+                        currentState.totalAmmoLeft += ammoToAdd;
 
-                    weaponManager.UpdateWeaponState(
-                        currentWeaponIndex,
-                        currentState.currentAmmo,
-                        currentState.totalAmmoLeft,
-                        currentState.isReloading
-                    );
+                        // Update the weapon state.
+                        weaponManager.UpdateWeaponState(
+                            currentWeaponIndex,
+                            currentState.currentAmmo,
+                            currentState.totalAmmoLeft,
+                            currentState.isReloading
+                        );
+
+                        // Play pickup effects.
+                        PlayPickupEffects();
+                    }
                 }
             }
         }
