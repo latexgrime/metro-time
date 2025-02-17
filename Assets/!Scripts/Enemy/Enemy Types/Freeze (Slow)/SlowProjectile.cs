@@ -9,7 +9,6 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
         
         private float _speed;
         private float _lifetime;
-        private float _damage = 5f;
         
         [Header("- Status Effect")] 
         [SerializeField] private float slowBuildupAmount = 15f;

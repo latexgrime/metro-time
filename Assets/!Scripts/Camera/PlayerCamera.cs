@@ -85,6 +85,8 @@ namespace _Scripts.Camera
 
         private void Update()
         {
+            if (Time.timeScale == 0f) return; // Prevents camera movement when paused.
+
             // Handle player input.
             var mouseX = _inputManager.cameraInputX;
             var mouseY = _inputManager.cameraInputY;
@@ -100,5 +102,6 @@ namespace _Scripts.Camera
             transform.rotation = Quaternion.Euler(_xRotation, _yRotation, 0);
             _camTargetOrientation.rotation = Quaternion.Euler(0, _yRotation, 0);
         }
+
     }
 }

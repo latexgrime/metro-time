@@ -8,7 +8,6 @@ namespace _Scripts.Enemy.Enemy_Types.Electric__Stun_
         [Header("- Projectile Settings")] 
         private float _speed;
         private float _lifetime;
-        private float _damage = 10f;
 
         [Header("- Status Effect")] 
         [SerializeField] private float stunBuildupAmount = 35f;
