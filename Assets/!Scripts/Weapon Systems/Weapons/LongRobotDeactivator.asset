@@ -17,17 +17,17 @@ MonoBehaviour:
   weaponPrefab: {fileID: 8977831000470564326, guid: e74be3d923be6eb46820b5f8f0fcdaf2, type: 3}
   weaponIcon: {fileID: 21300000, guid: 0f460e9b267c8e44faade9d9315f1584, type: 3}
   weaponIconTint: {r: 1, g: 1, b: 1, a: 1}
-  damage: 10
-  fireRate: 10
+  damage: 50
+  fireRate: 0.5
   range: 100
   spread: 0.01
   bulletsPerShot: 1
-  maxAmmo: 90
-  magazineSize: 30
-  reloadTime: 2
-  isAutomatic: 1
-  recoilX: -2
-  recoilY: 2
+  maxAmmo: 15
+  magazineSize: 5
+  reloadTime: 3
+  isAutomatic: 0
+  recoilX: -20
+  recoilY: 20
   recoilZ: 0.35
   shootSound: {fileID: 8300000, guid: 185450f095601e149a726af53332d285, type: 3}
   reloadSound: {fileID: 8300000, guid: 4951152a1d8388a4db5dc428fcc92acb, type: 3}
