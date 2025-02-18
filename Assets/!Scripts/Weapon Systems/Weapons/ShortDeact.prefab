@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7463882213831521583}
   - component: {fileID: -7622707298656287574}
   m_Layer: 0
-  m_Name: ArmaCorta
+  m_Name: ShortDeact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

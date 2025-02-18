@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b0c04f08c72d5e47bd1d0b8bca37f8b, type: 3}
-  m_Name: SMGRobotDeactivator
+  m_Name: LongRobotDeactivator
   m_EditorClassIdentifier: 
-  weaponName: Deactivator
+  weaponName: Off Tool
   weaponType: 0
   weaponPrefab: {fileID: 8977831000470564326, guid: e74be3d923be6eb46820b5f8f0fcdaf2, type: 3}
   weaponIcon: {fileID: 21300000, guid: 0f460e9b267c8e44faade9d9315f1584, type: 3}

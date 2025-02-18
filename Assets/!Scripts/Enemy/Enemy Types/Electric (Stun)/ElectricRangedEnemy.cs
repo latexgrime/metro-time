@@ -78,8 +78,20 @@ namespace _Scripts.Enemy.Enemy_Types
 
         protected override void UpdateAnimator()
         {
-            if (animator != null) 
-                animator.SetBool("isDeactivated", isDeactivated);
+            if (animator == null) return;
+
+            // Check if the enemy is moving forward.
+            if (agent != null)
+            {
+                Vector3 velocity = agent.velocity;
+                // Project velocity onto the enemy's forward direction.
+                float forwardMovement = Vector3.Dot(velocity.normalized, transform.forward);
+
+                // Set forward movement animation parameter.
+                animator.SetFloat("ForwardMovement", forwardMovement);
+            }
+
+            animator.SetBool("isDeactivated", isDeactivated);
         }
     }
 }

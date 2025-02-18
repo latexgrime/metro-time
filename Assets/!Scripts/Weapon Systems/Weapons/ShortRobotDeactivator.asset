@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b0c04f08c72d5e47bd1d0b8bca37f8b, type: 3}
-  m_Name: PistolRobotDeactivator
+  m_Name: ShortRobotDeactivator
   m_EditorClassIdentifier: 
-  weaponName: N.A. Cannon
+  weaponName: S.Deactivator
   weaponType: 1
   weaponPrefab: {fileID: 2137838320733551927, guid: 5ab4e0108cbb077479c96fe6a7fef3af, type: 3}
   weaponIcon: {fileID: 21300000, guid: 35c5cc75a21942a43aa6874e2e92848d, type: 3}

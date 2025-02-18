@@ -3711,6 +3711,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6604257770391640576, guid: 53a82b4acdac53e459aed457c1ff29b8, type: 3}
+      propertyPath: m_TagString
+      value: PlayerCollider
+      objectReference: {fileID: 0}
     - target: {fileID: 8038942140551134654, guid: 53a82b4acdac53e459aed457c1ff29b8, type: 3}
       propertyPath: jumpForce
       value: 6
@@ -8872,6 +8876,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5110604779490102487, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1464427652, guid: 25a1f91a4ebef3640b12072465b0a27b, type: 3}
     - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_Name
       value: StunEnemy
@@ -8924,7 +8932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fd1bdb0ac868c147ac9de2b1cbe5820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friendlyTint: {r: 0, g: 1, b: 0, a: 1}
+  friendlyTint: {r: 1, g: 1, b: 1, a: 1}
   friendlyParticlePrefab: {fileID: 2961485694660685364, guid: c68fd2abc984ae14497614537e1901b3, type: 3}
   particleLifetime: 2
   friendlyTransformSound: {fileID: 8300000, guid: 204719d6995d1f24bb0e6983071f41e1, type: 3}
@@ -8947,6 +8955,7 @@ MonoBehaviour:
     ammoAmountRange: {x: 5, y: 20}
   dropUpwardForce: 5
   dropScatterRadius: 1
+  spawnHeightOffset: 1.5
 --- !u!1001 &3595047643136422863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8999,6 +9008,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4769185173197598793, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1464427652, guid: 25a1f91a4ebef3640b12072465b0a27b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9047,7 +9060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fd1bdb0ac868c147ac9de2b1cbe5820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friendlyTint: {r: 0.5, g: 1, b: 0.5, a: 1}
+  friendlyTint: {r: 1, g: 1, b: 1, a: 1}
   friendlyParticlePrefab: {fileID: 2961485694660685364, guid: c68fd2abc984ae14497614537e1901b3, type: 3}
   particleLifetime: 2
   friendlyTransformSound: {fileID: 8300000, guid: 204719d6995d1f24bb0e6983071f41e1, type: 3}
@@ -9070,6 +9083,7 @@ MonoBehaviour:
     ammoAmountRange: {x: 5, y: 20}
   dropUpwardForce: 5
   dropScatterRadius: 1
+  spawnHeightOffset: 1.5
 --- !u!1001 &4499381428562338919
 PrefabInstance:
   m_ObjectHideFlags: 0
