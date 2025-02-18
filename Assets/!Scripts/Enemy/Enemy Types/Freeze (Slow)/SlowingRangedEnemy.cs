@@ -1,3 +1,4 @@
+using _Scripts.AmmoDrop;
 using _Scripts.Status_System;
 using UnityEngine;
 
@@ -24,6 +25,11 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
             base.Start();
             animator = GetComponentInChildren<Animator>();
             _startRotation = transform.eulerAngles;
+            
+            if (ammoDropper == null)
+            {
+                ammoDropper = GetComponent<AmmoDropper>();
+            }
         }
 
         protected override void Update()

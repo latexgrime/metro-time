@@ -119,7 +119,6 @@ public class PauseMenu : MonoBehaviour
         PlayerPrefs.SetInt("DLSS_Enabled", isEnabled ? 1 : 0);
         PlayerPrefs.Save();
 
-        Debug.Log($"PlayerPrefs Saved: DLSS_Enabled = {isEnabled}");
     }
 
 
@@ -133,7 +132,6 @@ public class PauseMenu : MonoBehaviour
         PlayerPrefs.SetInt("DLSS_Mode", modeIndex);
         PlayerPrefs.Save();
 
-        Debug.Log($"PlayerPrefs Saved: DLSS_Mode = {modeIndex}");
     }
 
     public void ToggleOptimalSettings()
@@ -146,7 +144,6 @@ public class PauseMenu : MonoBehaviour
 
         dlssModeDropdown.gameObject.SetActive(!isOptimal);
 
-        Debug.Log($"PlayerPrefs Saved: DLSS_Optimal = {isOptimal}");
     }
 
 
@@ -162,7 +159,6 @@ public class PauseMenu : MonoBehaviour
 
         dlssSharpnessValueText.text = $"{(sharpness * 100):0}%";
 
-        Debug.Log($"PlayerPrefs Saved: DLSS_Sharpness = {sharpness}");
     }
 
 

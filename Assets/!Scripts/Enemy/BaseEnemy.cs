@@ -284,6 +284,7 @@ namespace _Scripts.Enemy
             if (ammoDropper != null)
             {
                 ammoDropper.DropAmmo();
+                Debug.Log("Deactivate called on " + gameObject.name);
             }
 
             // Stop the agent but keep it enabled for hover effect.

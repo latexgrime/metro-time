@@ -16,6 +16,7 @@ namespace _Scripts.AmmoDrop
                 if (Random.Range(0f, 100f) <= dropData.dropChance)
                 {
                     SpawnAmmoDrop(dropData);
+                    Debug.Log("DropAmmo called, possibleAmmoDrops count: " + possibleAmmoDrops.Length);
                 }
             }
         }
@@ -55,6 +56,7 @@ namespace _Scripts.AmmoDrop
                 );
                 pickup.SetAmmoAmount(randomAmount);
             }
+            Debug.Log("Attempting to spawn ammo: " + dropData.ammoPrefab);
         }
     }
 }
