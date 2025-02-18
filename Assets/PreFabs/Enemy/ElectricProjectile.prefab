@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 334660451308003685}
   - component: {fileID: 334660451308003683}
   - component: {fileID: 334660451308003682}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: front_mesh_color2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4914,7 +4914,7 @@ GameObject:
   - component: {fileID: 334660451930032201}
   - component: {fileID: 334660451930032247}
   - component: {fileID: 334660451930032246}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: trail_color2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9772,8 +9772,8 @@ GameObject:
   - component: {fileID: 4312898416266211985}
   - component: {fileID: 6158758453581634876}
   - component: {fileID: 2341142236372794684}
-  m_Layer: 0
-  m_Name: ElectrictBullet
+  m_Layer: 7
+  m_Name: ElectricProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14792,7 +14792,7 @@ GameObject:
   - component: {fileID: 4494251175239741067}
   - component: {fileID: 4494251175239741061}
   - component: {fileID: 4494251175239741060}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: front_mesh_color1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 75977175965233270}
   - component: {fileID: 8174277531494742994}
   - component: {fileID: 9130571463278191550}
+  - component: {fileID: 6638078115835814516}
+  - component: {fileID: 5915785194081610400}
+  - component: {fileID: 5837312624285804337}
   m_Layer: 6
   m_Name: SlowEnemy
   m_TagString: Untagged
@@ -48,6 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d496de810d205474dbcb8950cf5dac97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minKeepDistance: 3
+  maxChaseDistance: 15
   maxShield: 100
   currentShield: 0
   shieldRegenRate: 5
@@ -58,6 +63,9 @@ MonoBehaviour:
   hoverHeight: 2
   bobAmount: 0.5
   bobSpeed: 2
+  deactivationForce: 5
+  deactivationTorque: 2
+  ammoDropper: {fileID: 0}
   slowProjectilePrefab: {fileID: 4840880294674937119, guid: fe1631f4e2772b34dbb04e97635fc65f, type: 3}
   projectileSpawnPoint: {fileID: 4184595288955615672}
   projectileSpeed: 15
@@ -211,6 +219,59 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6638078115835814516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2266129455229456602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62ce9b9da873f284c859ab8361642921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldColor: {r: 0.3, g: 0.7, b: 1, a: 0.5}
+  minAlpha: 0
+  pulseSpeed: 2
+  pulseIntensity: 0.2
+  shieldScale: 1.2
+--- !u!114 &5915785194081610400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2266129455229456602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fd1bdb0ac868c147ac9de2b1cbe5820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  friendlyTint: {r: 1, g: 1, b: 1, a: 1}
+  friendlyParticlePrefab: {fileID: 2961485694660685364, guid: c68fd2abc984ae14497614537e1901b3, type: 3}
+  particleLifetime: 2
+  friendlyTransformSound: {fileID: 8300000, guid: 204719d6995d1f24bb0e6983071f41e1, type: 3}
+  soundVolume: 5
+--- !u!114 &5837312624285804337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2266129455229456602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db10f6c483f5aed43aa0768b99ee8c54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  possibleAmmoDrops:
+  - ammoPrefab: {fileID: 5256133826507171727, guid: 5463508855442ad4f9e707be0ea34c74, type: 3}
+    dropChance: 100
+    ammoAmountRange: {x: 5, y: 20}
+  dropUpwardForce: 5
+  dropScatterRadius: 1
+  spawnHeightOffset: 1.5
 --- !u!1 &5653269342529420660
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +351,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 923104014, guid: 483c95e5458ddc34782a0783ba336319, type: 3}
+  m_Sprite: {fileID: -1464427652, guid: 25a1f91a4ebef3640b12072465b0a27b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

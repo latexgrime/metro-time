@@ -1,24 +1,28 @@
 using System;
 using System.Collections;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
-using Random = System.Random;
 
 public class Spawner : MonoBehaviour
 {
+    [Header("- Enemy Prefabs")]
     public GameObject stunEnemy;
     public GameObject slowEnemy;
 
+    [Header("- NavMesh Agents")]
     public NavMeshAgent[] agent;
     public float range;
 
+    [Header("- Spawn Settings")]
     public Transform centrePoint;
-    
-    // Update is called once per frame
+    public bool isEnabled = true; // Toggle enemy spawning.
+
     void Start()
     {
-        SpawnEnemies();
+        if (isEnabled)
+        {
+            SpawnEnemies();
+        }
     }
 
     private void SpawnEnemies()
@@ -28,14 +32,10 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        if (!agent[0].isOnNavMesh)
-        {
-            return;
-        }
-        if (!agent[1].isOnNavMesh)
-        {
-            return;
-        }
+        if (!isEnabled) return; // Stop enemy movement when spawner is disabled.
+
+        if (!agent[0].isOnNavMesh || !agent[1].isOnNavMesh) return;
+
         if (agent[0].remainingDistance <= agent[0].stoppingDistance)
         {
             Vector3 point;
@@ -45,6 +45,7 @@ public class Spawner : MonoBehaviour
                 agent[0].SetDestination(point);
             }
         }
+
         if (agent[1].remainingDistance <= agent[1].stoppingDistance)
         {
             Vector3 point;
@@ -56,30 +57,30 @@ public class Spawner : MonoBehaviour
         }
     }
 
-   bool Patrol(Vector3 center, float range, out Vector3 result)
-   {
-       Vector3 randomPoint = center + UnityEngine.Random.insideUnitSphere * range;
-       NavMeshHit hit;
-       if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
-       {
-           result = hit.position;
-           return true;
-       }
+    private bool Patrol(Vector3 center, float range, out Vector3 result)
+    {
+        Vector3 randomPoint = center + UnityEngine.Random.insideUnitSphere * range;
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+        {
+            result = hit.position;
+            return true;
+        }
 
-       result = Vector3.zero;
-       return false;
-   }
+        result = Vector3.zero;
+        return false;
+    }
+
     IEnumerator TimerSpawnEnemies(float waitTime)
     {
         yield return new WaitForSeconds(5);
-        while (true)
+        while (isEnabled) // Stop spawning when disabled.
         {
             if (gameObject.name == "Spawner_SlowEnemy")
             {
                 Instantiate(slowEnemy);
                 Vector3 pos = transform.position;
                 slowEnemy.transform.position = pos;
-                //pos = slowEnemy.transform.position;
                 pos.z += 2.0f;
                 if (pos.z >= 44f)
                     pos.z = 0;
@@ -98,5 +99,4 @@ public class Spawner : MonoBehaviour
             yield return new WaitForSeconds(waitTime);
         }
     }
-    
 }

@@ -523,11 +523,11 @@ namespace _Scripts.Player.Movement
                 float totalMovement = Mathf.Clamp01(horizontalMovement + verticalMovement);
 
                 // Update animation states.
-                _animator.SetBool("isRunning", _currentState == PlayerState.Sprinting);
-                _animator.SetBool("isWalking", _currentState == PlayerState.Walking);
-                _animator.SetFloat("MovementSpeed", totalMovement);
-                _animator.SetBool("isJumping", _currentState == PlayerState.Jumping);
-                _animator.SetBool("isInAir", _currentState == PlayerState.InAir);
+                //_animator.SetBool("isRunning", _currentState == PlayerState.Sprinting);
+                //_animator.SetBool("isWalking", _currentState == PlayerState.Walking);
+                //_animator.SetFloat("MovementSpeed", totalMovement);
+                //_animator.SetBool("isJumping", _currentState == PlayerState.Jumping);
+                //_animator.SetBool("isInAir", _currentState == PlayerState.InAir);
             }
             else
             {

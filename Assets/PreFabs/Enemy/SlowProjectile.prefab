@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3085461702103641186}
   - component: {fileID: 3085461702103641189}
   - component: {fileID: 3085461702103641188}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: front_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4918,7 +4918,7 @@ GameObject:
   - component: {fileID: 4379923732884975311}
   - component: {fileID: 1319941783627573984}
   - component: {fileID: -5198897984335032537}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SlowProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9996,7 +9996,7 @@ GameObject:
   - component: {fileID: 6308267584761583773}
   - component: {fileID: 6308267584761583772}
   - component: {fileID: 6308267584761583771}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: helix
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14908,7 +14908,7 @@ GameObject:
   - component: {fileID: 6463906123001036418}
   - component: {fileID: 6971277908102930446}
   - component: {fileID: 7647286937356752684}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
