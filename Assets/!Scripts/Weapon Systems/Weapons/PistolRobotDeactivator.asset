@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: N.A. Cannon
   weaponType: 1
-  weaponPrefab: {fileID: 373103576519036179, guid: a5d1e51276df55c458ab8d4df9f73d1c, type: 3}
+  weaponPrefab: {fileID: 2137838320733551927, guid: 5ab4e0108cbb077479c96fe6a7fef3af, type: 3}
   weaponIcon: {fileID: 21300000, guid: 35c5cc75a21942a43aa6874e2e92848d, type: 3}
   weaponIconTint: {r: 1, g: 1, b: 1, a: 1}
   damage: 10
