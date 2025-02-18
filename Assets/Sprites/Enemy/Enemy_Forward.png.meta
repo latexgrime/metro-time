@@ -143,8 +143,8 @@ TextureImporter:
         y: 0
         width: 336
         height: 306
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -165,8 +165,8 @@ TextureImporter:
         y: 0
         width: 336
         height: 306
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5000001, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -183,12 +183,12 @@ TextureImporter:
       name: Enemy_Forward_2
       rect:
         serializedVersion: 2
-        x: 672
+        x: 674
         y: 0
         width: 336
         height: 306
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5000002, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -205,12 +205,12 @@ TextureImporter:
       name: Enemy_Forward_3
       rect:
         serializedVersion: 2
-        x: 1008
+        x: 1010
         y: 0
         width: 336
         height: 306
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.50000036, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -231,8 +231,8 @@ TextureImporter:
         y: 0
         width: 336
         height: 306
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.50000036, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -253,8 +253,8 @@ TextureImporter:
         y: 0
         width: 336
         height: 306
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.50000036, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -275,8 +275,8 @@ TextureImporter:
         y: 0
         width: 336
         height: 306
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5053042, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -297,8 +297,8 @@ TextureImporter:
         y: 0
         width: 336
         height: 306
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5106085, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -319,8 +319,8 @@ TextureImporter:
         y: 0
         width: 336
         height: 306
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5106085, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -337,12 +337,12 @@ TextureImporter:
       name: Enemy_Forward_9
       rect:
         serializedVersion: 2
-        x: 3024
+        x: 3026
         y: 0
         width: 336
         height: 306
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5000007, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -363,8 +363,8 @@ TextureImporter:
         y: 0
         width: 336
         height: 306
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5106085, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -385,8 +385,8 @@ TextureImporter:
         y: 0
         width: 336
         height: 306
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5000007, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
