@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using _Scripts.Enemy;
 using UnityEngine;
 
@@ -25,6 +27,11 @@ namespace _Scripts.Boss
         private float _nextAttackTime;
         private int _currentAttackPattern;
 
+        [Header("- Shield Visual Effect")]
+        [SerializeField] private GameObject shieldEffect;
+        [SerializeField] private GameObject shieldBreakEffect;
+
+        
         [Header("- Secondary Shield Settings")]
         [SerializeField] private bool isSecondaryShieldActive = true;
 
@@ -101,10 +108,12 @@ namespace _Scripts.Boss
         {
             _currentPhase = BossPhase.Attack;
             _phaseStartTime = Time.time;
-            isSecondaryShieldActive = true;
-
-            EnableEnemySpawners(false); // Disable enemy spawners during attack phase.
-
+    
+            // Activate shield effect.
+            if (shieldEffect != null)
+                shieldEffect.SetActive(true);
+            // Disable enemy spawners during attack phase.
+            EnableEnemySpawners(false);
             OnAttackPhaseStart?.Invoke();
         }
 
@@ -112,12 +121,19 @@ namespace _Scripts.Boss
         {
             _currentPhase = BossPhase.Cooldown;
             _phaseStartTime = Time.time;
-            isSecondaryShieldActive = false;
 
-            EnableEnemySpawners(true); // Enable enemy spawners during cooldown phase.
+            // Deactivate shield effect.
+            if (shieldEffect != null)
+                shieldEffect.SetActive(false);
 
+            // Play shield break effect.
+            if (shieldBreakEffect != null)
+                Instantiate(shieldBreakEffect, transform.position, Quaternion.identity);
+
+            EnableEnemySpawners(true);
             OnCooldownPhaseStart?.Invoke();
         }
+
 
         private void EnableEnemySpawners(bool enable)
         {
@@ -146,7 +162,7 @@ namespace _Scripts.Boss
             switch (_currentAttackPattern)
             {
                 case 0:
-                    RotatingBulletHellPattern();
+                    StartCoroutine(RotatingBulletHellPattern());
                     break;
                 case 1:
                     ConcentratedBurstPattern();
@@ -159,6 +175,7 @@ namespace _Scripts.Boss
             _currentAttackPattern = (_currentAttackPattern + 1) % 3;
             _nextAttackTime = Time.time + globalAttackCooldown;
         }
+
 
         // Debugging Methods.
         public void DebugTriggerAttackPattern(int patternIndex)
@@ -185,30 +202,41 @@ namespace _Scripts.Boss
             Debug.Log("Boss forced into attack mode.");
         }
 
-        private void RotatingBulletHellPattern()
+        private IEnumerator RotatingBulletHellPattern()
         {
             Debug.Log("Executing Rotating Bullet Hell Pattern.");
+    
+            float attackDuration = 5f; // How long this attack lasts.
+            float fireRate = 0.2f; // Time between each shot.
+            float elapsedTime = 0f;
 
-            int projectileCount = Mathf.Min(maxSimultaneousProjectiles, projectilePrefabs.Length);
-
-            for (int i = 0; i < projectileCount; i++)
+            while (elapsedTime < attackDuration)
             {
-                Transform spawnPoint = projectileSpawnPoints[i % projectileSpawnPoints.Length];
-                GameObject projectilePrefab = projectilePrefabs[i % projectilePrefabs.Length];
+                int projectileCount = 12; // Number of bullets per wave.
 
-                float angle = (Time.time * rotationSpeed) + (i * (360f / projectileCount));
-                Vector3 direction = Quaternion.Euler(0, angle, 0) * Vector3.forward;
-
-                GameObject projectile = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.LookRotation(direction));
-
-                Rigidbody rb = projectile.GetComponent<Rigidbody>();
-                if (rb != null)
+                for (int i = 0; i < projectileCount; i++)
                 {
-                    Vector3 spreadDirection = Quaternion.Euler(Random.Range(-bulletSpread, bulletSpread), 0, Random.Range(-bulletSpread, bulletSpread)) * direction;
-                    rb.linearVelocity = spreadDirection * 10f;
+                    Transform spawnPoint = projectileSpawnPoints[i % projectileSpawnPoints.Length];
+                    GameObject projectilePrefab = projectilePrefabs[i % projectilePrefabs.Length];
+
+                    // Rotate projectiles around the boss
+                    float angle = (Time.time * rotationSpeed) + (i * (360f / projectileCount));
+                    Vector3 direction = Quaternion.Euler(0, angle, 0) * Vector3.forward;
+
+                    GameObject projectile = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.LookRotation(direction));
+
+                    Rigidbody rb = projectile.GetComponent<Rigidbody>();
+                    if (rb != null)
+                    {
+                        rb.linearVelocity = direction * 10f;
+                    }
                 }
+
+                yield return new WaitForSeconds(fireRate); // Fire continuously.
+                elapsedTime += fireRate;
             }
         }
+
 
         private void ConcentratedBurstPattern()
         {
