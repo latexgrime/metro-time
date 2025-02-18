@@ -24,8 +24,16 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
 
         private void Start()
         {
+            Physics.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyProjectile"), LayerMask.NameToLayer("EnemyProjectile"), true);
+            gameObject.layer = LayerMask.NameToLayer("EnemyProjectile");
+            
             _audioSource = GetComponent<AudioSource>();
             _pool = FindObjectOfType<ProjectilePool>();
+    
+            if (_pool == null)
+            {
+                Debug.LogWarning("ProjectilePool not found! Projectile won't be returned to pool.");
+            }
 
             if (_audioSource != null && projectileSound != null)
             {
@@ -76,14 +84,24 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
         {
             if (impactEffectPrefab != null)
             {
-                Instantiate(impactEffectPrefab, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal));
+                GameObject effect = Instantiate(impactEffectPrefab, collision.contacts[0].point, 
+                    Quaternion.LookRotation(collision.contacts[0].normal));
+                // Auto-destroy effect after 2 seconds.
+                Destroy(effect, 2f);
             }
         }
-
         private IEnumerator ReturnToPoolAfterDelay(float delay)
         {
             yield return new WaitForSeconds(delay);
-            _pool.ReturnProjectile(gameObject);
+            if (_pool != null)
+            {
+                _pool.ReturnProjectile(gameObject);
+            }
+            else
+            {
+                // Fallback if pool is unavailable.
+                gameObject.SetActive(false);
+            }
         }
     }
 }
