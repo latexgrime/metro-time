@@ -80,7 +80,6 @@ namespace _Scripts.Weapon_Systems.Weapons_UI
             if (reserveAmmoText != null)
                 reserveAmmoText.text = reserveAmmo.ToString();
             
-            Debug.Log($"UI Update - Current Ammo: {currentAmmo}, Reserve: {reserveAmmo}");
         }
 
         private void UpdateWeaponNameDisplay(WeaponData currentWeapon)

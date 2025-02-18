@@ -1,3 +1,4 @@
+using System.Collections;
 using _Scripts.Status_System;
 using UnityEngine;
 
@@ -8,29 +9,24 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
         [Header("- Projectile Settings")]
         private float _speed;
         private float _lifetime;
-        
+
         [Header("- Status Effect")]
         [SerializeField] private float slowBuildupAmount = 15f;
-        
+
         [Header("- Effects")]
         [SerializeField] private GameObject impactEffectPrefab;
         [SerializeField] private AudioClip projectileSound;
         [SerializeField] private AudioClip impactSound;
         
         private bool _hasCollided = false;
-        private MeshRenderer _meshRenderer;
-        private Collider _collider;
         private AudioSource _audioSource;
+        private ProjectilePool _pool;
 
         private void Start()
         {
             _audioSource = GetComponent<AudioSource>();
-            _meshRenderer = GetComponent<MeshRenderer>();
-            _collider = GetComponent<Collider>();
-    
-            // Ignore collisions between enemy projectiles and enemies.
-            Physics.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyProjectile"), LayerMask.NameToLayer("Enemy"), true);
-    
+            _pool = FindObjectOfType<ProjectilePool>();
+
             if (_audioSource != null && projectileSound != null)
             {
                 _audioSource.PlayOneShot(projectileSound);
@@ -42,16 +38,13 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
             if (_hasCollided) return;
             _hasCollided = true;
 
-            // Play impact sound.
             if (_audioSource != null && impactSound != null)
             {
                 AudioSource.PlayClipAtPoint(impactSound, transform.position);
             }
 
-            // Handle visual effects.
             HandleImpactEffects(collision);
 
-            // Check if we hit the player.
             if (collision.gameObject.CompareTag("Player"))
             {
                 StatusEffectManager statusManager = collision.gameObject.GetComponent<StatusEffectManager>();
@@ -61,47 +54,36 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
                 }
             }
 
-            // Disable Particle System emission.
-            ParticleSystem[] particleSystems = GetComponentsInChildren<ParticleSystem>();
-            foreach (ParticleSystem ps in particleSystems)
-            {
-                ps.Stop();
-            }
-
-            // Destroy after sound finishes.
-            float soundDuration = impactSound != null ? impactSound.length : 0f;
-            Destroy(gameObject, soundDuration);
+            StartCoroutine(ReturnToPoolAfterDelay(impactSound != null ? impactSound.length : 0f));
         }
 
         public void Initialize(float projectileSpeed, float projectileLifetime)
         {
             _speed = projectileSpeed;
             _lifetime = projectileLifetime;
-    
+            _hasCollided = false;
+
             Rigidbody rb = GetComponent<Rigidbody>();
             if (rb != null)
             {
                 rb.linearVelocity = transform.forward * _speed;
             }
 
-            // Set the correct layer.
-            gameObject.layer = LayerMask.NameToLayer("EnemyProjectile");
-    
-            Destroy(gameObject, _lifetime);
+            StartCoroutine(ReturnToPoolAfterDelay(_lifetime));
         }
-        
+
         private void HandleImpactEffects(Collision collision)
         {
             if (impactEffectPrefab != null)
             {
-                ContactPoint contact = collision.contacts[0];
-                GameObject effect = Instantiate(impactEffectPrefab, 
-                    contact.point, 
-                    Quaternion.LookRotation(contact.normal));
-            
-                // Auto-destroy the effect.
-                Destroy(effect, 2f);
+                Instantiate(impactEffectPrefab, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal));
             }
+        }
+
+        private IEnumerator ReturnToPoolAfterDelay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            _pool.ReturnProjectile(gameObject);
         }
     }
 }
