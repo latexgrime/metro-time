@@ -71,6 +71,7 @@ public class Spawner : MonoBehaviour
    }
     IEnumerator TimerSpawnEnemies(float waitTime)
     {
+        yield return new WaitForSeconds(5);
         while (true)
         {
             if (gameObject.name == "Spawner_SlowEnemy")
