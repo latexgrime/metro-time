@@ -6,7 +6,7 @@ namespace _Scripts.Enemy.Enemy_Types
 {
     public class ElectricRangedEnemy : BaseEnemy
     {
-        [Header("- Attack Settings")] 
+        [Header("- Attack Settings")]
         [SerializeField] private GameObject electricProjectilePrefab;
         [SerializeField] private Transform projectileSpawnPoint;
         [SerializeField] private float projectileSpeed = 20f;

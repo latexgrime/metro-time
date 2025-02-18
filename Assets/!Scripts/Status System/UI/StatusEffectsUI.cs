@@ -28,39 +28,60 @@ namespace _Scripts.Status_System.UI
 
         private void Start()
         {
-            if (stunBar != null)
+            InitializeColors();
+            SetInitialState();
+        }
+
+        private void InitializeColors()
+        {
+            if (stunBar != null && stunBar.fillRect != null)
             {
-                stunBar.fillRect.GetComponent<Image>().color = stunBarColor;
+                Image fillImage = stunBar.fillRect.GetComponent<Image>();
+                if (fillImage != null)
+                    fillImage.color = stunBarColor;
             }
             
-            if (slowBar != null)
+            if (slowBar != null && slowBar.fillRect != null)
             {
-                slowBar.fillRect.GetComponent<Image>().color = slowBarColor;
+                Image fillImage = slowBar.fillRect.GetComponent<Image>();
+                if (fillImage != null)
+                    fillImage.color = slowBarColor;
             }
+        }
 
+        private void SetInitialState()
+        {
             SetStunGroupActive(false);
             SetFreezeGroupActive(false);
-            if (stunIcon != null) stunIcon.enabled = false;
-            if (slowIcon != null) slowIcon.enabled = false;
+            
+            if (stunIcon != null) 
+                stunIcon.enabled = false;
+                
+            if (slowIcon != null) 
+                slowIcon.enabled = false;
         }
 
         private void Update()
         {
+            UpdateIconPulsing();
+        }
+
+        private void UpdateIconPulsing()
+        {
             float pulse = Mathf.Lerp(pulseMinAlpha, pulseMaxAlpha, 
                 (Mathf.Sin(Time.time * pulseSpeed) + 1) * 0.5f);
 
-            if (stunIcon != null && stunIcon.enabled)
-            {
-                Color c = stunIcon.color;
-                c.a = pulse;
-                stunIcon.color = c;
-            }
+            UpdateIconAlpha(stunIcon, pulse);
+            UpdateIconAlpha(slowIcon, pulse);
+        }
 
-            if (slowIcon != null && slowIcon.enabled)
+        private void UpdateIconAlpha(Image icon, float alpha)
+        {
+            if (icon != null && icon.enabled)
             {
-                Color c = slowIcon.color;
-                c.a = pulse;
-                slowIcon.color = c;
+                Color color = icon.color;
+                color.a = alpha;
+                icon.color = color;
             }
         }
 

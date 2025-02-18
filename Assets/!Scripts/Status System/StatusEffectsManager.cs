@@ -7,22 +7,23 @@ namespace _Scripts.Status_System
 {
     public class StatusEffectManager : MonoBehaviour
     {
-        [Header("Dependencies")]
+        [Header("- Dependencies")]
         [SerializeField] private StatusEffectUI statusUI;
-        private AudioSource _audioSource;
-        private PlayerMovement _playerMovement;
-        private StatusEffectHandler _statusEffectHandler;
-
-        [Header("Status Thresholds")]
+        
+        [Header("- Status Thresholds")]
         [SerializeField] private float maxStatusValue = 100f;
         [SerializeField] private float barDecayRate = 0.5f;
         [SerializeField] private float timeBeforeDecay = 1f;
 
-        [Header("Audio")]
+        [Header("- Audio")]
         [SerializeField] private AudioClip stunAppliedSound;
         [SerializeField] private AudioClip slowAppliedSound;
         [SerializeField] private AudioClip statusBuildupSound;
 
+        private AudioSource _audioSource;
+        private PlayerMovement _playerMovement;
+        private StatusEffectHandler _statusEffectHandler;
+        
         private float _currentStunValue;
         private float _currentSlowValue;
         private bool _isStunned;
@@ -104,6 +105,7 @@ namespace _Scripts.Status_System
         private void ApplyStunEffect()
         {
             _isStunned = true;
+            
             if (_audioSource != null && stunAppliedSound != null)
                 _audioSource.PlayOneShot(stunAppliedSound);
 
@@ -116,6 +118,7 @@ namespace _Scripts.Status_System
         private void ApplySlowEffect()
         {
             _isSlowed = true;
+            
             if (_audioSource != null && slowAppliedSound != null)
                 _audioSource.PlayOneShot(slowAppliedSound);
 

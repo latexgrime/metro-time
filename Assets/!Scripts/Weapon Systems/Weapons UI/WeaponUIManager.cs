@@ -9,33 +9,39 @@ namespace _Scripts.Weapon_Systems.Weapons_UI
 {
     public class WeaponUIManager : MonoBehaviour
     {
-        private InputManager _inputManager;
-        
-        [Header("References")]
+        [Header("- Dependencies")]
         [SerializeField] private WeaponHandler weaponHandler;
         [SerializeField] private WeaponManager weaponManager;
-    
-        [Header("Main Weapon Info")]
+        private InputManager _inputManager;
+
+        [Header("- Main Weapon Info")]
         [SerializeField] private CanvasGroup mainWeaponInfo;
         [SerializeField] private TextMeshProUGUI weaponNameText;
         [SerializeField] private TextMeshProUGUI currentAmmoText;
         [SerializeField] private TextMeshProUGUI reserveAmmoText;
-    
-        [Header("Weapon Selection Menu")]
+
+        [Header("- Weapon Selection Menu")]
         [SerializeField] private CanvasGroup weaponSelectionPanel;
         [SerializeField] private Transform weaponListContent;
         [SerializeField] private GameObject weaponSelectionItemPrefab;
         [SerializeField] private float weaponSelectionShowTime = 0.5f;
         [SerializeField] private Color selectedWeaponColor = new Color(0f, 1f, 0.7f);
-        
-        [Header("UI Animation")]
+
+        [Header("- UI Animation")]
         [SerializeField] private float fadeSpeed = 5f;
-        
+
         private List<GameObject> _weaponItems = new List<GameObject>();
         private float _weaponSelectionTimer;
         private bool _isWeaponMenuVisible;
 
         private void Start()
+        {
+            InitializeDependencies();
+            SetWeaponSelectionVisibility(false);
+            InitializeWeaponSelectionMenu();
+        }
+
+        private void InitializeDependencies()
         {
             _inputManager = FindFirstObjectByType<InputManager>();
             
@@ -44,23 +50,12 @@ namespace _Scripts.Weapon_Systems.Weapons_UI
             
             if (weaponManager == null)
                 weaponManager = FindFirstObjectByType<WeaponManager>();
-            
-            SetWeaponSelectionVisibility(false);
-            InitializeWeaponSelectionMenu();
         }
 
         private void Update()
         {
             UpdateMainWeaponInfo();
-        
-            // Show selection UI when scrolling.
-            if (Mathf.Abs(_inputManager.weaponScrollInput) > 0)
-            {
-                ShowWeaponSelection();
-            }
-        
-            UpdateWeaponSelectionVisibility();
-            UpdateSelectedWeaponHighlight();
+            HandleWeaponSelectionDisplay();
         }
 
         private void UpdateMainWeaponInfo()
@@ -70,11 +65,18 @@ namespace _Scripts.Weapon_Systems.Weapons_UI
             WeaponData currentWeapon = weaponHandler.GetCurrentWeaponData();
             if (currentWeapon == null) return;
 
-            // Update weapon name.
+            UpdateWeaponNameDisplay(currentWeapon);
+            UpdateAmmoDisplay();
+        }
+
+        private void UpdateWeaponNameDisplay(WeaponData currentWeapon)
+        {
             if (weaponNameText != null)
                 weaponNameText.text = currentWeapon.weaponName;
-                
-            // Update ammo display.
+        }
+
+        private void UpdateAmmoDisplay()
+        {
             if (currentAmmoText != null)
                 currentAmmoText.text = weaponHandler.GetCurrentAmmo().ToString();
                 
@@ -82,14 +84,22 @@ namespace _Scripts.Weapon_Systems.Weapons_UI
                 reserveAmmoText.text = weaponHandler.GetTotalAmmoLeft().ToString();
         }
 
+        private void HandleWeaponSelectionDisplay()
+        {
+            // Show selection UI when scrolling.
+            if (Mathf.Abs(_inputManager.weaponScrollInput) > 0)
+            {
+                ShowWeaponSelection();
+            }
+
+            UpdateWeaponSelectionVisibility();
+            UpdateSelectedWeaponHighlight();
+        }
+
         private void InitializeWeaponSelectionMenu()
         {
             // Clear existing items.
-            foreach (var item in _weaponItems)
-            {
-                Destroy(item);
-            }
-            _weaponItems.Clear();
+            ClearExistingWeaponItems();
 
             // Create weapon selection items.
             for (int i = 0; i < weaponManager.GetWeaponCount(); i++)
@@ -103,28 +113,46 @@ namespace _Scripts.Weapon_Systems.Weapons_UI
             }
         }
 
+        private void ClearExistingWeaponItems()
+        {
+            foreach (var item in _weaponItems)
+            {
+                Destroy(item);
+            }
+            _weaponItems.Clear();
+        }
+
         private void SetupWeaponSelectionItem(GameObject item, WeaponData weaponData, int index)
         {
-            // Setup UI texts.
-            var hotkeyText = item.transform.Find("Weapon Number")?.GetComponent<TextMeshProUGUI>();
-            var weaponIcon = item.transform.Find("Weapon Icon")?.GetComponent<Image>();
-            var weaponNameText = item.transform.Find("Weapon Info/Weapon Name")?.GetComponent<TextMeshProUGUI>();
-            var weaponTypeText = item.transform.Find("Weapon Info/Weapon Type")?.GetComponent<TextMeshProUGUI>();
+            // Setup UI texts and icons.
+            SetupWeaponNumber(item, index);
+            SetupWeaponIcon(item, weaponData);
+            SetupWeaponText(item, weaponData);
+        }
 
-            // Set the weapon's number (index).
+        private void SetupWeaponNumber(GameObject item, int index)
+        {
+            var hotkeyText = item.transform.Find("Weapon Number")?.GetComponent<TextMeshProUGUI>();
             if (hotkeyText != null)
                 hotkeyText.text = (index + 1).ToString();
+        }
 
-            // Set the icon of the weapon .
+        private void SetupWeaponIcon(GameObject item, WeaponData weaponData)
+        {
+            var weaponIcon = item.transform.Find("Weapon Icon")?.GetComponent<Image>();
             if (weaponIcon != null)
             {
                 weaponIcon.sprite = weaponData.weaponIcon;
                 weaponIcon.color = weaponData.weaponIconTint;
-                // Make the image transparent if there is no icon.
                 weaponIcon.enabled = weaponData.weaponIcon != null;
             }
+        }
 
-            // Set weapon name and type.
+        private void SetupWeaponText(GameObject item, WeaponData weaponData)
+        {
+            var weaponNameText = item.transform.Find("Weapon Info/Weapon Name")?.GetComponent<TextMeshProUGUI>();
+            var weaponTypeText = item.transform.Find("Weapon Info/Weapon Type")?.GetComponent<TextMeshProUGUI>();
+
             if (weaponNameText != null)
                 weaponNameText.text = weaponData.weaponName;
 
@@ -132,7 +160,7 @@ namespace _Scripts.Weapon_Systems.Weapons_UI
                 weaponTypeText.text = weaponData.weaponType.ToString();
         }
 
-        public void ShowWeaponSelection()
+        private void ShowWeaponSelection()
         {
             SetWeaponSelectionVisibility(true);
             _weaponSelectionTimer = weaponSelectionShowTime;

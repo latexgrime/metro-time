@@ -36,8 +36,6 @@ namespace _Scripts.Enemy
         protected bool isDeactivated;
         protected bool hasDeactivationPhysicsApplied;
         protected bool isFriendly;
-        public bool IsFriendly() => isFriendly;
-
         
         protected Transform player;
         protected NavMeshAgent agent;
@@ -46,6 +44,11 @@ namespace _Scripts.Enemy
         protected Collider mainCollider;
         protected EnemyState currentState = EnemyState.Patrol;
         protected Vector3 startPosition;
+        
+        public bool IsFriendly() => isFriendly;
+        public float GetCurrentShield() => currentShield;
+        public float GetMaxShield() => maxShield;
+        public bool IsDeactivated() => isDeactivated;
         
         protected virtual void Start()
         {
@@ -118,7 +121,7 @@ namespace _Scripts.Enemy
                 UpdateBehavior();
             }
         
-            // Tjis is to keep hovering when friendly.
+            // This keeps hovering when friendly.
             UpdateHoverMotion();
         }
 
@@ -156,12 +159,12 @@ namespace _Scripts.Enemy
             {
                 float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         
-                // Only set animation parameters if we're not disabled
+                // Only set animation parameters if we're not disabled.
                 if (!isDeactivated)
                 {
                     animator.SetBool("isAttacking", distanceToPlayer <= attackRange);
             
-                    // Handle movement animations
+                    // Handle movement animations.
                     if (_movementEnabled)
                     {
                         Vector3 velocity = agent != null ? agent.velocity : Vector3.zero;
@@ -199,7 +202,7 @@ namespace _Scripts.Enemy
 
         protected virtual void Patrol()
         {
-            
+            // Override in child classes.
         }
 
         protected virtual void ChasePlayer()
@@ -226,10 +229,6 @@ namespace _Scripts.Enemy
                 currentShield = Mathf.Min(currentShield, maxShield);
             }
         }
-        
-        public float GetCurrentShield() => currentShield;
-        public float GetMaxShield() => maxShield;
-        public bool IsDeactivated() => isDeactivated;
 
         public virtual void TakeShieldDamage(float damage)
         {
@@ -284,7 +283,6 @@ namespace _Scripts.Enemy
             if (ammoDropper != null)
             {
                 ammoDropper.DropAmmo();
-                Debug.Log("Deactivate called on " + gameObject.name);
             }
 
             // Stop the agent but keep it enabled for hover effect.
@@ -302,7 +300,6 @@ namespace _Scripts.Enemy
 
             SendMessage("OnBecameFriendly", SendMessageOptions.DontRequireReceiver);
         }
-        
     }
     
     public enum EnemyState

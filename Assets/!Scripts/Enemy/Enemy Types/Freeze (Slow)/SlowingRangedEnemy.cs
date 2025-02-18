@@ -6,7 +6,7 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
 {
     public class SlowingRangedEnemy : BaseEnemy
     {
-        [Header("- Attack Settings")] 
+        [Header("- Attack Settings")]
         [SerializeField] private GameObject slowProjectilePrefab;
         [SerializeField] private Transform projectileSpawnPoint;
         [SerializeField] private float projectileSpeed = 20f;

@@ -10,12 +10,12 @@ namespace _Scripts.AmmoDrop
         [SerializeField] private float bobSpeed = 2f;
         [SerializeField] private float bobHeight = 0.2f;
         [SerializeField] private float pickupRadius = 2f;
-        [SerializeField] private float floatingOffset = .5f;
+        [SerializeField] private float floatingOffset = 0.5f;
 
         [Header("- Physics Settings")]
         [SerializeField] private float gravity = 20f;
         [SerializeField] private LayerMask groundLayer;
-        [SerializeField] private float _raycastDistance = 10f;
+        [SerializeField] private float raycastDistance = 10f;
 
         [Header("- Ammo Settings")]
         [SerializeField] private int ammoAmount = 30;
@@ -46,17 +46,23 @@ namespace _Scripts.AmmoDrop
 
         private void Update()
         {
+            PhysicsUpdate();
+            CheckForPlayer();
+        }
+        
+        private void PhysicsUpdate()
+        {
             if (!_hasLanded)
             {
                 // Apply gravity.
                 _velocity.y -= gravity * Time.deltaTime;
-
+                
                 // Update position.
                 Vector3 newPosition = transform.position + _velocity * Time.deltaTime;
                 
                 // Check for ground using raycast.
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, Vector3.down, out hit, _raycastDistance, groundLayer))
+                if (Physics.Raycast(transform.position, Vector3.down, out hit, raycastDistance, groundLayer))
                 {
                     // If we're about to go below ground level, land the ammo with offset.
                     if (newPosition.y <= hit.point.y + floatingOffset)
@@ -79,66 +85,77 @@ namespace _Scripts.AmmoDrop
                 float newY = _startPosition.y + Mathf.Sin(Time.time * bobSpeed) * bobHeight;
                 transform.position = new Vector3(transform.position.x, newY, transform.position.z);
             }
+        }
 
-            // Check for nearby player - now checks the parent of colliders for WeaponStateManager.
+        private void CheckForPlayer()
+        {
             Collider[] colliders = Physics.OverlapSphere(transform.position, pickupRadius);
             foreach (Collider col in colliders)
             {
-                // Check the collider's object and its parent for the WeaponStateManager.
-                WeaponStateManager weaponManager = col.GetComponent<WeaponStateManager>();
-                if (weaponManager == null && col.transform.parent != null)
+                if (col.CompareTag("PlayerCollider"))
                 {
-                    weaponManager = col.transform.parent.GetComponent<WeaponStateManager>();
-                }
-
-                if (weaponManager != null)
-                {
-                    AddAmmoToWeapons(weaponManager);
-                    PlayPickupEffects();
-                    Destroy(gameObject);
+                    // Try to find components at the root player object.
+                    GameObject playerRoot = col.transform.root.gameObject;
+                    WeaponStateManager weaponManager = playerRoot.GetComponent<WeaponStateManager>();
+                    
+                    if (weaponManager != null)
+                    {
+                        if (AddAmmoToCurrentWeapon(weaponManager))
+                        {
+                            PlayPickupEffects();
+                            Destroy(gameObject);
+                        }
+                    }
+                    
                     break;
                 }
             }
         }
-
-        private void AddAmmoToWeapons(WeaponStateManager weaponManager)
+        
+        private bool AddAmmoToCurrentWeapon(WeaponStateManager weaponManager)
         {
-            var weaponHandler = weaponManager.GetComponent<WeaponHandler>();
-            if (weaponHandler == null) return;
-
-            var currentWeaponIndex = weaponManager.GetComponent<WeaponManager>().GetCurrentWeaponIndex();
-            var currentState = weaponManager.GetWeaponState(currentWeaponIndex);
-
-            if (currentState != null)
-            {
-                var weaponData = weaponHandler.GetCurrentWeaponData();
-                if (weaponData != null)
-                {
-                    // Calculate max ammo that can be added based on weapon's max capacity.
-                    int maxPossibleAmmo = weaponData.maxAmmo;
-                    int currentTotalAmmo = currentState.currentAmmo + currentState.totalAmmoLeft;
-                    int ammoSpace = maxPossibleAmmo - currentTotalAmmo;
+            // Get the components directly from the same GameObject.
+            WeaponManager weaponManagerComp = weaponManager.GetComponent<WeaponManager>();
+            WeaponHandler weaponHandler = weaponManager.GetComponent<WeaponHandler>();
             
-                    // Only add ammo if there's space.
-                    if (ammoSpace > 0)
-                    {
-                        // Add ammo to reserve, limited by available space.
-                        int ammoToAdd = Mathf.Min(ammoAmount, ammoSpace);
-                        currentState.totalAmmoLeft += ammoToAdd;
-
-                        // Update the weapon state.
-                        weaponManager.UpdateWeaponState(
-                            currentWeaponIndex,
-                            currentState.currentAmmo,
-                            currentState.totalAmmoLeft,
-                            currentState.isReloading
-                        );
-
-                        // Play pickup effects.
-                        PlayPickupEffects();
-                    }
-                }
+            if (weaponManagerComp == null || weaponHandler == null)
+            {
+                return false;
             }
+            
+            int currentWeaponIndex = weaponManagerComp.GetCurrentWeaponIndex();
+            WeaponState currentState = weaponManager.GetWeaponState(currentWeaponIndex);
+            WeaponData weaponData = weaponHandler.GetCurrentWeaponData();
+            
+            if (currentState == null || weaponData == null)
+            {
+                return false;
+            }
+            
+            // Calculate max possible ammo.
+            int maxPossibleAmmo = weaponData.maxAmmo;
+            int currentTotal = currentState.currentAmmo + currentState.totalAmmoLeft;
+            int ammoSpace = maxPossibleAmmo - currentTotal;
+            
+            // Only add ammo if there's space.
+            if (ammoSpace <= 0)
+            {
+                return false;
+            }
+            
+            // Add ammo to reserve.
+            int ammoToAdd = Mathf.Min(ammoAmount, ammoSpace);
+            currentState.totalAmmoLeft += ammoToAdd;
+            
+            // Update the weapon state.
+            weaponManager.UpdateWeaponState(
+                currentWeaponIndex,
+                currentState.currentAmmo,
+                currentState.totalAmmoLeft,
+                currentState.isReloading
+            );
+            
+            return true;
         }
 
         public void SetAmmoAmount(int amount)
@@ -157,7 +174,8 @@ namespace _Scripts.AmmoDrop
             {
                 AudioSource.PlayClipAtPoint(pickupSound, transform.position);
             }
-        } 
+        }
+
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.yellow;

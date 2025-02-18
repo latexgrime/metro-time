@@ -4,11 +4,11 @@ namespace _Scripts.Enemy
 {
     public class SpriteBillboard : MonoBehaviour
     {
-        private UnityEngine.Camera _mainCamera;
-        /// <summary>
-        /// This makes it so the sprite only rotates in its Y axis. If this is deactivated, the enemy sprite will look towards the player even when going up.
-        /// </summary>
+        [Header("- Billboard Settings")]
+        [Tooltip("When true, sprite only rotates on Y axis. When false, sprite fully faces camera.")]
         [SerializeField] private bool lockYAxis = true;
+        
+        private UnityEngine.Camera _mainCamera;
 
         private void Start()
         {

@@ -4,8 +4,8 @@ namespace _Scripts.Enemy
 {
     public class EnemyFriendlyEffects : MonoBehaviour
     {
-        [Header("- Visual Settings")] [SerializeField]
-        private Color friendlyTint = new Color(0.5f, 1f, 0.5f, 1f);
+        [Header("- Visual Settings")]
+        [SerializeField] private Color friendlyTint = new Color(0.5f, 1f, 0.5f, 1f);
         [SerializeField] private GameObject friendlyParticlePrefab;
         [SerializeField] private float particleLifetime = 2f;
 
@@ -30,13 +30,13 @@ namespace _Scripts.Enemy
                 _audioSource = gameObject.AddComponent<AudioSource>();
             }
             
-            // Set initial audio source properties (dummy proofing).
+            // Set initial audio source properties.
             _audioSource.playOnAwake = false;
             _audioSource.volume = soundVolume;
             
             if (_spriteRenderer != null)
             {
-                // I'm creating a material instance to avoid affecting other sprites.
+                // Create a material instance to avoid affecting other sprites.
                 _spriteMaterial = new Material(_spriteRenderer.material);
                 _spriteRenderer.material = _spriteMaterial;
                 _originalColor = _spriteMaterial.color;
@@ -53,7 +53,7 @@ namespace _Scripts.Enemy
 
         private void OnBecameFriendly()
         {
-            // Spawn particle effect..
+            // Spawn particle effect.
             if (friendlyParticlePrefab != null)
             {
                 GameObject particles = Instantiate(friendlyParticlePrefab, transform.position, Quaternion.identity);
@@ -63,7 +63,6 @@ namespace _Scripts.Enemy
             // Play transformation sound.
             if (friendlyTransformSound != null && _audioSource != null)
             {
-                // Update volume in case it was changed in inspector (debug purposes).
                 _audioSource.volume = soundVolume; 
                 _audioSource.PlayOneShot(friendlyTransformSound);
             }

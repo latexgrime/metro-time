@@ -5,13 +5,14 @@ namespace _Scripts.Enemy.Enemy_Types.Electric__Stun_
 {
     public class ElectricProjectile : MonoBehaviour
     {
-        [Header("- Projectile Settings")] 
+        [Header("- Projectile Settings")]
         private float _speed;
         private float _lifetime;
 
-        [Header("- Status Effect")] 
+        [Header("- Status Effect")]
         [SerializeField] private float stunBuildupAmount = 35f;
 
+        [Header("- Effects")]
         [SerializeField] private AudioClip projectileSound;
         [SerializeField] private AudioClip impactSound;
         [SerializeField] private GameObject impactEffectPrefab;
@@ -19,7 +20,6 @@ namespace _Scripts.Enemy.Enemy_Types.Electric__Stun_
         private bool _hasCollided = false;
         private MeshRenderer _meshRenderer;
         private Collider _collider;
-
         private AudioSource _audioSource;
 
         private void Start()
@@ -84,7 +84,7 @@ namespace _Scripts.Enemy.Enemy_Types.Electric__Stun_
                 rb.linearVelocity = transform.forward * _speed;
             }
 
-            // Automatically set the layer for dummy-proofing.
+            // Set the correct layer.
             gameObject.layer = LayerMask.NameToLayer("EnemyProjectile");
     
             Destroy(gameObject, _lifetime);
@@ -99,7 +99,7 @@ namespace _Scripts.Enemy.Enemy_Types.Electric__Stun_
                     contact.point, 
                     Quaternion.LookRotation(contact.normal));
             
-                // Auto-destroy the effect after a few seconds [Workaround for the impact sfx not being played because the projectile gets destroyed instantly].
+                // Auto-destroy the effect after a few seconds.
                 Destroy(effect, 2f);
             }
         }

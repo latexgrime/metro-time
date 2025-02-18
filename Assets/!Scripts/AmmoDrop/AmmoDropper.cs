@@ -4,10 +4,11 @@ namespace _Scripts.AmmoDrop
 {
     public class AmmoDropper : MonoBehaviour
     {
-        [Header("Ammo Drop Settings")] 
+        [Header("- Ammo Drop Settings")] 
         [SerializeField] private AmmoDropData[] possibleAmmoDrops;
         [SerializeField] private float dropUpwardForce = 5f;
         [SerializeField] private float dropScatterRadius = 1f;
+        [SerializeField] private float spawnHeightOffset = 1.5f;
 
         public void DropAmmo()
         {
@@ -16,19 +17,16 @@ namespace _Scripts.AmmoDrop
                 if (Random.Range(0f, 100f) <= dropData.dropChance)
                 {
                     SpawnAmmoDrop(dropData);
-                    Debug.Log("DropAmmo called, possibleAmmoDrops count: " + possibleAmmoDrops.Length);
                 }
             }
         }
 
         private void SpawnAmmoDrop(AmmoDropData dropData)
         {
-            float spawnHeightOffset = 1.5f;
-            
             // Calculate random position within scatter radius.
             Vector2 randomCircle = Random.insideUnitCircle * dropScatterRadius;
             Vector3 dropPosition = transform.position + 
-                                   new Vector3(randomCircle.x, spawnHeightOffset, randomCircle.y);
+                                  new Vector3(randomCircle.x, spawnHeightOffset, randomCircle.y);
             
             GameObject ammoPickup = Instantiate(
                 dropData.ammoPrefab, 
@@ -44,7 +42,7 @@ namespace _Scripts.AmmoDrop
 
             Vector3 initialVelocity = Vector3.up * dropUpwardForce + randomDir * 3f;
             
-            // Initialize the custom physics.
+            // Initialize the ammo pickup.
             AmmoPickup pickup = ammoPickup.GetComponent<AmmoPickup>();
             if (pickup != null)
             {
@@ -56,7 +54,6 @@ namespace _Scripts.AmmoDrop
                 );
                 pickup.SetAmmoAmount(randomAmount);
             }
-            Debug.Log("Attempting to spawn ammo: " + dropData.ammoPrefab);
         }
     }
 }

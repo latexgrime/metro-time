@@ -1,43 +1,45 @@
+using _Scripts.Enemy.Interfaces;
 using _Scripts.Player;
 using _Scripts.Player.Movement;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.HighDefinition;
 
 namespace _Scripts.Weapon_Systems.Weapons_Logic
 {
     public class WeaponHandler : MonoBehaviour
     {
+        [Header("- Dependencies")]
         private PlayerMovement _playerMovement;
         private InputManager _inputManager;
         private WeaponManager _weaponManager;
         private UnityEngine.Camera _mainCamera;
         private AudioSource _audioSource;
-        private PlayerControls _playerControls;
         private WeaponStateManager _weaponStateManager;
 
+        [Header("- Weapon State")]
         private Weapon _currentWeapon;
         private WeaponData _currentWeaponData;
-
         private float _nextTimeToFire;
         private bool _isReloading;
         private int _currentAmmo;
         private int _totalAmmoLeft;
-        private float _lastScrollValue = 0f;
+        private float _lastScrollValue;
         private bool _hasShot;
-        
-        
 
-        [Header("State")] public bool canShoot = true;
+        [Header("- Shooting Settings")]
+        public bool canShoot = true;
 
-        [Header("Debug Settings")] [SerializeField]
-        private bool showDebugHits;
-
+        [Header("- Debug Settings")]
+        [SerializeField] private bool showDebugHits;
         [SerializeField] private float debugLineDuration = 1f;
         [SerializeField] private Color debugLineColor = Color.red;
         [SerializeField] private bool showHitInfo = true;
 
         private void Start()
+        {
+            InitializeDependencies();
+        }
+
+        private void InitializeDependencies()
         {
             _inputManager = GetComponent<InputManager>();
             _weaponManager = GetComponent<WeaponManager>();
@@ -51,9 +53,17 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
         {
             _currentWeapon = weapon;
             _currentWeaponData = weapon.GetWeaponData();
-    
-            // Get the saved state for this weapon.
+
+            // Retrieve saved weapon state.
+            RestoreWeaponState();
+
+            _nextTimeToFire = 0f;
+        }
+
+        private void RestoreWeaponState()
+        {
             WeaponState state = _weaponStateManager.GetWeaponState(_weaponManager.GetCurrentWeaponIndex());
+            
             if (state != null)
             {
                 _currentAmmo = state.currentAmmo;
@@ -62,75 +72,76 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
             }
             else
             {
-                // To avoid errors: fallback to default values if no state exists.
+                // Initialize with default values if no state exists.
                 _currentAmmo = _currentWeaponData.magazineSize;
                 _totalAmmoLeft = _currentWeaponData.maxAmmo - _currentWeaponData.magazineSize;
                 _isReloading = false;
             }
-            _nextTimeToFire = 0f;
         }
-        
+
         private void Update()
         {
             if (_currentWeapon == null || _isReloading || !canShoot) return;
-        
-            // Check if player is sprinting.
-            if (_playerMovement.CurrentState == PlayerState.Sprinting)
-            {
-                // Don't allow shooting while sprinting.
-                return;
-            }
-        
+
+            HandleShooting();
+            HandleReloading();
+            HandleWeaponSwitch();
+        }
+
+        private void HandleShooting()
+        {
+            // Prevent shooting while sprinting.
+            if (_playerMovement.CurrentState == PlayerState.Sprinting) return;
+
             if (_inputManager.shootInput)
             {
-                // If player starts shooting while sprinting, force them to walk.
+                // Force walk state if shooting while sprinting.
                 if (_playerMovement.CurrentState == PlayerState.Sprinting)
                 {
                     _playerMovement.ForceWalkState();
                 }
 
-                // Handle weapon shoot mode [Automatic or not]. 
-                if (_currentWeaponData.isAutomatic && Time.time >= _nextTimeToFire)
+                // Handle weapon fire modes.
+                if ((_currentWeaponData.isAutomatic && Time.time >= _nextTimeToFire) ||
+                    (!_currentWeaponData.isAutomatic && Time.time >= _nextTimeToFire && !_hasShot))
                 {
                     Shoot();
-                }
-                else if (!_currentWeaponData.isAutomatic && Time.time >= _nextTimeToFire && !_hasShot)
-                {
-                    Shoot();
-                    _hasShot = true;
                 }
             }
             else
             {
                 _hasShot = false;
             }
-        
-            if (_inputManager.reloadInput && !_isReloading)
-                StartReload();
+        }
 
-            // Handle weapon switching - only trigger on scroll value change.
+        private void HandleReloading()
+        {
+            if (_inputManager.reloadInput && !_isReloading)
+            {
+                StartReload();
+            }
+        }
+
+        private void HandleWeaponSwitch()
+        {
             if (_inputManager.weaponScrollInput != 0 && _lastScrollValue == 0)
             {
                 int currentIndex = _weaponManager.GetCurrentWeaponIndex();
                 int numberOfWeapons = _weaponManager.GetWeaponCount();
-            
-                if (_inputManager.weaponScrollInput > 0)
-                {
-                    int newIndex = (currentIndex + 1) % numberOfWeapons;
-                    _weaponManager.EquipWeapon(newIndex);
-                }
-                else
-                {
-                    int newIndex = (currentIndex - 1 + numberOfWeapons) % numberOfWeapons;
-                    _weaponManager.EquipWeapon(newIndex);
-                }
+
+                int newIndex = _inputManager.weaponScrollInput > 0
+                    ? (currentIndex + 1) % numberOfWeapons
+                    : (currentIndex - 1 + numberOfWeapons) % numberOfWeapons;
+
+                _weaponManager.EquipWeapon(newIndex);
             }
-        
+
             _lastScrollValue = _inputManager.weaponScrollInput;
         }
 
         private void Shoot()
         {
+            // Ensure we can shoot.
             if (_currentAmmo <= 0)
             {
                 SaveCurrentWeaponState();
@@ -138,17 +149,14 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
                 return;
             }
 
+            // Update shooting parameters.
             _nextTimeToFire = Time.time + 1f / _currentWeaponData.fireRate;
             _currentAmmo--;
 
-            // Play effects.
-            _currentWeapon.PlayMuzzleFlash();
-            if (_currentWeaponData.shootSound != null)
-            {
-                _audioSource.PlayOneShot(_currentWeaponData.shootSound);
-            }
+            // Play shooting effects.
+            PlayShootingEffects();
 
-            // Handle shooting logic.
+            // Handle bullet/raycast logic.
             if (_currentWeaponData.usePhysicalBullets)
             {
                 ShootPhysicalBullet();
@@ -158,7 +166,25 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
                 ShootRaycast();
             }
 
-            // Apply recoil.
+            // Apply weapon recoil.
+            ApplyRecoil();
+
+            // Save weapon state.
+            SaveCurrentWeaponState();
+        }
+
+        private void PlayShootingEffects()
+        {
+            _currentWeapon.PlayMuzzleFlash();
+            
+            if (_currentWeaponData.shootSound != null)
+            {
+                _audioSource.PlayOneShot(_currentWeaponData.shootSound);
+            }
+        }
+
+        private void ApplyRecoil()
+        {
             WeaponRecoil recoil = GetComponent<WeaponRecoil>();
             if (recoil != null)
             {
@@ -168,24 +194,22 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
 
         private void ShootPhysicalBullet()
         {
-            // Get the shoot point position.
             Transform shootPoint = _currentWeapon.GetShootPoint();
-
-            // Create a ray from the center of the screen.
             Ray centerRay = _mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            
+            Vector3 direction = CalculateShootDirection(centerRay);
+            
+            CreatePhysicalBullet(shootPoint, direction);
+        }
 
-            // Calculate direction from shoot point to the point the ray hits.
-            Vector3 direction;
+        private Vector3 CalculateShootDirection(Ray centerRay)
+        {
             RaycastHit hit;
+            Vector3 direction = centerRay.direction;
+
             if (Physics.Raycast(centerRay, out hit, _currentWeaponData.range))
             {
-                // Direction is from shoot point to the hit point.
-                direction = (hit.point - shootPoint.position).normalized;
-            }
-            else
-            {
-                // If no hit, use the ray direction.
-                direction = centerRay.direction;
+                direction = (hit.point - _currentWeapon.GetShootPoint().position).normalized;
             }
 
             // Apply spread.
@@ -195,11 +219,22 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
                 direction.Normalize();
             }
 
-            // Create bullet.
-            GameObject bullet = Instantiate(_currentWeaponData.bulletPrefab, 
-                shootPoint.position, Quaternion.LookRotation(direction));
+            return direction;
+        }
 
-            // Set up bullet properties.
+        private void CreatePhysicalBullet(Transform shootPoint, Vector3 direction)
+        {
+            GameObject bullet = Instantiate(
+                _currentWeaponData.bulletPrefab, 
+                shootPoint.position, 
+                Quaternion.LookRotation(direction)
+            );
+
+            ConfigureBulletProperties(bullet, direction);
+        }
+
+        private void ConfigureBulletProperties(GameObject bullet, Vector3 direction)
+        {
             Bullet bulletComponent = bullet.GetComponent<Bullet>();
             if (bulletComponent != null)
             {
@@ -209,7 +244,6 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
                 bulletComponent.impactEffect = _currentWeaponData.impactEffectPrefab;
             }
 
-            // Add force to bullet.
             Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
             if (bulletRb != null)
             {
@@ -219,69 +253,61 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
 
         private void ShootRaycast()
         {
-            // Implementation of raycast in case the physical bullet brings the performance down too much.
             Ray centerRay = _mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-    
-            // Use the ray for the raycast instead of camera's forward direction
+            
             if (Physics.Raycast(centerRay, out RaycastHit hit, _currentWeaponData.range))
             {
-                HandleHit(hit);
+                HandleRaycastHit(hit);
             }
         }
-        private Vector3 CalculateShootDirection()
+
+        private void HandleRaycastHit(RaycastHit hit)
         {
-            // Create a ray from the center of the screen.
-            Ray centerRay = _mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-    
-            // Calculate spread.
-            Vector3 direction = centerRay.direction;
-            if (_currentWeaponData.spread > 0)
-            {
-                direction += Random.insideUnitSphere * _currentWeaponData.spread;
-                direction.Normalize();
-            }
-
-            return direction;
-        }
-
-        private void HandleHit(RaycastHit hit)
-        {
-            if (showDebugHits)
-            {
-                // Draw debug line from camera to hit point.
-                Debug.DrawLine(_mainCamera.transform.position, hit.point, debugLineColor, debugLineDuration);
-
-                // Draw hit point sphere.
-                Debug.DrawRay(hit.point, hit.normal * 0.5f, Color.yellow, debugLineDuration);
-
-                if (showHitInfo)
-                    Debug.Log($"Hit object: {hit.collider.gameObject.name} " +
-                              $"at position: {hit.point} " +
-                              $"with surface normal: {hit.normal} " +
-                              $"Material/Tag: {hit.collider.tag}");
-            }
+            // Debug hit visualization.
+            VisualizeDebugHit(hit);
 
             // Handle impact effects.
             if (_currentWeaponData.impactEffectPrefab != null)
+            {
                 Instantiate(_currentWeaponData.impactEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal));
+            }
 
             // Handle damage.
-            var damageable = hit.collider.GetComponent<IDamageable>();
+            var damageable = hit.collider.GetComponent<IShieldable>();
+            damageable?.TakeShieldDamage(_currentWeaponData.damage);
+        }
+
+        private void VisualizeDebugHit(RaycastHit hit)
+        {
+            if (!showDebugHits) return;
+
+            Debug.DrawLine(_mainCamera.transform.position, hit.point, debugLineColor, debugLineDuration);
+            Debug.DrawRay(hit.point, hit.normal * 0.5f, Color.yellow, debugLineDuration);
+
+            if (showHitInfo)
+            {
+                Debug.Log($"Hit object: {hit.collider.gameObject.name} " +
+                          $"at position: {hit.point} " +
+                          $"with surface normal: {hit.normal} " +
+                          $"Material/Tag: {hit.collider.tag}");
+            }
         }
 
         private void StartReload()
         {
-            // Only reload if we have ammo left and magazine isn't full.
+            // Only reload if magazine isn't full and we have ammo.
             if (_currentAmmo == _currentWeaponData.magazineSize || _totalAmmoLeft <= 0) return;
 
             _isReloading = true;
-    
+
             // Play reload sound.
-            if (_currentWeaponData.reloadSound != null) 
+            if (_currentWeaponData.reloadSound != null)
+            {
                 _audioSource.PlayOneShot(_currentWeaponData.reloadSound);
-    
-            // Get the Animator component.
-            Animator animator = _currentWeapon.GetComponent<Animator>();
+            }
+
+            // Trigger reload animation.
+            Animator animator = _currentWeapon.GetAnimator();
             if (animator != null)
             {
                 animator.SetTrigger("Reload");
@@ -294,60 +320,36 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
         {
             int ammoNeeded = _currentWeaponData.magazineSize - _currentAmmo;
             int ammoToAdd = Mathf.Min(ammoNeeded, _totalAmmoLeft);
-        
+
             _currentAmmo += ammoToAdd;
             _totalAmmoLeft -= ammoToAdd;
-        
             _isReloading = false;
-    
+
             // Reset reload animation.
-            Animator animator = _currentWeapon.GetComponent<Animator>();
+            Animator animator = _currentWeapon.GetAnimator();
             if (animator != null)
             {
                 animator.ResetTrigger("Reload");
             }
-            
+
             SaveCurrentWeaponState();
         }
-        
+
         private void SaveCurrentWeaponState()
         {
-            if (_weaponStateManager != null)
-            {
-                _weaponStateManager.UpdateWeaponState(
-                    _weaponManager.GetCurrentWeaponIndex(),
-                    _currentAmmo,
-                    _totalAmmoLeft,
-                    _isReloading
-                );
-            }
-        }
-        
-        
-        // Stuff for UI access [to be implemented].
-        public Weapon GetCurrentWeapon()
-        {
-            return _currentWeapon;
-        }
-        
-        public int GetCurrentAmmo()
-        {
-            return _currentAmmo;
+            _weaponStateManager?.UpdateWeaponState(
+                _weaponManager.GetCurrentWeaponIndex(),
+                _currentAmmo,
+                _totalAmmoLeft,
+                _isReloading
+            );
         }
 
-        public int GetTotalAmmoLeft()
-        {
-            return _totalAmmoLeft;
-        }
-
-        public int GetMagazineSize()
-        {
-            return _currentWeaponData?.magazineSize ?? 0;
-        }
-
-        public WeaponData GetCurrentWeaponData()
-        {
-            return _currentWeaponData;
-        }
+        // Getters for UI and external access.
+        public Weapon GetCurrentWeapon() => _currentWeapon;
+        public int GetCurrentAmmo() => _currentAmmo;
+        public int GetTotalAmmoLeft() => _totalAmmoLeft;
+        public int GetMagazineSize() => _currentWeaponData?.magazineSize ?? 0;
+        public WeaponData GetCurrentWeaponData() => _currentWeaponData;
     }
 }

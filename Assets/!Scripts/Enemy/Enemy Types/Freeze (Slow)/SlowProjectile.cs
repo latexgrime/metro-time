@@ -5,13 +5,14 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
 {
     public class SlowProjectile : MonoBehaviour
     {
-        private AudioSource _audioSource;
-        
+        [Header("- Projectile Settings")]
         private float _speed;
         private float _lifetime;
         
-        [Header("- Status Effect")] 
+        [Header("- Status Effect")]
         [SerializeField] private float slowBuildupAmount = 15f;
+        
+        [Header("- Effects")]
         [SerializeField] private GameObject impactEffectPrefab;
         [SerializeField] private AudioClip projectileSound;
         [SerializeField] private AudioClip impactSound;
@@ -19,6 +20,7 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
         private bool _hasCollided = false;
         private MeshRenderer _meshRenderer;
         private Collider _collider;
+        private AudioSource _audioSource;
 
         private void Start()
         {
@@ -82,7 +84,7 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
                 rb.linearVelocity = transform.forward * _speed;
             }
 
-            // Automatically set the layer for dummy-proofing.
+            // Set the correct layer.
             gameObject.layer = LayerMask.NameToLayer("EnemyProjectile");
     
             Destroy(gameObject, _lifetime);
@@ -97,7 +99,7 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
                     contact.point, 
                     Quaternion.LookRotation(contact.normal));
             
-                // Auto-destroy the effect after a few seconds [Workaround for the impact sfx not being played because the projectile gets destroyed instantly].
+                // Auto-destroy the effect.
                 Destroy(effect, 2f);
             }
         }
