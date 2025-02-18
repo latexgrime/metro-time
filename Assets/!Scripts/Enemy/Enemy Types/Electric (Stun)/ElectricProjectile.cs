@@ -30,6 +30,7 @@ namespace _Scripts.Enemy.Enemy_Types.Electric__Stun_
     
             // Ignore collisions between enemy projectiles and enemies.
             Physics.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyProjectile"), LayerMask.NameToLayer("Enemy"), true);
+            Physics.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyProjectile"), LayerMask.NameToLayer("EnemyProjectile"), true);
     
             if (_audioSource != null && projectileSound != null)
             {
