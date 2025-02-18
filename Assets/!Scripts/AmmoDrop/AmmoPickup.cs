@@ -38,6 +38,12 @@ namespace _Scripts.AmmoDrop
             }
         }
 
+        public void OnEnable()
+        {
+            // Log when ammo is spawned
+            Debug.Log($"Ammo pickup enabled with {ammoAmount} ammo");
+        }
+        
         public void Initialize(Vector3 initialVelocity)
         {
             _velocity = initialVelocity;
@@ -180,6 +186,34 @@ namespace _Scripts.AmmoDrop
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, pickupRadius);
+        }
+        
+        public void LogWeaponState(WeaponStateManager manager)
+        {
+            if (manager == null) return;
+    
+            WeaponManager weaponManager = manager.GetComponent<WeaponManager>();
+            if (weaponManager == null) return;
+    
+            int index = weaponManager.GetCurrentWeaponIndex();
+            WeaponState state = manager.GetWeaponState(index);
+    
+            if (state != null)
+            {
+                string weaponName = "Unknown";
+                WeaponHandler handler = manager.GetComponent<WeaponHandler>();
+                if (handler != null && handler.GetCurrentWeaponData() != null)
+                {
+                    weaponName = handler.GetCurrentWeaponData().weaponName;
+                }
+        
+                Debug.Log($"======== WEAPON STATE ========");
+                Debug.Log($"Weapon: {weaponName} (Index: {index})");
+                Debug.Log($"Magazine: {state.currentAmmo}");
+                Debug.Log($"Reserve: {state.totalAmmoLeft}");
+                Debug.Log($"Is Reloading: {state.isReloading}");
+                Debug.Log($"==============================");
+            }
         }
     }
 }

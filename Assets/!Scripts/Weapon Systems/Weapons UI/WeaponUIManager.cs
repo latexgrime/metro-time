@@ -65,8 +65,22 @@ namespace _Scripts.Weapon_Systems.Weapons_UI
             WeaponData currentWeapon = weaponHandler.GetCurrentWeaponData();
             if (currentWeapon == null) return;
 
-            UpdateWeaponNameDisplay(currentWeapon);
-            UpdateAmmoDisplay();
+            // Get current ammo and reserve values.
+            int currentAmmo = weaponHandler.GetCurrentAmmo();
+            int reserveAmmo = weaponHandler.GetTotalAmmoLeft();
+
+            // Update weapon name.
+            if (weaponNameText != null)
+                weaponNameText.text = currentWeapon.weaponName;
+        
+            // Update ammo display with clear formatting.
+            if (currentAmmoText != null)
+                currentAmmoText.text = currentAmmo.ToString();
+        
+            if (reserveAmmoText != null)
+                reserveAmmoText.text = reserveAmmo.ToString();
+            
+            Debug.Log($"UI Update - Current Ammo: {currentAmmo}, Reserve: {reserveAmmo}");
         }
 
         private void UpdateWeaponNameDisplay(WeaponData currentWeapon)

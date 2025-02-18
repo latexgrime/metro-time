@@ -53,10 +53,28 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
         {
             _currentWeapon = weapon;
             _currentWeaponData = weapon.GetWeaponData();
-
-            // Retrieve saved weapon state.
-            RestoreWeaponState();
-
+    
+            // Get the saved state for this weapon.
+            WeaponState state = _weaponStateManager.GetWeaponState(_weaponManager.GetCurrentWeaponIndex());
+            if (state != null)
+            {
+                Debug.Log($"Loading weapon state: Ammo={state.currentAmmo}, Reserve={state.totalAmmoLeft}");
+                _currentAmmo = state.currentAmmo;
+                _totalAmmoLeft = state.totalAmmoLeft;
+                _isReloading = state.isReloading;
+            }
+            else
+            {
+                // Only initialize with default values if state is null.
+                // This should rarely happen unless it's the first time using the weapon.
+                Debug.LogWarning("No weapon state found - initializing with defaults");
+                _currentAmmo = _currentWeaponData.magazineSize;
+                _totalAmmoLeft = _currentWeaponData.maxAmmo - _currentWeaponData.magazineSize;
+                _isReloading = false;
+        
+                // Create the initial state.
+                SaveCurrentWeaponState();
+            }
             _nextTimeToFire = 0f;
         }
 
@@ -88,6 +106,20 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
             HandleWeaponSwitch();
         }
 
+        private void LateUpdate()
+        {
+            // Make sure its always using the latest state from WeaponStateManager.
+            if (_weaponStateManager != null && _currentWeapon != null)
+            {
+                WeaponState currentState = _weaponStateManager.GetWeaponState(_weaponManager.GetCurrentWeaponIndex());
+                if (currentState != null)
+                {
+                    _currentAmmo = currentState.currentAmmo;
+                    _totalAmmoLeft = currentState.totalAmmoLeft;
+                }
+            }
+        }
+        
         private void HandleShooting()
         {
             // Prevent shooting while sprinting.
@@ -141,7 +173,18 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
 
         private void Shoot()
         {
-            // Ensure we can shoot.
+            // Ensure its working with latest weapon state.
+            if (_weaponStateManager != null)
+            {
+                WeaponState currentState = _weaponStateManager.GetWeaponState(_weaponManager.GetCurrentWeaponIndex());
+                if (currentState != null)
+                {
+                    _currentAmmo = currentState.currentAmmo;
+                    _totalAmmoLeft = currentState.totalAmmoLeft;
+                }
+            }
+
+            // Then check if we can shoot.
             if (_currentAmmo <= 0)
             {
                 SaveCurrentWeaponState();
@@ -149,14 +192,17 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
                 return;
             }
 
-            // Update shooting parameters.
             _nextTimeToFire = Time.time + 1f / _currentWeaponData.fireRate;
             _currentAmmo--;
 
-            // Play shooting effects.
-            PlayShootingEffects();
+            // Play effects.
+            _currentWeapon.PlayMuzzleFlash();
+            if (_currentWeaponData.shootSound != null)
+            {
+                _audioSource.PlayOneShot(_currentWeaponData.shootSound);
+            }
 
-            // Handle bullet/raycast logic.
+            // Handle shooting logic.
             if (_currentWeaponData.usePhysicalBullets)
             {
                 ShootPhysicalBullet();
@@ -166,10 +212,14 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
                 ShootRaycast();
             }
 
-            // Apply weapon recoil.
-            ApplyRecoil();
-
-            // Save weapon state.
+            // Apply recoil.
+            WeaponRecoil recoil = GetComponent<WeaponRecoil>();
+            if (recoil != null)
+            {
+                recoil.ApplyRecoil(_currentWeaponData);
+            }
+    
+            // Save state after shooting.
             SaveCurrentWeaponState();
         }
 
