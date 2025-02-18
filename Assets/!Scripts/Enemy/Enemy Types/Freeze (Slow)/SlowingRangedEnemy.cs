@@ -23,6 +23,11 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
         protected override void Start()
         {
             base.Start();
+        
+            // This is setting some default distances for dummy proofing.
+            if (minKeepDistance <= 0) minKeepDistance = 8f;
+            if (maxChaseDistance <= 0) maxChaseDistance = 15f;
+            
             animator = GetComponentInChildren<Animator>();
             _startRotation = transform.eulerAngles;
             

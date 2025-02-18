@@ -262,5 +262,5 @@ MonoBehaviour:
   damage: 1
   speed: 1000
   lifetime: 3
-  trailRenderer: {fileID: 5243172943137107644}
+  impactEffectRotationOffset: 90
   impactEffect: {fileID: 0}

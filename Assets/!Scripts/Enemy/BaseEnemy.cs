@@ -7,6 +7,10 @@ namespace _Scripts.Enemy
 {
     public abstract class BaseEnemy : MonoBehaviour, IShieldable
     {
+        [Header("- Distance Settings")]
+        [SerializeField] protected float minKeepDistance = 8f; // Minimum distance to maintain from player.
+        [SerializeField] protected float maxChaseDistance = 15f; // Max distance.
+        
         [Header("- Shield Settings")]
         [SerializeField] protected float maxShield = 100f;
         [SerializeField] protected float currentShield;
@@ -207,9 +211,30 @@ namespace _Scripts.Enemy
 
         protected virtual void ChasePlayer()
         {
-            if (agent != null && agent.isActiveAndEnabled)
+            if (agent == null || !agent.isActiveAndEnabled) return;
+
+            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+            // If too close, back away.
+            if (distanceToPlayer < minKeepDistance)
+            {
+                // Calculate a point behind the enemy.
+                Vector3 backwardDirection = transform.position - player.position;
+                backwardDirection.y = 0;
+                backwardDirection = backwardDirection.normalized;
+
+                Vector3 backupDestination = transform.position + backwardDirection * (minKeepDistance - distanceToPlayer + 1f);
+                agent.SetDestination(backupDestination);
+            }
+            // If within chase range, move towards player.
+            else if (distanceToPlayer <= maxChaseDistance)
             {
                 agent.SetDestination(player.position);
+            }
+            else
+            {
+                // Is too far so stop moving.
+                agent.ResetPath();
             }
         }
 

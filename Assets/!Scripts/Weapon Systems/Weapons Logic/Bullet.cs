@@ -9,6 +9,7 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
         public float damage;
         public float speed;
         public float lifetime = 3f;
+        [SerializeField] private float impactEffectRotationOffset = 0f;
 
         [Header("- Effects")]
         public GameObject impactEffect;
@@ -33,14 +34,18 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
 
         private void CreateImpactEffect(Collision collision)
         {
-            if (impactEffect == null) return;
+            if (impactEffect != null)
+            {
+                // Create base rotation aligned with surface normal.
+                Quaternion baseRotation = Quaternion.LookRotation(collision.contacts[0].normal);
+        
+                // Apply additional rotation.
+                Quaternion offsetRotation = baseRotation * Quaternion.Euler(impactEffectRotationOffset, 0, 0);
 
-            GameObject impact = Instantiate(
-                impactEffect, 
-                collision.contacts[0].point,
-                Quaternion.LookRotation(collision.contacts[0].normal)
-            );
-            Destroy(impact, 2f);
+                GameObject impact = Instantiate(impactEffect, collision.contacts[0].point,
+                    offsetRotation);
+                Destroy(impact, 2f);
+            }
         }
 
         private void ApplyShieldDamage(Collision collision)
