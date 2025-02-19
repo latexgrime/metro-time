@@ -10,16 +10,23 @@ namespace _Scripts.Boss
     {
         [Header("- Boss Attack Phases")]
         [SerializeField] private float attackDuration = 10f;
-        [SerializeField] private float cooldownDuration = 5f;
+        [SerializeField] private Vector2 cooldownDurationRange = new Vector2(3f, 7f);
 
         [Header("- Boss Specific Settings")]
         [SerializeField] private GameObject[] projectilePrefabs;
         [SerializeField] private Transform[] projectileSpawnPoints;
         [SerializeField] private float globalAttackCooldown = 2f;
 
-        [Header("- Shield Visual Effect")]
+        [Header("- Shield Visual Effects")]
         [SerializeField] private GameObject shieldEffect;
-        [SerializeField] private GameObject shieldBreakEffect;
+        [SerializeField] private GameObject[] shieldActivateEffects;
+        [SerializeField] private GameObject[] shieldDeactivateEffects;
+        [SerializeField] private Transform effectSpawnPoint;
+
+        [Header("- Shield Audio Effects")]
+        [SerializeField] private AudioClip shieldActivateSound;
+        [SerializeField] private AudioClip shieldDeactivateSound;
+        [SerializeField] [Range(0f, 1f)] private float shieldSoundVolume = 0.7f;
 
         // Boss Phases & Attack Control.
         private BossPhase _currentPhase = BossPhase.Cooldown;
@@ -31,10 +38,14 @@ namespace _Scripts.Boss
         // Components.
         private BossProjectileSpawner _projectileSpawner;
         private Coroutine _currentAttackCoroutine;
+        private AudioSource _audioSource;
+        private float _currentCooldownDuration;
 
         protected override void Start()
         {
             base.Start();
+            
+            // Initialize components.
             ammoDropper = null;
             if (agent != null) agent.enabled = false;
             transform.position = startPosition;
@@ -44,6 +55,23 @@ namespace _Scripts.Boss
             if (_projectileSpawner == null)
             {
                 _projectileSpawner = gameObject.AddComponent<BossProjectileSpawner>();
+            }
+
+            // Set up audio source.
+            _audioSource = GetComponent<AudioSource>();
+            if (_audioSource == null)
+            {
+                _audioSource = gameObject.AddComponent<AudioSource>();
+                _audioSource.spatialBlend = 1f; // 3D sound.
+                _audioSource.rolloffMode = AudioRolloffMode.Linear;
+                _audioSource.minDistance = 5f;
+                _audioSource.maxDistance = 50f;
+            }
+            
+            // If no effect spawn point specified, use this transform.
+            if (effectSpawnPoint == null)
+            {
+                effectSpawnPoint = transform;
             }
             
             StartCooldownPhase();
@@ -69,7 +97,7 @@ namespace _Scripts.Boss
 
         private void HandleDebugKeys()
         {
-            if (Input.GetKeyDown(KeyCode.I)) TriggerAttackPhase(0); // Bullet Hell. 
+            if (Input.GetKeyDown(KeyCode.I)) TriggerAttackPhase(0); // Bullet Hell.
             if (Input.GetKeyDown(KeyCode.O)) TriggerAttackPhase(1); // Burst.
             if (Input.GetKeyDown(KeyCode.P)) TriggerAttackPhase(2); // Area Denial.
         }
@@ -98,7 +126,7 @@ namespace _Scripts.Boss
 
         private void HandleCooldownPhase()
         {
-            if (Time.time - _phaseStartTime >= cooldownDuration)
+            if (Time.time - _phaseStartTime >= _currentCooldownDuration)
             {
                 StartAttackPhase();
             }
@@ -110,7 +138,9 @@ namespace _Scripts.Boss
             _phaseStartTime = Time.time;
             isAttacking = false;
             _currentAttackPhase = 0; // Reset attack cycle.
-            if (shieldEffect != null) shieldEffect.SetActive(true);
+            
+            // Shield activation effects.
+            ActivateShield();
             EnableEnemySpawners(false);
         }
 
@@ -120,6 +150,9 @@ namespace _Scripts.Boss
             _phaseStartTime = Time.time;
             isAttacking = false;
             
+            // Generate random cooldown duration.
+            _currentCooldownDuration = Random.Range(cooldownDurationRange.x, cooldownDurationRange.y);
+            
             // Stop any ongoing attack coroutines.
             if (_currentAttackCoroutine != null)
             {
@@ -127,9 +160,57 @@ namespace _Scripts.Boss
                 _currentAttackCoroutine = null;
             }
             
-            if (shieldEffect != null) shieldEffect.SetActive(false);
-            if (shieldBreakEffect != null) Instantiate(shieldBreakEffect, transform.position, Quaternion.identity);
+            // Shield deactivation effects.
+            DeactivateShield();
             EnableEnemySpawners(true);
+        }
+
+        private void ActivateShield()
+        {
+            // Visual effects.
+            if (shieldEffect != null)
+            {
+                shieldEffect.SetActive(true);
+            }
+            
+            if (shieldActivateEffects != null && shieldActivateEffects.Length > 0)
+            {
+                int effectIndex = Random.Range(0, shieldActivateEffects.Length);
+                if (shieldActivateEffects[effectIndex] != null)
+                {
+                    Instantiate(shieldActivateEffects[effectIndex], effectSpawnPoint.position, effectSpawnPoint.rotation);
+                }
+            }
+            
+            // Audio effects.
+            if (_audioSource != null && shieldActivateSound != null)
+            {
+                _audioSource.PlayOneShot(shieldActivateSound, shieldSoundVolume);
+            }
+        }
+
+        private void DeactivateShield()
+        {
+            // Visual effects.
+            if (shieldEffect != null)
+            {
+                shieldEffect.SetActive(false);
+            }
+            
+            if (shieldDeactivateEffects != null && shieldDeactivateEffects.Length > 0)
+            {
+                int effectIndex = Random.Range(0, shieldDeactivateEffects.Length);
+                if (shieldDeactivateEffects[effectIndex] != null)
+                {
+                    Instantiate(shieldDeactivateEffects[effectIndex], effectSpawnPoint.position, effectSpawnPoint.rotation);
+                }
+            }
+            
+            // Audio effects.
+            if (_audioSource != null && shieldDeactivateSound != null)
+            {
+                _audioSource.PlayOneShot(shieldDeactivateSound, shieldSoundVolume);
+            }
         }
 
         private void EnableEnemySpawners(bool enable)
@@ -141,9 +222,9 @@ namespace _Scripts.Boss
         private void StartAttackCycle()
         {
             isAttacking = true;
-            attackTimer = 5f; // Each attack lasts 5 seconds.
+            attackTimer = 5f; // Each attack lasts 5 seconds(maybe I'll add it to the inspector later).
 
-            // Stop any previous attack coroutine
+            // Stop any previous attack coroutine.
             if (_currentAttackCoroutine != null)
             {
                 StopCoroutine(_currentAttackCoroutine);
@@ -166,7 +247,7 @@ namespace _Scripts.Boss
 
         protected override void Attack()
         {
-            // Not used in the boss - we use specialized attack patterns instead.!!1
+            // Not used in the boss - the boss uses specialized attack patterns instead.
         }
 
         public override void TakeShieldDamage(float damage)
@@ -188,8 +269,8 @@ namespace _Scripts.Boss
                     PatternType.Circular,
                     projectileType,
                     projectileSpawnPoints,
-                    5f, // duration
-                    0.2f, // fire rate
+                    5f, // Duration.
+                    0.2f, // Fire rate.
                     player
                 );
             }
@@ -206,14 +287,14 @@ namespace _Scripts.Boss
             
             if (_projectileSpawner != null && projectilePrefabs.Length > 0)
             {
-                for (int i = 0; i < 3; i++) // Three waves of bursts.
+                for (int i = 0; i < 3; i++)
                 {
                     string projectileType = projectilePrefabs[Random.Range(0, projectilePrefabs.Length)].name;
-                    _projectileSpawner.SpawnProjectilesInPattern(
+                    yield return _projectileSpawner.SpawnProjectilesInPattern(
                         PatternType.Targeted,
                         projectileType,
                         projectileSpawnPoints,
-                        1f, // Short duration for each burst.
+                        1f,
                         0.2f,
                         player
                     );
@@ -239,8 +320,8 @@ namespace _Scripts.Boss
                     PatternType.Random,
                     projectileType,
                     projectileSpawnPoints,
-                    5f, // duration.
-                    0.5f, // fire rate
+                    5f, // duration
+                    0.5f, // slower fire rate
                     null
                 );
             }
@@ -254,11 +335,12 @@ namespace _Scripts.Boss
         // DEBUG
         public void TriggerAttackPhase(int attackPhase)
         {
-            if (_currentPhase != BossPhase.Cooldown) return; // Prevent interrupting active attacks.
+            // To prevent interrupting active attacks.
+            if (_currentPhase != BossPhase.Cooldown) return; 
 
             _currentPhase = BossPhase.Attack;
             isAttacking = false;
-            _currentAttackPhase = attackPhase; // Set specific attack phase.
+            _currentAttackPhase = attackPhase;
 
             StartAttackCycle();
         }
