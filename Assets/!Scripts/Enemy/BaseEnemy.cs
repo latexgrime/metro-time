@@ -26,6 +26,7 @@ namespace _Scripts.Enemy
         [SerializeField] protected float bobSpeed = 2f;
         
         [Header("- Deactivation Physics")]
+        public bool isDeactivated;
         [SerializeField] protected float deactivationForce = 5f;
         [SerializeField] protected float deactivationTorque = 2f;
         
@@ -37,7 +38,6 @@ namespace _Scripts.Enemy
         protected float _moveSpeedMultiplier = 1f;
         protected float _animationSpeedMultiplier = 1f;
         protected float lastDamageTime;
-        protected bool isDeactivated;
         protected bool hasDeactivationPhysicsApplied;
         protected bool isFriendly;
         

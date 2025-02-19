@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 334660451308003685}
   - component: {fileID: 334660451308003683}
   - component: {fileID: 334660451308003682}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: front_mesh_color2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4914,7 +4914,7 @@ GameObject:
   - component: {fileID: 334660451930032201}
   - component: {fileID: 334660451930032247}
   - component: {fileID: 334660451930032246}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: trail_color2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9773,7 +9773,7 @@ GameObject:
   - component: {fileID: 6158758453581634876}
   - component: {fileID: 2341142236372794684}
   - component: {fileID: -2080113073590181646}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: ElectricProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14564,7 +14564,7 @@ ParticleSystemRenderer:
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
-  m_RendererPriority: 0
+  m_RendererPriority: 345
   m_Materials:
   - {fileID: 2100000, guid: 60d6736fb28cd6b44a883d1ca870e1dc, type: 2}
   m_StaticBatchInfo:
@@ -14586,7 +14586,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 1797
   m_RenderMode: 1
   m_MeshDistribution: 0
   m_SortMode: 1
@@ -14810,7 +14810,7 @@ GameObject:
   - component: {fileID: 4494251175239741067}
   - component: {fileID: 4494251175239741061}
   - component: {fileID: 4494251175239741060}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: front_mesh_color1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
