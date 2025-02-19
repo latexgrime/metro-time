@@ -8,7 +8,7 @@ namespace _Scripts.Boss
     {
         [Header("- Projectile Settings")]
         [SerializeField] private float damage = 10f;
-        [SerializeField] private float lifetime = 3f;
+        [SerializeField] private float lifetime = 5f;
         [SerializeField] private GameObject impactEffect;
 
         private ProjectilePool _pool;

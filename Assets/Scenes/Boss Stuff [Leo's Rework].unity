@@ -8724,7 +8724,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 906593980067482577, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 959627405295561570, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
       propertyPath: projectilePool
@@ -8776,7 +8776,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5431519773760252006, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
