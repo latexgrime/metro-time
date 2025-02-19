@@ -3595,6 +3595,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 71a21490f8080734bafdc9eb57152cf5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 262653543}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 71a21490f8080734bafdc9eb57152cf5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2061745915}
     - targetCorrespondingSourceObject: {fileID: -2818631016347784500, guid: 71a21490f8080734bafdc9eb57152cf5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 654222770}
@@ -6339,6 +6342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1330200606}
   - component: {fileID: 1330200607}
+  - component: {fileID: 1330200608}
   m_Layer: 0
   m_Name: ScrollSkiesPlaceHolders
   m_TagString: Untagged
@@ -6379,6 +6383,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteScrollSpeed: 0.5
   scrollMaterial: {fileID: 2100000, guid: bcbb7c18f12c15f46bd7795ccc7c6aa7, type: 2}
+--- !u!114 &1330200608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330200605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a607edd3ad13b90489f508fb10d960fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderers: []
+  spritesToRender: []
 --- !u!1 &1367399967
 GameObject:
   m_ObjectHideFlags: 0
@@ -9623,6 +9641,24 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1046474888}
   m_SourcePrefab: {fileID: 100100000, guid: c1c9c48b8d1bae849ab7cc63f52d9772, type: 3}
+--- !u!114 &2061745915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654222767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5b589b03d51cd4e9a127af69084daf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  metroDoors:
+  - {fileID: 654222767}
+  doorAnimators:
+  - {fileID: 654222768}
+  currentRoomIndex: 0
+  enemyTag: Enemy
 --- !u!1 &2076447160
 GameObject:
   m_ObjectHideFlags: 0
@@ -9906,6 +9942,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2901717118198026931, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: _doorManagerScript
+      value: 
+      objectReference: {fileID: 2061745915}
     - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_Name
       value: StunEnemy
@@ -9927,6 +9967,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlowEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: _doorManagerScript
+      value: 
+      objectReference: {fileID: 2061745915}
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.73

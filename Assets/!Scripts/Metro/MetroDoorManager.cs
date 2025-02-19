@@ -7,6 +7,7 @@ namespace Metro.Animation
     /// Manages doors in different rooms based on enemy count and player progress.
     /// Unlocks doors when enemies are eliminated and closes doors when the player moves to the next room.
     /// </summary>
+    
     public class MetroDoorManager : MonoBehaviour
     {
         #region Variables
@@ -25,6 +26,10 @@ namespace Metro.Animation
         [Tooltip("Tracks the player's current room index.")]
         [SerializeField] private int currentRoomIndex = 0;
 
+        [Header("- Enemy Detection Settings")]
+        [Tooltip("Tag used to identify enemies.")]
+        [SerializeField] private string enemyTag = "Enemy";
+
         #endregion
 
         #region Unity Methods
@@ -32,6 +37,7 @@ namespace Metro.Animation
         private void Start()
         {
             InitializeEnemyLists();
+            AutoRegisterExistingEnemies();
         }
 
         private void Update()
@@ -43,12 +49,9 @@ namespace Metro.Animation
 
         #region Private Methods
 
-        /// <summary>
-        /// Initializes the enemy lists dynamically for each room.
-        /// </summary>
         private void InitializeEnemyLists()
         {
-            enemiesPerRoom = new List<GameObject>[metroDoors.Length + 1]; // Extra slot for the boss room
+            enemiesPerRoom = new List<GameObject>[metroDoors.Length + 1];
             for (int i = 0; i < enemiesPerRoom.Length; i++)
             {
                 enemiesPerRoom[i] = new List<GameObject>();
@@ -56,38 +59,59 @@ namespace Metro.Animation
         }
 
         /// <summary>
-        /// Checks if the current room's enemies are all eliminated.
+        /// Automatically registers enemies at the start of the game.
         /// </summary>
+        private void AutoRegisterExistingEnemies()
+        {
+            GameObject[] allEnemies = GameObject.FindGameObjectsWithTag(enemyTag);
+
+            foreach (GameObject enemy in allEnemies)
+            {
+                Metro.Enemy.MetroEnemy roomAssignment = enemy.GetComponent<Metro.Enemy.MetroEnemy>();
+
+                if (roomAssignment != null)
+                {
+                    int roomIndex = roomAssignment.roomIndex;
+
+                    if (roomIndex >= 0 && roomIndex < enemiesPerRoom.Length)
+                    {
+                        RegisterEnemy(enemy, roomIndex);
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"Enemy '{enemy.name}' has an invalid room index ({roomIndex}). Skipping registration.");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning($"Enemy '{enemy.name}' is missing the EnemyRoomAssignment script.");
+                }
+            }
+        }
+
         private void CheckRoomProgress()
         {
             if (currentRoomIndex >= enemiesPerRoom.Length) return;
 
-            // Check if all enemies in the current room are defeated
             if (enemiesPerRoom[currentRoomIndex].Count == 0)
             {
                 OpenDoor(currentRoomIndex);
             }
         }
 
-        /// <summary>
-        /// Opens the door for the current room if applicable.
-        /// </summary>
         private void OpenDoor(int roomIndex)
         {
             if (roomIndex < metroDoors.Length)
             {
-                doorAnimators[roomIndex].SetTrigger("Open");
+                doorAnimators[roomIndex].SetBool("doorCanOpen", true);
             }
         }
 
-        /// <summary>
-        /// Closes the door for the current room if applicable.
-        /// </summary>
         private void CloseDoor(int roomIndex)
         {
             if (roomIndex < metroDoors.Length)
             {
-                doorAnimators[roomIndex].SetTrigger("Close");
+                doorAnimators[roomIndex].SetBool("doorCanOpen", false);
             }
         }
 
@@ -95,10 +119,6 @@ namespace Metro.Animation
 
         #region Public Methods
 
-        /// <summary>
-        /// Adds an enemy to the respective room's enemy list.
-        /// Call this when an enemy spawns.
-        /// </summary>
         public void RegisterEnemy(GameObject enemy, int roomIndex)
         {
             if (roomIndex < enemiesPerRoom.Length)
@@ -107,10 +127,6 @@ namespace Metro.Animation
             }
         }
 
-        /// <summary>
-        /// Removes an enemy from the list when it dies.
-        /// Call this from the enemy script.
-        /// </summary>
         public void EnemyDeactivated(GameObject enemy, int roomIndex)
         {
             if (roomIndex < enemiesPerRoom.Length)
@@ -119,9 +135,6 @@ namespace Metro.Animation
             }
         }
 
-        /// <summary>
-        /// Call this when the player enters the next room.
-        /// </summary>
         public void PlayerEnteredNextRoom()
         {
             if (currentRoomIndex < metroDoors.Length)
@@ -133,6 +146,5 @@ namespace Metro.Animation
         }
 
         #endregion
-
     }
 }

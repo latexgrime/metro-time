@@ -10,8 +10,10 @@ namespace Metro.Enemy
     public class MetroEnemy : MonoBehaviour
     {
         #region Variables
-        private BaseEnemy _baseEnemyScript;
-        private Metro.Animation.MetroDoorManager _doorManagerScript;
+        public int roomIndex;
+
+        [SerializeField] private BaseEnemy _baseEnemyScript;
+        [SerializeField] private Metro.Animation.MetroDoorManager _doorManagerScript;
         private int _roomIndex;
 
         #endregion
@@ -20,7 +22,7 @@ namespace Metro.Enemy
         {
             BaseEnemy enemy = GetComponent<BaseEnemy>();
 
-            if ( enemy != null && enemy.IsDeactivated())
+            if (enemy != null && enemy.IsDeactivated())
             {
                 _doorManagerScript.EnemyDeactivated(gameObject, _roomIndex);
             }

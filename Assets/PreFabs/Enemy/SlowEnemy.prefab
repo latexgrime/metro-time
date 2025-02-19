@@ -16,9 +16,10 @@ GameObject:
   - component: {fileID: 6638078115835814516}
   - component: {fileID: 5915785194081610400}
   - component: {fileID: 5837312624285804337}
+  - component: {fileID: 3852021992550841672}
   m_Layer: 6
   m_Name: SlowEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,6 +64,7 @@ MonoBehaviour:
   hoverHeight: 2
   bobAmount: 0.5
   bobSpeed: 2
+  isDeactivated: 0
   deactivationForce: 5
   deactivationTorque: 2
   ammoDropper: {fileID: 0}
@@ -272,6 +274,21 @@ MonoBehaviour:
   dropUpwardForce: 5
   dropScatterRadius: 1
   spawnHeightOffset: 1.5
+--- !u!114 &3852021992550841672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2266129455229456602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c82c67d977768014492369cab33b9505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomIndex: 0
+  _baseEnemyScript: {fileID: 488622882271394158}
+  _doorManagerScript: {fileID: 0}
 --- !u!1 &5653269342529420660
 GameObject:
   m_ObjectHideFlags: 0

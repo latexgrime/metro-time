@@ -162,9 +162,10 @@ GameObject:
   - component: {fileID: 7317521420974106240}
   - component: {fileID: 6360886952084142501}
   - component: {fileID: 5661927988501043189}
+  - component: {fileID: 2901717118198026931}
   m_Layer: 6
   m_Name: StunEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -209,6 +210,7 @@ MonoBehaviour:
   hoverHeight: 2
   bobAmount: 0.5
   bobSpeed: 2
+  isDeactivated: 0
   deactivationForce: 5
   deactivationTorque: 2
   ammoDropper: {fileID: 0}
@@ -418,3 +420,18 @@ MonoBehaviour:
   dropUpwardForce: 5
   dropScatterRadius: 1
   spawnHeightOffset: 1.5
+--- !u!114 &2901717118198026931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5445414046169476346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c82c67d977768014492369cab33b9505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomIndex: 0
+  _baseEnemyScript: {fileID: 7739493496802044095}
+  _doorManagerScript: {fileID: 0}
