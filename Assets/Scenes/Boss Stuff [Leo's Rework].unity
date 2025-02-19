@@ -8730,10 +8730,6 @@ PrefabInstance:
       propertyPath: projectilePool
       value: 
       objectReference: {fileID: 236297917}
-    - target: {fileID: 1936003201831581335, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -5
-      objectReference: {fileID: 0}
     - target: {fileID: 2678165964718938226, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 32.84

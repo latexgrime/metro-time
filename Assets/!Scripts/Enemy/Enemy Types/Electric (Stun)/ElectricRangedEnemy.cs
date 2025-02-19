@@ -74,7 +74,10 @@ namespace _Scripts.Enemy.Enemy_Types
 
                 var electricProjectile = projectile.GetComponent<ElectricProjectile>();
                 if (electricProjectile != null) 
+                {
                     electricProjectile.Initialize(projectileSpeed, projectileLifetime);
+                    electricProjectile.PlayShotSound();
+                }
 
                 _nextAttackTime = Time.time + attackCooldown;
             }

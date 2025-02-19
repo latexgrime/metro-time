@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using _Scripts.Enemy;
+using _Scripts.Spawners;
 using UnityEngine;
 
 namespace _Scripts.Boss
@@ -34,12 +35,14 @@ namespace _Scripts.Boss
         private float attackTimer;
         private bool isAttacking = false;
         private int _currentAttackPhase = 0;
+        private float _currentCooldownDuration;
         
         // Components.
         private BossProjectileSpawner _projectileSpawner;
         private Coroutine _currentAttackCoroutine;
         private AudioSource _audioSource;
-        private float _currentCooldownDuration;
+        private EnemySpawner _enemySpawner;
+        private AmmoSpawner _ammoSpawner;
 
         protected override void Start()
         {
@@ -74,6 +77,9 @@ namespace _Scripts.Boss
                 effectSpawnPoint = transform;
             }
             
+            _enemySpawner = GetComponent<EnemySpawner>();
+            _ammoSpawner = GetComponent<AmmoSpawner>();
+            
             StartCooldownPhase();
         }
 
@@ -92,14 +98,7 @@ namespace _Scripts.Boss
             }
 
             // Debug Keys for Manual Attack Testing.
-            HandleDebugKeys();
-        }
-
-        private void HandleDebugKeys()
-        {
-            if (Input.GetKeyDown(KeyCode.I)) TriggerAttackPhase(0); // Bullet Hell.
-            if (Input.GetKeyDown(KeyCode.O)) TriggerAttackPhase(1); // Burst.
-            if (Input.GetKeyDown(KeyCode.P)) TriggerAttackPhase(2); // Area Denial.
+            //HandleDebugKeys();
         }
 
         private void HandleAttackPhase()
@@ -141,7 +140,7 @@ namespace _Scripts.Boss
             
             // Shield activation effects.
             ActivateShield();
-            EnableEnemySpawners(false);
+            SpawnEnemies();
         }
 
         private void StartCooldownPhase()
@@ -162,7 +161,7 @@ namespace _Scripts.Boss
             
             // Shield deactivation effects.
             DeactivateShield();
-            EnableEnemySpawners(true);
+            SpawnAmmo();        
         }
 
         private void ActivateShield()
@@ -213,12 +212,6 @@ namespace _Scripts.Boss
             }
         }
 
-        private void EnableEnemySpawners(bool enable)
-        {
-            Spawner[] spawners = FindObjectsByType<Spawner>(FindObjectsSortMode.None);
-            foreach (var spawner in spawners) spawner.enabled = enable;
-        }
-
         private void StartAttackCycle()
         {
             isAttacking = true;
@@ -260,8 +253,6 @@ namespace _Scripts.Boss
 
         private IEnumerator RotatingBulletHellPattern()
         {
-            Debug.Log("Executing Rotating Bullet Hell Pattern.");
-            
             if (_projectileSpawner != null && projectilePrefabs.Length > 0)
             {
                 string projectileType = projectilePrefabs[0].name;
@@ -274,17 +265,10 @@ namespace _Scripts.Boss
                     player
                 );
             }
-            else
-            {
-                Debug.LogError("ProjectileSpawner or projectile prefabs not found!");
-                yield break;
-            }
         }
 
         private IEnumerator ConcentratedBurstPattern()
         {
-            Debug.Log("Executing Concentrated Burst Pattern.");
-            
             if (_projectileSpawner != null && projectilePrefabs.Length > 0)
             {
                 for (int i = 0; i < 3; i++)
@@ -302,17 +286,10 @@ namespace _Scripts.Boss
                     yield return new WaitForSeconds(1f);
                 }
             }
-            else
-            {
-                Debug.LogError("ProjectileSpawner or projectile prefabs not found!");
-                yield break;
-            }
         }
 
         private IEnumerator AreaDenialPattern()
         {
-            Debug.Log("Executing Area Denial Pattern.");
-            
             if (_projectileSpawner != null && projectilePrefabs.Length > 0)
             {
                 string projectileType = projectilePrefabs[Random.Range(0, projectilePrefabs.Length)].name;
@@ -325,14 +302,43 @@ namespace _Scripts.Boss
                     null
                 );
             }
+        }
+        
+        // Spawn methods.
+        private void SpawnEnemies()
+        {
+            if (_enemySpawner != null)
+            {
+                _enemySpawner.SpawnEnemies();
+            }
             else
             {
-                Debug.LogError("ProjectileSpawner or projectile prefabs not found!");
-                yield break;
+                Debug.LogError("EnemySpawner is missing.");
             }
         }
 
+        private void SpawnAmmo()
+        {
+            if (_ammoSpawner != null)
+            {
+                _ammoSpawner.SpawnAmmo();
+            }
+            else
+            {
+                Debug.LogError("AmmoSpawner is missing.");
+            }
+        }
+
+
         // DEBUG
+        
+        private void HandleDebugKeys()
+        {
+            if (Input.GetKeyDown(KeyCode.I)) TriggerAttackPhase(0); // Bullet Hell.
+            if (Input.GetKeyDown(KeyCode.O)) TriggerAttackPhase(1); // Burst.
+            if (Input.GetKeyDown(KeyCode.P)) TriggerAttackPhase(2); // Area Denial.
+        }
+        
         public void TriggerAttackPhase(int attackPhase)
         {
             // To prevent interrupting active attacks.

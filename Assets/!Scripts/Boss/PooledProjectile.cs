@@ -76,8 +76,8 @@ namespace _Scripts.Boss
             // Reset the projectile state before returning to pool.
             if (_rigidbody != null)
             {
-                _rigidbody.linearVelocity = Vector3.zero;
-                _rigidbody.angularVelocity = Vector3.zero;
+                /*_rigidbody.linearVelocity = Vector3.zero;
+                _rigidbody.angularVelocity = Vector3.zero;*/
             }
         
             if (_pool != null)

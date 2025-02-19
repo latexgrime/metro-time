@@ -1,4 +1,6 @@
 using System.Collections;
+using _Scripts.Enemy.Enemy_Types.Electric__Stun_;
+using _Scripts.Enemy.Enemy_Types.Freeze__Slow_;
 using UnityEngine;
 
 namespace _Scripts.Boss
@@ -12,7 +14,9 @@ namespace _Scripts.Boss
         [SerializeField] private float defaultProjectileSpeed = 10f;
         [SerializeField] private float defaultProjectileLifetime = 3f;
         [SerializeField] private float defaultProjectileDamage = 10f;
-
+        
+        [SerializeField] private float shotSoundPlayRate = 0.25f;
+        
         private void Awake()
         {
             // Find the projectile pool if not assigned.
@@ -26,11 +30,12 @@ namespace _Scripts.Boss
             }
         }
 
+        private float lastShotSoundTime = 0f; // Add this to the class
+
         public GameObject SpawnProjectile(string projectileType, Vector3 position, Vector3 direction, float speed = 0f)
         {
             if (projectilePool == null) return null;
 
-            // Get a projectile from the pool.
             GameObject projectile = projectilePool.GetProjectile(
                 projectileType,
                 position,
@@ -39,29 +44,38 @@ namespace _Scripts.Boss
 
             if (projectile == null) return null;
 
-            // Configure the projectile.
             PooledProjectile pooledProjectile = projectile.GetComponent<PooledProjectile>();
             if (pooledProjectile != null)
             {
-                // Apply custom settings if provided.
                 if (speed <= 0) speed = defaultProjectileSpeed;
-                
                 pooledProjectile.SetVelocity(direction.normalized * speed);
                 pooledProjectile.SetLifetime(defaultProjectileLifetime);
                 pooledProjectile.SetDamage(defaultProjectileDamage);
             }
-            else
+
+            // Try to get ElectricProjectile or SlowProjectile and play sound.
+            if (Time.time - lastShotSoundTime > shotSoundPlayRate)
             {
-                // Fallback for projectiles without the PooledProjectile component.
-                Rigidbody rb = projectile.GetComponent<Rigidbody>();
-                if (rb != null)
+                ElectricProjectile electricProjectile = projectile.GetComponent<ElectricProjectile>();
+                if (electricProjectile != null)
                 {
-                    rb.linearVelocity = direction.normalized * (speed > 0 ? speed : defaultProjectileSpeed);
+                    electricProjectile.PlayShotSound();
+                    lastShotSoundTime = Time.time;
+                }
+                else
+                {
+                    SlowProjectile slowProjectile = projectile.GetComponent<SlowProjectile>();
+                    if (slowProjectile != null)
+                    {
+                        slowProjectile.PlayShotSound();
+                        lastShotSoundTime = Time.time;
+                    }
                 }
             }
 
             return projectile;
         }
+
 
         public IEnumerator SpawnProjectilesInPattern(
             PatternType patternType, 

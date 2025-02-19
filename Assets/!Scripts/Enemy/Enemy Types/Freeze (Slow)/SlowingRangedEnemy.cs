@@ -78,8 +78,11 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
 
                 var slowProjectile = projectile.GetComponent<SlowProjectile>();
                 if (slowProjectile != null) 
+                {
                     slowProjectile.Initialize(projectileSpeed, projectileLifetime);
-
+                    slowProjectile.PlayShotSound();
+                }
+                
                 _nextAttackTime = Time.time + attackCooldown;
             }
         }

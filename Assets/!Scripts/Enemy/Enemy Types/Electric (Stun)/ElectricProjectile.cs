@@ -56,11 +56,6 @@ namespace _Scripts.Enemy.Enemy_Types.Electric__Stun_
             Physics.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyProjectile"), LayerMask.NameToLayer("EnemyProjectile"), true);
             
             _pool = FindObjectOfType<ProjectilePool>();
-            
-            if (_audioSource != null && projectileSound != null)
-            {
-                _audioSource.PlayOneShot(projectileSound);
-            }
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -303,5 +298,14 @@ namespace _Scripts.Enemy.Enemy_Types.Electric__Stun_
                 Destroy(gameObject);
             }
         }
+        
+        public void PlayShotSound()
+        {
+            if (_audioSource != null && projectileSound != null)
+            {
+                _audioSource.PlayOneShot(projectileSound);
+            }
+        }
+
     }
 }

@@ -7,22 +7,21 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
 {
     public class SlowProjectile : MonoBehaviour
     {
-        [Header("- Projectile Settings")]
-        private float _speed;
+        [Header("- Projectile Settings")] private float _speed;
         private float _lifetime;
-        
-        [Header("- Status Effect")]
-        [SerializeField] private float slowBuildupAmount = 15f;
-        
-        [Header("- Effects")]
-        [SerializeField] private GameObject impactEffectPrefab;
+
+        [Header("- Status Effect")] [SerializeField]
+        private float slowBuildupAmount = 15f;
+
+        [Header("- Effects")] [SerializeField] private GameObject impactEffectPrefab;
         [SerializeField] private AudioClip projectileSound;
         [SerializeField] private AudioClip impactSound;
-        
-        [Header("- Visual Settings")]
-        [SerializeField] private bool instantlyDisappearOnImpact = true;
+
+        [Header("- Visual Settings")] [SerializeField]
+        private bool instantlyDisappearOnImpact = true;
+
         [SerializeField] private float soundOnlyDelayTime = 0.1f;
-        
+
         private ParticleSystem _mainParticleSystem;
         private ParticleSystem[] _particleSystems;
         private TrailRenderer[] _trailRenderers;
@@ -41,26 +40,23 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
             _particleSystems = GetComponentsInChildren<ParticleSystem>(true);
             _trailRenderers = GetComponentsInChildren<TrailRenderer>(true);
             _renderers = GetComponentsInChildren<Renderer>(true);
-            
+
             // Cache the main particle system if available.
             if (_particleSystems.Length > 0)
             {
                 _mainParticleSystem = _particleSystems[0];
             }
         }
-        
+
         private void Start()
         {
             // Ignore collisions between projectiles and enemies.
-            Physics.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyProjectile"), LayerMask.NameToLayer("Enemy"), true);
-            Physics.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyProjectile"), LayerMask.NameToLayer("EnemyProjectile"), true);
-            
+            Physics.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyProjectile"), LayerMask.NameToLayer("Enemy"),
+                true);
+            Physics.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyProjectile"),
+                LayerMask.NameToLayer("EnemyProjectile"), true);
+
             _pool = FindObjectOfType<ProjectilePool>();
-            
-            if (_audioSource != null && projectileSound != null)
-            {
-                _audioSource.PlayOneShot(projectileSound);
-            }
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -78,7 +74,7 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
                 // Just stop emission but let existing particles fade out.
                 StopAllParticleEmission();
             }
-            
+
             // Disable physics but keep game object active.
             DisablePhysics();
 
@@ -114,7 +110,7 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
                 float soundDuration = impactSound != null ? impactSound.length : 0f;
                 delay = Mathf.Max(particleDuration, soundDuration);
             }
-            
+
             StartCoroutine(ReturnToPoolAfterDelay(delay));
         }
 
@@ -123,13 +119,13 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
             _speed = projectileSpeed;
             _lifetime = projectileLifetime;
             _hasCollided = false;
-            
+
             // Show all visual elements.
             ShowAllVisuals();
-            
+
             // Reset physics.
             EnablePhysics();
-            
+
             if (_rigidbody != null)
             {
                 _rigidbody.linearVelocity = transform.forward * _speed;
@@ -137,11 +133,11 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
 
             // Set layer.
             gameObject.layer = LayerMask.NameToLayer("EnemyProjectile");
-    
+
             // Return to pool after lifetime.
             StartCoroutine(ReturnToPoolAfterDelay(_lifetime));
         }
-        
+
         private void HideAllVisuals()
         {
             // Disable all renderers.
@@ -149,13 +145,13 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
             {
                 renderer.enabled = false;
             }
-            
+
             // Stop and clear all particle systems.
             foreach (ParticleSystem ps in _particleSystems)
             {
                 ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
             }
-            
+
             // Disable trail renderers and clear them.
             foreach (TrailRenderer trail in _trailRenderers)
             {
@@ -163,7 +159,7 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
                 trail.Clear();
             }
         }
-        
+
         private void ShowAllVisuals()
         {
             // Enable all renderers.
@@ -171,11 +167,11 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
             {
                 renderer.enabled = true;
             }
-            
+
             // Restart particle systems.
             RestartAllParticles();
         }
-        
+
         private void StopAllParticleEmission()
         {
             foreach (ParticleSystem ps in _particleSystems)
@@ -183,7 +179,7 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
                 var emission = ps.emission;
                 emission.enabled = false;
             }
-            
+
             foreach (TrailRenderer trail in _trailRenderers)
             {
                 trail.emitting = false;
@@ -191,7 +187,7 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
                 trail.time = Mathf.Min(0.5f, trail.time);
             }
         }
-        
+
         private void RestartAllParticles()
         {
             foreach (ParticleSystem ps in _particleSystems)
@@ -201,24 +197,24 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
                 var emission = ps.emission;
                 emission.enabled = true;
             }
-            
+
             foreach (TrailRenderer trail in _trailRenderers)
             {
                 trail.Clear();
                 trail.emitting = true;
             }
         }
-        
+
         private float GetLongestParticleDuration()
         {
             float longestDuration = 0f;
-            
+
             foreach (ParticleSystem ps in _particleSystems)
             {
                 // Get the main module for duration info.
                 var main = ps.main;
                 float duration = main.duration;
-                
+
                 // Add the maximum particle lifetime.
                 if (main.startLifetime.mode == ParticleSystemCurveMode.Constant)
                 {
@@ -233,13 +229,13 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
                     // For other modes, use a reasonable default.
                     duration += 2.0f;
                 }
-                
+
                 if (duration > longestDuration)
                 {
                     longestDuration = duration;
                 }
             }
-            
+
             // Consider trail renderers too.
             foreach (TrailRenderer trail in _trailRenderers)
             {
@@ -248,14 +244,14 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
                     longestDuration = trail.time;
                 }
             }
-            
+
             return longestDuration;
         }
-        
+
         private void EnablePhysics()
         {
             if (_collider != null) _collider.enabled = true;
-            
+
             if (_rigidbody != null)
             {
                 _rigidbody.isKinematic = false;
@@ -263,11 +259,11 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
                 _rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
             }
         }
-        
+
         private void DisablePhysics()
         {
             if (_collider != null) _collider.enabled = false;
-            
+
             if (_rigidbody != null)
             {
                 _rigidbody.linearVelocity = Vector3.zero;
@@ -275,24 +271,24 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
                 _rigidbody.isKinematic = true;
             }
         }
-        
+
         private void HandleImpactEffects(Collision collision)
         {
             if (impactEffectPrefab != null && collision.contactCount > 0)
             {
                 ContactPoint contact = collision.contacts[0];
-                GameObject effect = Instantiate(impactEffectPrefab, 
-                    contact.point, 
+                GameObject effect = Instantiate(impactEffectPrefab,
+                    contact.point,
                     Quaternion.LookRotation(contact.normal));
-                
+
                 Destroy(effect, 2f);
             }
         }
-        
+
         private IEnumerator ReturnToPoolAfterDelay(float delay)
         {
             yield return new WaitForSeconds(delay);
-            
+
             if (_pool != null)
             {
                 _pool.ReturnProjectile(gameObject);
@@ -303,5 +299,14 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
                 Destroy(gameObject);
             }
         }
+        
+        public void PlayShotSound()
+        {
+            if (_audioSource != null && projectileSound != null)
+            {
+                _audioSource.PlayOneShot(projectileSound);
+            }
+        }
+   
     }
 }

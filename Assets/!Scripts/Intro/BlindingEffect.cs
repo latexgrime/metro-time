@@ -7,7 +7,7 @@ public class BlindingEffect : MonoBehaviour
     public Volume volume;
     public CanvasGroup alphaController;
     [SerializeField] private NPC effect;
-    private bool isLightOn = false;
+    private bool _isLightOn;
 
     private void Update()
     {
@@ -28,7 +28,7 @@ public class BlindingEffect : MonoBehaviour
                 volume.weight = 0;
                 alphaController.alpha = 0;
                 Time.timeScale = 1;
-                isLightOn = false;
+                _isLightOn = false;
             }
         }
     }
@@ -36,7 +36,7 @@ public class BlindingEffect : MonoBehaviour
     private void Flashbang()
     {
         volume.weight = 1;
-        isLightOn = true;
+        _isLightOn = true;
         alphaController.alpha = 1;
     }
 }
