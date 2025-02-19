@@ -296,7 +296,7 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
@@ -319,7 +319,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_Sprite: {fileID: -1464427652, guid: 25a1f91a4ebef3640b12072465b0a27b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -957,6 +957,7 @@ MonoBehaviour:
   hoverHeight: 2
   bobAmount: 0.5
   bobSpeed: 2
+  isDeactivated: 0
   deactivationForce: 5
   deactivationTorque: 2
   ammoDropper: {fileID: 0}
@@ -996,7 +997,7 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 8894720708299899761}
   - {fileID: 3293239485792049165}
-  spawnEffectPrefab: {fileID: 719657563245746768, guid: 56996bb09f8cd25448f2cb1e51b08e1b, type: 3}
+  spawnEffectPrefab: {fileID: 1342570482900125419, guid: 46b73775ec9a1a24c9937ece80db5773, type: 3}
   spawnSound: {fileID: 8300000, guid: 6e359b3002d469b4081452ef8a00f791, type: 3}
   spawnSoundVolume: 0.8
   spawnDelay: 0.5
@@ -1199,7 +1200,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7096831063139484736, guid: 9dff29294fbaa414d88d7d9024c8547e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.15
       objectReference: {fileID: 0}
     - target: {fileID: 7096831063139484736, guid: 9dff29294fbaa414d88d7d9024c8547e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1207,7 +1208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7096831063139484736, guid: 9dff29294fbaa414d88d7d9024c8547e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 6.26
       objectReference: {fileID: 0}
     - target: {fileID: 7096831063139484736, guid: 9dff29294fbaa414d88d7d9024c8547e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1241,33 +1242,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shiled Activation
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7096831063139484798, guid: 9dff29294fbaa414d88d7d9024c8547e, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7096831063139484798, guid: 9dff29294fbaa414d88d7d9024c8547e, type: 3}
+      propertyPath: m_SortingFudge
+      value: 10.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 7096831063139484798, guid: 9dff29294fbaa414d88d7d9024c8547e, type: 3}
+      propertyPath: m_RenderAlignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7096831063139484798, guid: 9dff29294fbaa414d88d7d9024c8547e, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4294967295
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2895250427474187408, guid: 9dff29294fbaa414d88d7d9024c8547e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7096831063139484797, guid: 9dff29294fbaa414d88d7d9024c8547e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8456512651890492490}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dff29294fbaa414d88d7d9024c8547e, type: 3}
---- !u!1 &1773581390171212503 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7096831063139484797, guid: 9dff29294fbaa414d88d7d9024c8547e, type: 3}
-  m_PrefabInstance: {fileID: 8854081956678536874}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8456512651890492490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1773581390171212503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff46f188beb709d45b4dc68345708700, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifetime: 2
-  checkParticles: 1
 --- !u!4 &1773581390171212522 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7096831063139484736, guid: 9dff29294fbaa414d88d7d9024c8547e, type: 3}
