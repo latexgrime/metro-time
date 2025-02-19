@@ -16,7 +16,7 @@ namespace Metro.Animation
         [Tooltip("Assign the animator component controlling the door animation")]
         [SerializeField] private Animator doorAnimator;
 
-        private bool _isOpen = false;
+        // private bool _isOpen = false;
 
         #endregion
 
@@ -32,11 +32,8 @@ namespace Metro.Animation
         /// </summary>
         public void OpenDoor()
         {
-            if (!_isOpen)
-            {
                 doorAnimator.SetBool("doorCanOpen", true);
-                _isOpen = true;
-            }
+                // _isOpen = true;
         }
 
         /// <summary>
@@ -44,11 +41,8 @@ namespace Metro.Animation
         /// </summary>
         public void CloseDoor()
         {
-            if (_isOpen)
-            {
                 doorAnimator.SetBool("doorCanOpen", false);
-                _isOpen = false;
-            }
+                /// _isOpen = false;
         }
 
         #endregion

@@ -67,11 +67,11 @@ namespace Metro.Animation
 
             foreach (GameObject enemy in allEnemies)
             {
-                Metro.Enemy.MetroEnemy roomAssignment = enemy.GetComponent<Metro.Enemy.MetroEnemy>();
+                Metro.Enemy.MetroEnemy metroEnemy = enemy.GetComponent<Metro.Enemy.MetroEnemy>();
 
-                if (roomAssignment != null)
+                if (metroEnemy != null)
                 {
-                    int roomIndex = roomAssignment.roomIndex;
+                    int roomIndex = metroEnemy.roomIndex;
 
                     if (roomIndex >= 0 && roomIndex < enemiesPerRoom.Length)
                     {
@@ -84,7 +84,7 @@ namespace Metro.Animation
                 }
                 else
                 {
-                    Debug.LogWarning($"Enemy '{enemy.name}' is missing the EnemyRoomAssignment script.");
+                    Debug.LogWarning($"Enemy '{enemy.name}' is missing the MetroEnemy script.");
                 }
             }
         }
