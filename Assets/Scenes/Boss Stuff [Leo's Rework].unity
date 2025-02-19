@@ -2885,14 +2885,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1827b5e63ea9faa4a83c04facedfc7f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stunEnemy: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
-  slowEnemy: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
-  agent:
-  - {fileID: 75977175965233270, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
-  - {fileID: 2335789523408498659, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
-  range: 2
-  centrePoint: {fileID: 0}
-  isEnabled: 1
 --- !u!4 &583196673
 Transform:
   m_ObjectHideFlags: 0
@@ -4514,14 +4506,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1827b5e63ea9faa4a83c04facedfc7f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stunEnemy: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
-  slowEnemy: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
-  agent:
-  - {fileID: 75977175965233270, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
-  - {fileID: 2335789523408498659, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
-  range: 2
-  centrePoint: {fileID: 0}
-  isEnabled: 1
 --- !u!4 &1077825869
 Transform:
   m_ObjectHideFlags: 0
@@ -5232,14 +5216,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1827b5e63ea9faa4a83c04facedfc7f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stunEnemy: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
-  slowEnemy: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
-  agent:
-  - {fileID: 75977175965233270, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
-  - {fileID: 2335789523408498659, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
-  range: 2
-  centrePoint: {fileID: 0}
-  isEnabled: 1
 --- !u!4 &1206197583
 Transform:
   m_ObjectHideFlags: 0
@@ -8763,13 +8739,57 @@ PrefabInstance:
       propertyPath: projectilePool
       value: 
       objectReference: {fileID: 236297917}
-    - target: {fileID: 1729140175148637095, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
-      propertyPath: m_Name
-      value: Ammo-SpawnPos (1)
+    - target: {fileID: 1773581390171212500, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
+      propertyPath: m_SortMode
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2392623235372140766, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
-      propertyPath: m_Name
-      value: Enemy-SpawnPos (1)
+    - target: {fileID: 1773581390171212500, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1773581390171212500, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
+      propertyPath: m_SortingFudge
+      value: 10.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 1773581390171212500, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1773581390171212500, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1773581390171212500, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1773581390171212500, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1773581390171212500, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
+      propertyPath: m_RenderAlignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1773581390171212500, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1773581390171212500, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
+      propertyPath: m_EnableGPUInstancing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1773581390171212500, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
+      propertyPath: m_ApplyActiveColorSpace
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1773581390171212522, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1773581390171212522, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.26
       objectReference: {fileID: 0}
     - target: {fileID: 2678165964718938226, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8811,57 +8831,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3293239485792049165, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 3293239485792049165, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 3293239485792049165, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.24
-      objectReference: {fileID: 0}
-    - target: {fileID: 3550305666680113411, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
-      propertyPath: m_Name
-      value: Ammo-SpawnPos (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4696838643488808049, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
-      propertyPath: m_Name
-      value: Enemy-SpawnPos
-      objectReference: {fileID: 0}
+    - target: {fileID: 2987889767289733928, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
+      propertyPath: spawnEffectPrefab
+      value: 
+      objectReference: {fileID: 1342570482900125419, guid: 46b73775ec9a1a24c9937ece80db5773, type: 3}
     - target: {fileID: 5431519773760252006, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
-    - target: {fileID: 5431519773760252006, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 8215859251810368226, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6216819652270798725, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
-      propertyPath: m_Name
-      value: Ammo-SpawnPos (2)
+    - target: {fileID: 8215859251810368226, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
+      propertyPath: m_SortingOrder
+      value: -10
       objectReference: {fileID: 0}
-    - target: {fileID: 7224616362616057239, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
-      propertyPath: m_Name
-      value: Ammo-SpawnPos (4)
+    - target: {fileID: 8215859251810368226, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8894720708299899761, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.92
+    - target: {fileID: 8215859251810368226, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4294967295
       objectReference: {fileID: 0}
-    - target: {fileID: 8894720708299899761, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.43
-      objectReference: {fileID: 0}
-    - target: {fileID: 8894720708299899761, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -4.38
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 1707905052921359819, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
+    m_RemovedComponents:
+    - {fileID: 8456512651890492490, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
+    - {fileID: 5966700287293954618, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
@@ -8981,14 +8978,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1827b5e63ea9faa4a83c04facedfc7f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stunEnemy: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
-  slowEnemy: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
-  agent:
-  - {fileID: 75977175965233270, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
-  - {fileID: 2335789523408498659, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
-  range: 2
-  centrePoint: {fileID: 0}
-  isEnabled: 1
 --- !u!4 &2050524548
 Transform:
   m_ObjectHideFlags: 0

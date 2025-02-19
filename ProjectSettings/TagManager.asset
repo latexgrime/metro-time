@@ -15,10 +15,10 @@ TagManager:
   - Ground
   - Water
   - UI
-  - Enemy
-  - EnemyProjectile
-  - AmmoPickup
   - 
+  - AmmoPickup
+  - EnemyProjectile
+  - Enemy
   - 
   - 
   - 
@@ -62,6 +62,9 @@ TagManager:
     locked: 0
   - name: 6
     uniqueID: 2593239961
+    locked: 0
+  - name: New Layer 7
+    uniqueID: 3619003643
     locked: 0
   m_RenderingLayers:
   - Default
