@@ -1,12 +1,12 @@
 using _Scripts.Enemy.Base;
 using UnityEngine;
 
-public class EnemyState
+public class EnemyStates
 {
     protected Enemy enemy;
     protected EnemyStateMachine enemyStateMachine;
 
-    public EnemyState(Enemy enemy, EnemyStateMachine enemyStateMachine)
+    public EnemyStates(Enemy enemy, EnemyStateMachine enemyStateMachine)
     {
         this.enemy = enemy;
         this.enemyStateMachine = enemyStateMachine;

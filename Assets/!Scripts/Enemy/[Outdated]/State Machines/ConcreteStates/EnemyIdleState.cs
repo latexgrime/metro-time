@@ -1,7 +1,7 @@
 using _Scripts.Enemy.Base;
 using UnityEngine;
 
-public class EnemyIdleState : EnemyState
+public class EnemyIdleState : EnemyStates
 {
 
     private Vector3 targetPos;

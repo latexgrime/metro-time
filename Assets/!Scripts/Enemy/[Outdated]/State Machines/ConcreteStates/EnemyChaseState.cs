@@ -2,7 +2,7 @@ using _Scripts.Enemy.Base;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyChaseState : EnemyState
+public class EnemyChaseState : EnemyStates
 {
 
     private Transform playerTransform;

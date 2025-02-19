@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class EnemyStateMachine
 {
-    public EnemyState CurrentEnemyState { get; set; }
+    public EnemyStates CurrentEnemyState { get; set; }
 
-    public void Initialize(EnemyState startingState)
+    public void Initialize(EnemyStates startingState)
     {
         CurrentEnemyState = startingState;
         CurrentEnemyState.EnterState();
     }
 
-    public void ChangeState(EnemyState newState)
+    public void ChangeState(EnemyStates newState)
     {
         CurrentEnemyState.ExitState();
         CurrentEnemyState = newState;
