@@ -28,6 +28,10 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
             if (minKeepDistance <= 0) minKeepDistance = 8f;
             if (maxChaseDistance <= 0) maxChaseDistance = 15f;
             
+            // Ignore collisions between enemy projectiles and enemies.
+            Physics.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyProjectile"), LayerMask.NameToLayer("Enemy"), true);
+            Physics.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyProjectile"), LayerMask.NameToLayer("EnemyProjectile"), true);
+            
             animator = GetComponentInChildren<Animator>();
             _startRotation = transform.eulerAngles;
             
@@ -74,8 +78,11 @@ namespace _Scripts.Enemy.Enemy_Types.Freeze__Slow_
 
                 var slowProjectile = projectile.GetComponent<SlowProjectile>();
                 if (slowProjectile != null) 
+                {
                     slowProjectile.Initialize(projectileSpeed, projectileLifetime);
-
+                    slowProjectile.PlayShotSound();
+                }
+                
                 _nextAttackTime = Time.time + attackCooldown;
             }
         }

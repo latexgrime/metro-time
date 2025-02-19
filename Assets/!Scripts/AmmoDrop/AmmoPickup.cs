@@ -40,8 +40,7 @@ namespace _Scripts.AmmoDrop
 
         public void OnEnable()
         {
-            // Log when ammo is spawned
-            Debug.Log($"Ammo pickup enabled with {ammoAmount} ammo");
+
         }
         
         public void Initialize(Vector3 initialVelocity)
