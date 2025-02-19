@@ -2300,10 +2300,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba7d1157befda4f44a340ff7e3a5450e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefabs:
-  - {fileID: 2214542996896520317, guid: aa6726c535693714196a3327cf4cfe20, type: 3}
-  - {fileID: 4840880294674937119, guid: fe1631f4e2772b34dbb04e97635fc65f, type: 3}
-  poolSize: 150
+  projectileTypes:
+  - prefab: {fileID: 2214542996896520317, guid: aa6726c535693714196a3327cf4cfe20, type: 3}
+    initialPoolSize: 50
+    maxPoolSize: 250
+  - prefab: {fileID: 4840880294674937119, guid: fe1631f4e2772b34dbb04e97635fc65f, type: 3}
+    initialPoolSize: 50
+    maxPoolSize: 250
+  autoExpandPool: 1
+  poolContainer: {fileID: 236297916}
 --- !u!1 &246752037
 GameObject:
   m_ObjectHideFlags: 0
@@ -6801,7 +6806,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1690781827}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bbe24fd8212dd147b6885291f333d3e, type: 3}
   m_Name: 
@@ -8721,6 +8726,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 959627405295561570, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
+      propertyPath: projectilePool
+      value: 
+      objectReference: {fileID: 236297917}
     - target: {fileID: 2678165964718938226, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 45.5
@@ -8768,14 +8777,6 @@ PrefabInstance:
     - target: {fileID: 5431519773760252006, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7106820193397456392, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
-      propertyPath: bulletSpread
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7106820193397456392, guid: 798c806ced12df2469e80b67057d50ca, type: 3}
-      propertyPath: rotationSpeed
-      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

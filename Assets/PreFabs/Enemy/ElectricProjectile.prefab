@@ -9772,6 +9772,7 @@ GameObject:
   - component: {fileID: 4312898416266211985}
   - component: {fileID: 6158758453581634876}
   - component: {fileID: 2341142236372794684}
+  - component: {fileID: -2080113073590181646}
   m_Layer: 7
   m_Name: ElectricProjectile
   m_TagString: Untagged
@@ -14681,9 +14682,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stunBuildupAmount: 35
+  impactEffectPrefab: {fileID: 6626104727989455569, guid: c7fa64c686a9ee6469423604b7645109, type: 3}
   projectileSound: {fileID: 8300000, guid: 4dcffc96575d8fa45a526f50e7dd11fd, type: 3}
   impactSound: {fileID: 8300000, guid: a543af2c3d892e34fa311118fa406853, type: 3}
-  impactEffectPrefab: {fileID: 5250884515042193913, guid: 6357ec9189c437647a90b9c6a55820c3, type: 3}
+  instantlyDisappearOnImpact: 1
+  soundOnlyDelayTime: 0.1
 --- !u!82 &2341142236372794684
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14781,6 +14784,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-2080113073590181646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2214542996896520317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a9f156b3ef59de4c90e91b7a804319c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  lifetime: 3
+  impactEffect: {fileID: 6626104727989455569, guid: c7fa64c686a9ee6469423604b7645109, type: 3}
 --- !u!1 &4494251175239741066
 GameObject:
   m_ObjectHideFlags: 0

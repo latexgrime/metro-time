@@ -4918,6 +4918,7 @@ GameObject:
   - component: {fileID: -5198897984335032537}
   - component: {fileID: -2037044817925203604}
   - component: {fileID: 4379923732884975311}
+  - component: {fileID: 1502874807922162736}
   m_Layer: 7
   m_Name: SlowProjectile
   m_TagString: Untagged
@@ -9888,6 +9889,8 @@ MonoBehaviour:
   impactEffectPrefab: {fileID: 944750204202798419, guid: aade510ae69706e4c82949b144f64b00, type: 3}
   projectileSound: {fileID: 8300000, guid: 243e6cc9660b3df40b4f95679ed16d66, type: 3}
   impactSound: {fileID: 8300000, guid: 10c4b20661283e04ab930714774fb05e, type: 3}
+  instantlyDisappearOnImpact: 1
+  soundOnlyDelayTime: 0.1
 --- !u!82 &4379923732884975311
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9985,6 +9988,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1502874807922162736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4840880294674937119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a9f156b3ef59de4c90e91b7a804319c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  lifetime: 3
+  impactEffect: {fileID: 944750204202798419, guid: aade510ae69706e4c82949b144f64b00, type: 3}
 --- !u!1 &6308267584761583770
 GameObject:
   m_ObjectHideFlags: 0

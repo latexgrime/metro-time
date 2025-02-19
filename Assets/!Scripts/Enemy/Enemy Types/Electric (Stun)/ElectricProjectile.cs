@@ -1,4 +1,5 @@
 using System.Collections;
+using _Scripts.Boss;
 using _Scripts.Status_System;
 using UnityEngine;
 

@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace _Scripts.Boss
 {
+    [RequireComponent(typeof(BossProjectileSpawner))]
     public class Boss : BaseEnemy
     {
         [Header("- Boss Attack Phases")]
@@ -15,22 +16,21 @@ namespace _Scripts.Boss
         [SerializeField] private GameObject[] projectilePrefabs;
         [SerializeField] private Transform[] projectileSpawnPoints;
         [SerializeField] private float globalAttackCooldown = 2f;
-        [SerializeField] private int maxSimultaneousProjectiles = 20;
-
-        [Header("- Bullet Hell Settings")]
-        [SerializeField] private float rotationSpeed = 30f;
-        [SerializeField] private float bulletSpread = 15f;
 
         [Header("- Shield Visual Effect")]
         [SerializeField] private GameObject shieldEffect;
         [SerializeField] private GameObject shieldBreakEffect;
 
-        // Boss Phases & Attack Control
+        // Boss Phases & Attack Control.
         private BossPhase _currentPhase = BossPhase.Cooldown;
         private float _phaseStartTime;
         private float attackTimer;
         private bool isAttacking = false;
         private int _currentAttackPhase = 0;
+        
+        // Components.
+        private BossProjectileSpawner _projectileSpawner;
+        private Coroutine _currentAttackCoroutine;
 
         protected override void Start()
         {
@@ -39,6 +39,13 @@ namespace _Scripts.Boss
             if (agent != null) agent.enabled = false;
             transform.position = startPosition;
             currentShield = maxShield;
+            
+            _projectileSpawner = GetComponent<BossProjectileSpawner>();
+            if (_projectileSpawner == null)
+            {
+                _projectileSpawner = gameObject.AddComponent<BossProjectileSpawner>();
+            }
+            
             StartCooldownPhase();
         }
 
@@ -56,7 +63,12 @@ namespace _Scripts.Boss
                     break;
             }
 
-            // Debug Keys for Manual Attack Testing
+            // Debug Keys for Manual Attack Testing.
+            HandleDebugKeys();
+        }
+
+        private void HandleDebugKeys()
+        {
             if (Input.GetKeyDown(KeyCode.I)) TriggerAttackPhase(0); // Bullet Hell. 
             if (Input.GetKeyDown(KeyCode.O)) TriggerAttackPhase(1); // Burst.
             if (Input.GetKeyDown(KeyCode.P)) TriggerAttackPhase(2); // Area Denial.
@@ -107,6 +119,14 @@ namespace _Scripts.Boss
             _currentPhase = BossPhase.Cooldown;
             _phaseStartTime = Time.time;
             isAttacking = false;
+            
+            // Stop any ongoing attack coroutines.
+            if (_currentAttackCoroutine != null)
+            {
+                StopCoroutine(_currentAttackCoroutine);
+                _currentAttackCoroutine = null;
+            }
+            
             if (shieldEffect != null) shieldEffect.SetActive(false);
             if (shieldBreakEffect != null) Instantiate(shieldBreakEffect, transform.position, Quaternion.identity);
             EnableEnemySpawners(true);
@@ -123,23 +143,30 @@ namespace _Scripts.Boss
             isAttacking = true;
             attackTimer = 5f; // Each attack lasts 5 seconds.
 
+            // Stop any previous attack coroutine
+            if (_currentAttackCoroutine != null)
+            {
+                StopCoroutine(_currentAttackCoroutine);
+            }
+
+            // Start the appropriate attack pattern.
             switch (_currentAttackPhase)
             {
                 case 0:
-                    RotatingBulletHellPattern();
+                    _currentAttackCoroutine = StartCoroutine(RotatingBulletHellPattern());
                     break;
                 case 1:
-                    ConcentratedBurstPattern();
+                    _currentAttackCoroutine = StartCoroutine(ConcentratedBurstPattern());
                     break;
                 case 2:
-                    AreaDenialPattern();
+                    _currentAttackCoroutine = StartCoroutine(AreaDenialPattern());
                     break;
             }
         }
 
         protected override void Attack()
         {
-            throw new System.NotImplementedException();
+            // Not used in the boss - we use specialized attack patterns instead.!!1
         }
 
         public override void TakeShieldDamage(float damage)
@@ -150,117 +177,77 @@ namespace _Scripts.Boss
             }
         }
 
-        private void RotatingBulletHellPattern()
+        private IEnumerator RotatingBulletHellPattern()
         {
             Debug.Log("Executing Rotating Bullet Hell Pattern.");
-    
-            float attackDuration = 5f; // Duration of Bullet Hell.
-            float fireRate = 0.2f; // Time between shots.
-
-            StartCoroutine(ContinuousBulletHell(attackDuration, fireRate));
-        }
-
-        private IEnumerator ContinuousBulletHell(float duration, float fireRate)
-        {
-            float elapsedTime = 0f;
-
-            while (elapsedTime < duration)
+            
+            if (_projectileSpawner != null && projectilePrefabs.Length > 0)
             {
-                int projectileCount = 12;
-
-                for (int i = 0; i < projectileCount; i++)
-                {
-                    Transform spawnPoint = projectileSpawnPoints[i % projectileSpawnPoints.Length];
-                    GameObject projectilePrefab = projectilePrefabs[i % projectilePrefabs.Length];
-                    string projectileType = projectilePrefab.name;
-
-                    float angle = (Time.time * rotationSpeed) + (i * (360f / projectileCount));
-                    Vector3 direction = Quaternion.Euler(0, angle, 0) * Vector3.forward;
-            
-                    // Create the projectile with the correct initial rotation.
-                    GameObject projectile = FindObjectOfType<ProjectilePool>()?.GetProjectile(
-                        projectileType, 
-                        spawnPoint.position, 
-                        Quaternion.LookRotation(direction)
-                    );
-            
-                    if (projectile == null) continue;
-
-                    // Apply velocity in the same direction.
-                    Rigidbody rb = projectile.GetComponent<Rigidbody>();
-                    if (rb != null)
-                    {
-                        rb.linearVelocity = direction * 10f;
-                    }
-                }
-
-                yield return new WaitForSeconds(fireRate);
-                elapsedTime += fireRate;
+                string projectileType = projectilePrefabs[0].name;
+                yield return _projectileSpawner.SpawnProjectilesInPattern(
+                    PatternType.Circular,
+                    projectileType,
+                    projectileSpawnPoints,
+                    5f, // duration
+                    0.2f, // fire rate
+                    player
+                );
+            }
+            else
+            {
+                Debug.LogError("ProjectileSpawner or projectile prefabs not found!");
+                yield break;
             }
         }
 
-        private void ConcentratedBurstPattern()
+        private IEnumerator ConcentratedBurstPattern()
         {
             Debug.Log("Executing Concentrated Burst Pattern.");
-            for (int i = 0; i < 5; i++)
+            
+            if (_projectileSpawner != null && projectilePrefabs.Length > 0)
             {
-                Transform spawnPoint = projectileSpawnPoints[0];
-                GameObject projectilePrefab = projectilePrefabs[0];
-                string projectileType = projectilePrefab.name;
-
-                Vector3 directionToPlayer = (player.position - spawnPoint.position).normalized;
-                Vector3 spreadDirection = Quaternion.Euler(
-                    Random.Range(-bulletSpread, bulletSpread), 
-                    Random.Range(-bulletSpread, bulletSpread), 
-                    0
-                ) * directionToPlayer;
-
-                // Create projectile with the correct rotation first.
-                GameObject projectile = FindObjectOfType<ProjectilePool>()?.GetProjectile(
-                    projectileType, 
-                    spawnPoint.position, 
-                    Quaternion.LookRotation(spreadDirection)
-                );
-        
-                if (projectile == null) continue;
-
-                // Apply velocity in the same direction.
-                Rigidbody rb = projectile.GetComponent<Rigidbody>();
-                if (rb != null)
+                for (int i = 0; i < 3; i++) // Three waves of bursts.
                 {
-                    rb.linearVelocity = spreadDirection * 15f;
+                    string projectileType = projectilePrefabs[Random.Range(0, projectilePrefabs.Length)].name;
+                    _projectileSpawner.SpawnProjectilesInPattern(
+                        PatternType.Targeted,
+                        projectileType,
+                        projectileSpawnPoints,
+                        1f, // Short duration for each burst.
+                        0.2f,
+                        player
+                    );
+                    
+                    yield return new WaitForSeconds(1f);
                 }
+            }
+            else
+            {
+                Debug.LogError("ProjectileSpawner or projectile prefabs not found!");
+                yield break;
             }
         }
 
-        private void AreaDenialPattern()
+        private IEnumerator AreaDenialPattern()
         {
             Debug.Log("Executing Area Denial Pattern.");
-            for (int i = 0; i < 10; i++)
+            
+            if (_projectileSpawner != null && projectilePrefabs.Length > 0)
             {
-                Transform spawnPoint = projectileSpawnPoints[Random.Range(0, projectileSpawnPoints.Length)];
-                GameObject projectilePrefab = projectilePrefabs[Random.Range(0, projectilePrefabs.Length)];
-                string projectileType = projectilePrefab.name;
-
-                Vector3 randomDirection = Random.insideUnitSphere;
-                randomDirection.y = 0;
-                randomDirection.Normalize();
-
-                // Create projectile with the correct rotation first.
-                GameObject projectile = FindObjectOfType<ProjectilePool>()?.GetProjectile(
-                    projectileType, 
-                    spawnPoint.position, 
-                    Quaternion.LookRotation(randomDirection)
+                string projectileType = projectilePrefabs[Random.Range(0, projectilePrefabs.Length)].name;
+                yield return _projectileSpawner.SpawnProjectilesInPattern(
+                    PatternType.Random,
+                    projectileType,
+                    projectileSpawnPoints,
+                    5f, // duration.
+                    0.5f, // fire rate
+                    null
                 );
-        
-                if (projectile == null) continue;
-
-                // Apply velocity in the same direction.
-                Rigidbody rb = projectile.GetComponent<Rigidbody>();
-                if (rb != null)
-                {
-                    rb.linearVelocity = randomDirection * 8f;
-                }
+            }
+            else
+            {
+                Debug.LogError("ProjectileSpawner or projectile prefabs not found!");
+                yield break;
             }
         }
 
@@ -275,7 +262,6 @@ namespace _Scripts.Boss
 
             StartAttackCycle();
         }
-
         
         private enum BossPhase
         {
