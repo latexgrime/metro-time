@@ -14683,7 +14683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stunBuildupAmount: 35
   impactEffectPrefab: {fileID: 6626104727989455569, guid: c7fa64c686a9ee6469423604b7645109, type: 3}
-  projectileSound: {fileID: 8300000, guid: 4dcffc96575d8fa45a526f50e7dd11fd, type: 3}
+  projectileSound: {fileID: 8300000, guid: 5368239d356d21c44adb3f0eea486aaf, type: 3}
   impactSound: {fileID: 8300000, guid: a543af2c3d892e34fa311118fa406853, type: 3}
   instantlyDisappearOnImpact: 1
   soundOnlyDelayTime: 0.1

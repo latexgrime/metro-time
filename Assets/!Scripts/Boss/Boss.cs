@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Scripts.AmmoDrop;
 using _Scripts.Enemy;
 using _Scripts.Spawners;
 using UnityEngine;
@@ -17,6 +18,7 @@ namespace _Scripts.Boss
         [SerializeField] private GameObject[] projectilePrefabs;
         [SerializeField] private Transform[] projectileSpawnPoints;
         [SerializeField] private float globalAttackCooldown = 2f;
+        [SerializeField] private int ammoSpawnLimit = 4;
 
         [Header("- Shield Visual Effects")]
         [SerializeField] private GameObject shieldEffect;
@@ -319,13 +321,22 @@ namespace _Scripts.Boss
 
         private void SpawnAmmo()
         {
-            if (_ammoSpawner != null)
+            int ammoCount = FindObjectsOfType<AmmoPickup>().Length;
+
+            if (ammoCount < ammoSpawnLimit)
             {
-                _ammoSpawner.SpawnAmmo();
+                if (_ammoSpawner != null)
+                {
+                    _ammoSpawner.SpawnAmmo();
+                }
+                else
+                {
+                    Debug.LogError("AmmoSpawner is missing.");
+                }
             }
             else
             {
-                Debug.LogError("AmmoSpawner is missing.");
+                Debug.Log("Ammo not spawned - limit reached (5).");
             }
         }
 
