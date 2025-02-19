@@ -1,7 +1,7 @@
 using _Scripts.Enemy.Base;
 using UnityEngine;
 
-public class EnemyAttackState : EnemyState
+public class EnemyAttackState : EnemyStates
 {
 
     private Transform playerTransform;

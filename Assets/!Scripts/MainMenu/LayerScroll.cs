@@ -14,7 +14,6 @@ namespace Mainmenu.ImageScroll
         [SerializeField] private float[] speedMultipliers;
         [SerializeField] private float baseSpeed = 2f;
         [SerializeField] private float leftOutBound = -20f;
-        [Tooltip("Add your leftOutBound with its positive form to set your far right position consistently. i.e. -20f -> 40f. (-20 + 20 + 20. (20 + 20 is 40))")]
         [SerializeField] private float farRightPosition = 40f;
         #endregion
 
