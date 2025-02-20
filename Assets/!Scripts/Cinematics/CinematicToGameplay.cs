@@ -1,6 +1,7 @@
 using System;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CinematicToGameplay : MonoBehaviour
 {
@@ -16,19 +17,19 @@ public class CinematicToGameplay : MonoBehaviour
     public void ImageOneToImageTwo()
     {
         Debug.Log("Send player to image 2");
-        imageOne.SetActive(false);
+        //imageOne.SetActive(false);
         imageTwo.SetActive(true);
     }
 
     public void ImageTwoToLastImage()
     {
         Debug.Log("Send player to last image");
-        imageTwo.SetActive(false);
+        //imageTwo.SetActive(false);
         lastImage.SetActive(true);
     }
     
     public void SendPlayerToGameplay()
     {
-        Debug.Log("Send player to gameplay scene");
+        SceneManager.LoadScene("Gameplay");
     }
 }
