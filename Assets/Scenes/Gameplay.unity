@@ -6594,6 +6594,7 @@ GameObject:
   - component: {fileID: 950607453}
   - component: {fileID: 950607454}
   - component: {fileID: 950607455}
+  - component: {fileID: 950607456}
   m_Layer: 0
   m_Name: EnterTrigger (3)
   m_TagString: Untagged
@@ -6651,6 +6652,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorManager: {fileID: 1646925510}
   roomIndex: 4
+--- !u!114 &950607456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950607452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a607edd3ad13b90489f508fb10d960fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderers: []
+  spritesToRender: []
 --- !u!1 &954364374
 GameObject:
   m_ObjectHideFlags: 0
@@ -6662,6 +6677,7 @@ GameObject:
   - component: {fileID: 954364375}
   - component: {fileID: 954364376}
   - component: {fileID: 954364377}
+  - component: {fileID: 954364378}
   m_Layer: 0
   m_Name: EnterTrigger (2)
   m_TagString: Untagged
@@ -6719,6 +6735,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorManager: {fileID: 1646925510}
   roomIndex: 3
+--- !u!114 &954364378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954364374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a607edd3ad13b90489f508fb10d960fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderers: []
+  spritesToRender: []
 --- !u!1 &974787543
 GameObject:
   m_ObjectHideFlags: 0
@@ -8079,6 +8109,7 @@ GameObject:
   - component: {fileID: 1202355291}
   - component: {fileID: 1202355292}
   - component: {fileID: 1202355294}
+  - component: {fileID: 1202355295}
   m_Layer: 0
   m_Name: EnterTrigger (1)
   m_TagString: Untagged
@@ -8136,6 +8167,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorManager: {fileID: 1646925510}
   roomIndex: 2
+--- !u!114 &1202355295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202355290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a607edd3ad13b90489f508fb10d960fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderers: []
+  spritesToRender: []
 --- !u!114 &1209002776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11791,6 +11836,7 @@ GameObject:
   - component: {fileID: 1937210170}
   - component: {fileID: 1937210171}
   - component: {fileID: 1937210172}
+  - component: {fileID: 1937210173}
   m_Layer: 0
   m_Name: EnterTrigger
   m_TagString: Untagged
@@ -11848,6 +11894,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorManager: {fileID: 1646925510}
   roomIndex: 1
+--- !u!114 &1937210173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937210169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a607edd3ad13b90489f508fb10d960fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderers: []
+  spritesToRender: []
 --- !u!1 &1945642700
 GameObject:
   m_ObjectHideFlags: 0
