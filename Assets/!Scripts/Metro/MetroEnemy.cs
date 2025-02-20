@@ -18,6 +18,19 @@ namespace Metro.Enemy
 
         #endregion
 
+        private void Start()
+        {
+            if (_doorManagerScript == null)
+            {
+                _doorManagerScript = FindObjectOfType<Metro.Animation.MetroDoorManager>();
+            }
+    
+            // Synchronize the private variable with the public one
+            _roomIndex = roomIndex;
+    
+            Debug.Log($"[ENEMY DEBUG] {gameObject.name} initialized in room {_roomIndex}");
+        }
+        
         private void Update()
         {
             BaseEnemy enemy = GetComponent<BaseEnemy>();

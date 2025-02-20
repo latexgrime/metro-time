@@ -58,7 +58,6 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
             WeaponState state = _weaponStateManager.GetWeaponState(_weaponManager.GetCurrentWeaponIndex());
             if (state != null)
             {
-                Debug.Log($"Loading weapon state: Ammo={state.currentAmmo}, Reserve={state.totalAmmoLeft}");
                 _currentAmmo = state.currentAmmo;
                 _totalAmmoLeft = state.totalAmmoLeft;
                 _isReloading = state.isReloading;
@@ -67,7 +66,6 @@ namespace _Scripts.Weapon_Systems.Weapons_Logic
             {
                 // Only initialize with default values if state is null.
                 // This should rarely happen unless it's the first time using the weapon.
-                Debug.LogWarning("No weapon state found - initializing with defaults");
                 _currentAmmo = _currentWeaponData.magazineSize;
                 _totalAmmoLeft = _currentWeaponData.maxAmmo - _currentWeaponData.magazineSize;
                 _isReloading = false;
