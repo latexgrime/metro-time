@@ -695,7 +695,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: c71aaff36a3aaa744a8926b43a2fc4b8, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1001 &33366219
 PrefabInstance:
@@ -1301,7 +1301,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: b5ce7b4284e317e4e9a77f9472d9fd43, type: 3}
     - target: {fileID: 5502095864098659077, guid: 2b7c844be61e3aa4397caeeb1495f65c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -397.2
       objectReference: {fileID: 0}
     - target: {fileID: 5502095864098659077, guid: 2b7c844be61e3aa4397caeeb1495f65c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11139,7 +11139,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: c908cf653b3b51c43bdf0f588d06bbf6, type: 2}
   m_BuildHeightMesh: 0
 --- !u!64 &803725018
 MeshCollider:
@@ -11775,7 +11775,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1628928532243125579, guid: 53a82b4acdac53e459aed457c1ff29b8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -397.2
       objectReference: {fileID: 0}
     - target: {fileID: 1628928532243125579, guid: 53a82b4acdac53e459aed457c1ff29b8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -23726,7 +23726,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8475892906564434564, guid: 9fc6767017b08504cae39eb9e617174e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
