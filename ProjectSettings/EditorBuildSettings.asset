@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 6f30585f1fc2b6b48b205bbda0208c9b
   - enabled: 0
-    path: Assets/Scenes/Develop.unity
+    path: Assets/Scenes/MechanicsScenes/Develop.unity
     guid: c3560ddc18c21c5458b6a519647daf80
   - enabled: 1
     path: Assets/Scenes/Gameplay.unity

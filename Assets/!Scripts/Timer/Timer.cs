@@ -17,9 +17,12 @@ public class Timer : MonoBehaviour
     public AudioClip timerSoundFinished;
     private bool soundPlayed = false;
 
+    public GameObject gameOver;
+
     private void Start()
     { 
         source.Play();
+        gameOver.SetActive(false);
     }
 
     // Update is called once per frame
@@ -43,6 +46,7 @@ public class Timer : MonoBehaviour
             remainingTime = 0;
             TimerSound();
             soundPlayed = true;
+            gameOver.SetActive(true);
         }
         int minutes = Mathf.FloorToInt(remainingTime / 60);
         int seconds = Mathf.FloorToInt(remainingTime % 60);

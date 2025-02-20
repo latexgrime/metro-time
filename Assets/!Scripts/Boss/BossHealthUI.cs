@@ -5,13 +5,12 @@ namespace _Scripts.Boss
 {
     public class BossHealthUI : MonoBehaviour
     {
-        [SerializeField] private Slider healthBar;
+        [SerializeField] public Slider healthBar;
         private Boss boss;
-
         private void Start()
         {
             boss = FindObjectOfType<Boss>();
-            if (boss != null) 
+            if (boss != null)
             {
                 healthBar.maxValue = boss.GetMaxShield();
             }
