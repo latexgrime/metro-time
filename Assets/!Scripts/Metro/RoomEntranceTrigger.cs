@@ -16,12 +16,15 @@ namespace Metro.Room
 
         public void OnTriggerEnter(Collider other)
         {
-            if (doorManager != null)
+            if (other.CompareTag("PlayerCollider"))
             {
-                doorManager.PlayerEnteredNextRoom();
-            }
+                if (doorManager != null)
+                {
+                    doorManager.PlayerEnteredNextRoom();
+                }
 
-            gameObject.SetActive(false);
+                gameObject.SetActive(false);
+            }
         }
     }
 }

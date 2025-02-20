@@ -15,6 +15,9 @@ namespace Metro.Animation
         [Header("- Animation")]
         [Tooltip("Assign the animator component controlling the door animation")]
         [SerializeField] private Animator doorAnimator;
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip doorOpenSound;
+        [SerializeField] private AudioClip doorCloseSound;
 
         // private bool _isOpen = false;
 
@@ -23,6 +26,7 @@ namespace Metro.Animation
         private void Start()
         {
             doorAnimator = GetComponent<Animator>();
+            audioSource = GetComponent<AudioSource>();
         }
 
         #region Public Methods
@@ -34,6 +38,7 @@ namespace Metro.Animation
         {
                 doorAnimator.SetBool("doorCanOpen", true);
                 // _isOpen = true;
+                audioSource.PlayOneShot(doorOpenSound);
         }
 
         /// <summary>
@@ -43,6 +48,7 @@ namespace Metro.Animation
         {
                 doorAnimator.SetBool("doorCanOpen", false);
                 /// _isOpen = false;
+                audioSource.PlayOneShot(doorCloseSound);
         }
 
         #endregion
