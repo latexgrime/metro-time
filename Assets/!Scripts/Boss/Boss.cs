@@ -4,6 +4,7 @@ using _Scripts.AmmoDrop;
 using _Scripts.Enemy;
 using _Scripts.Spawners;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace _Scripts.Boss
 {
@@ -30,6 +31,9 @@ namespace _Scripts.Boss
         [SerializeField] private AudioClip shieldActivateSound;
         [SerializeField] private AudioClip shieldDeactivateSound;
         [SerializeField] [Range(0f, 1f)] private float shieldSoundVolume = 0.7f;
+        
+        [Header("- Boss Death Event")]
+        public UnityEvent onBossDeath;
 
         // Boss Phases & Attack Control.
         private BossPhase _currentPhase = BossPhase.Cooldown;
@@ -272,6 +276,11 @@ namespace _Scripts.Boss
             if (_currentPhase == BossPhase.Cooldown)
             {
                 base.TakeShieldDamage(damage);
+                if (currentShield <= 0)
+                {
+                    // Invoke the death event
+                    onBossDeath?.Invoke();
+                }
             }
         }
 

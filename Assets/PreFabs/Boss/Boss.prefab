@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8018706926170384437
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1093,6 +1093,7 @@ GameObject:
   - component: {fileID: 7106820193397456392}
   - component: {fileID: 2987889767289733928}
   - component: {fileID: 7309042497502104234}
+  - component: {fileID: 580867770253189961}
   m_Layer: 6
   m_Name: Boss
   m_TagString: Untagged
@@ -1313,6 +1314,21 @@ MonoBehaviour:
   shieldActivateSound: {fileID: 8300000, guid: 8c002114f72089e4ba99a808d35b77dd, type: 3}
   shieldDeactivateSound: {fileID: 8300000, guid: 81db9eb2655f2724db66b07c566e75a0, type: 3}
   shieldSoundVolume: 0.7
+  onBossDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 580867770253189961}
+        m_TargetAssemblyTypeName: SceneNavigation, Assembly-CSharp
+        m_MethodName: LoadSceneByName
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Cinematic - Good Ending
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2987889767289733928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1356,6 +1372,20 @@ MonoBehaviour:
   spawnEffectPrefab: {fileID: 7845746115968255171, guid: 58aecb2f775479740b2e195ed318ed20, type: 3}
   spawnSound: {fileID: 8300000, guid: b00b652b15b38c141b2ee6619b24ed0c, type: 3}
   spawnSoundVolume: 0.8
+--- !u!114 &580867770253189961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5431519773760252006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 066ada04f804bbf4ab3e945bc0cc93b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingScreen: {fileID: 0}
+  showDebugLogs: 1
 --- !u!1 &6138539410534592303
 GameObject:
   m_ObjectHideFlags: 0

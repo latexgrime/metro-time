@@ -235,6 +235,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671473883}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -242,6 +250,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -290,6 +302,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -679,7 +695,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 9ecffd5d53a7f714f848945137080005, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1001 &33366219
 PrefabInstance:
@@ -689,6 +705,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 634577967}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -696,6 +720,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -744,6 +772,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1016,6 +1048,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1710049198}
     m_Modifications:
+    - target: {fileID: 1171341199920906928, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2404189042309885602, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -147.41
@@ -1079,6 +1115,18 @@ PrefabInstance:
     - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_Name
       value: StunEnemy (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: detectionRange
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1418,14 +1466,42 @@ PrefabInstance:
       propertyPath: remainingTime
       value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: 9150030866209244356, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
+      propertyPath: timerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9150030866209244356, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
+      propertyPath: timerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 234675909}
+    - target: {fileID: 9150030866209244356, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
+      propertyPath: timerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadSceneByName
+      objectReference: {fileID: 0}
+    - target: {fileID: 9150030866209244356, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
+      propertyPath: timerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SceneNavigation, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9150030866209244356, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
+      propertyPath: timerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Cinematic - Bad Ending
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7062595977196907904, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2004479528}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3219474544006202678, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 234675909}
   m_SourcePrefab: {fileID: 100100000, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
+--- !u!1 &63015362 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3219474544006202678, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
+  m_PrefabInstance: {fileID: 63015361}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &63525780
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,6 +1721,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1365354958}
     m_Modifications:
+    - target: {fileID: 1171341199920906928, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2404189042309885602, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -141
@@ -1708,6 +1788,18 @@ PrefabInstance:
     - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_Name
       value: StunEnemy (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: detectionRange
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3736,6 +3828,7 @@ RectTransform:
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &239930060
+--- !u!114 &234675909
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3773,6 +3866,14 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 239930058}
   m_CullTransparentMesh: 1
+  m_GameObject: {fileID: 63015362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 066ada04f804bbf4ab3e945bc0cc93b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingScreen: {fileID: 0}
+  showDebugLogs: 1
 --- !u!1001 &243135634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3781,6 +3882,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1498164852}
     m_Modifications:
+    - target: {fileID: 1171341199920906928, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2404189042309885602, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -146.01
@@ -3844,6 +3949,18 @@ PrefabInstance:
     - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_Name
       value: StunEnemy (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: detectionRange
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4227,6 +4344,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1498164852}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -4234,6 +4359,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -4282,6 +4411,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4342,6 +4475,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1225005509}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -4349,6 +4490,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -4398,6 +4543,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4416,6 +4565,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1365354958}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -4423,6 +4580,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -4471,6 +4632,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4842,6 +5007,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 181978713}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -4849,6 +5022,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -4897,6 +5074,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5200,6 +5381,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2041642917}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -5207,6 +5396,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -5256,6 +5449,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5274,6 +5471,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1498164852}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -5281,6 +5486,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -5329,6 +5538,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5974,6 +6187,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671473883}
     m_Modifications:
+    - target: {fileID: 1171341199920906928, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2404189042309885602, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -141.86
@@ -6038,6 +6255,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: StunEnemy (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6100,6 +6329,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1710049198}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -6107,6 +6344,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -6155,6 +6396,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6498,6 +6743,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 634577967}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -6505,6 +6758,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -6553,6 +6810,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6923,6 +7184,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 181978713}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -6930,6 +7199,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -6978,6 +7251,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7658,6 +7935,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1225005509}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -7665,6 +7950,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -7713,6 +8002,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10018,7 +10311,7 @@ GameObject:
   - component: {fileID: 803725019}
   - component: {fileID: 803725018}
   - component: {fileID: 803725017}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10509,6 +10802,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1225005509}
     m_Modifications:
+    - target: {fileID: 1171341199920906928, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2404189042309885602, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -146.01
@@ -10572,6 +10869,18 @@ PrefabInstance:
     - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_Name
       value: StunEnemy (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: detectionRange
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10799,6 +11108,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2041642917}
     m_Modifications:
+    - target: {fileID: 1171341199920906928, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2404189042309885602, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -90.981
@@ -10863,6 +11176,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: StunEnemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10881,6 +11206,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671473883}
     m_Modifications:
+    - target: {fileID: 1171341199920906928, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2404189042309885602, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -141
@@ -10944,6 +11273,18 @@ PrefabInstance:
     - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_Name
       value: StunEnemy (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: detectionRange
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11811,6 +12152,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1225005509}
     m_Modifications:
+    - target: {fileID: 1171341199920906928, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2404189042309885602, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -147.41
@@ -11874,6 +12219,18 @@ PrefabInstance:
     - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_Name
       value: StunEnemy (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: detectionRange
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12454,6 +12811,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671473883}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -12461,6 +12826,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -12509,6 +12878,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13878,6 +14251,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1710049198}
     m_Modifications:
+    - target: {fileID: 1171341199920906928, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2404189042309885602, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -146.01
@@ -13942,6 +14319,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: StunEnemy (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13960,6 +14349,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1498164852}
     m_Modifications:
+    - target: {fileID: 1171341199920906928, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2404189042309885602, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -147.41
@@ -14023,6 +14416,18 @@ PrefabInstance:
     - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_Name
       value: StunEnemy (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: detectionRange
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14489,6 +14894,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1498164852}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -14496,6 +14909,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -14544,6 +14961,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14962,6 +15383,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1893375663}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -14969,6 +15398,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -15017,6 +15450,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15432,6 +15869,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1893375663}
     m_Modifications:
+    - target: {fileID: 1171341199920906928, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2404189042309885602, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -58.35
@@ -15495,6 +15936,18 @@ PrefabInstance:
     - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_Name
       value: StunEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: detectionRange
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15668,6 +16121,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1893375663}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -15675,6 +16136,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -15723,6 +16188,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16112,6 +16581,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 634577967}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -16119,6 +16596,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -16167,6 +16648,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16324,6 +16809,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1710049198}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -16331,6 +16824,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -16379,6 +16876,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17130,6 +17631,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1710049198}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -17137,6 +17646,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -17185,6 +17698,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17279,6 +17796,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671473883}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -17286,6 +17811,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -17334,6 +17863,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17484,6 +18017,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 181978713}
     m_Modifications:
+    - target: {fileID: 1171341199920906928, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2404189042309885602, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -147.41
@@ -17548,6 +18085,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: StunEnemy (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17587,6 +18136,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2041642917}
     m_Modifications:
+    - target: {fileID: 1171341199920906928, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2404189042309885602, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -96.53
@@ -17650,6 +18203,18 @@ PrefabInstance:
     - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_Name
       value: StunEnemy (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: detectionRange
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17804,6 +18369,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1365354958}
     m_Modifications:
+    - target: {fileID: 1171341199920906928, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2404189042309885602, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -136.359
@@ -17867,6 +18436,18 @@ PrefabInstance:
     - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_Name
       value: StunEnemy (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: detectionRange
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18061,6 +18642,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2041642917}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -18068,6 +18657,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -18116,6 +18709,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18571,6 +19168,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 634577967}
     m_Modifications:
+    - target: {fileID: 1171341199920906928, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2404189042309885602, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -147.41
@@ -18634,6 +19235,18 @@ PrefabInstance:
     - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_Name
       value: StunEnemy (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: detectionRange
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20345,6 +20958,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 634577967}
     m_Modifications:
+    - target: {fileID: 1171341199920906928, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2404189042309885602, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -146.01
@@ -20408,6 +21025,18 @@ PrefabInstance:
     - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_Name
       value: StunEnemy (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: detectionRange
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20771,6 +21400,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1365354958}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -20778,6 +21415,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -20826,6 +21467,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21912,6 +22557,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1225005509}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -21919,6 +22572,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -21967,6 +22624,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22127,6 +22788,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 181978713}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 691899810334245800, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -22134,6 +22803,10 @@ PrefabInstance:
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: roomIndex
@@ -22182,6 +22855,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22752,6 +23429,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 181978713}
     m_Modifications:
+    - target: {fileID: 1171341199920906928, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2404189042309885602, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -146.01
@@ -22816,6 +23497,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: StunEnemy (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22842,7 +23535,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2076447161
 Transform:
   m_ObjectHideFlags: 0
@@ -23459,6 +24152,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1456655255}
     m_Modifications:
+    - target: {fileID: 1171341199920906928, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2404189042309885602, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -24.52
@@ -23507,6 +24204,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: StunEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5445414046169476346, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739493496802044095, guid: eec61a7fe06aa8147b22e49912cb9c2a, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23525,9 +24234,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1456655255}
     m_Modifications:
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488622882271394158, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: detectionRange
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_Name
       value: SlowEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266129455229456602, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3852021992550841672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: _doorManagerScript
@@ -23572,6 +24293,10 @@ PrefabInstance:
     - target: {fileID: 4184595288955615672, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653269342529420660, guid: bb57f0d0e932ece4991b497da8e14395, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -8,12 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 6f30585f1fc2b6b48b205bbda0208c9b
-  - enabled: 0
-    path: Assets/Scenes/MechanicsScenes/Develop.unity
-    guid: c3560ddc18c21c5458b6a519647daf80
+  - enabled: 1
+    path: Assets/Scenes/Cinematic - Start.unity
+    guid: f35209e98d83b3b4c9a818ee840ef7d0
   - enabled: 1
     path: Assets/Scenes/Gameplay.unity
     guid: faf970dfeedc0de439b1f5e35e98d1a0
+  - enabled: 1
+    path: Assets/Scenes/Cinematic - Good Ending.unity
+    guid: 12e23e9b605bd9f4c971585fed17e634
+  - enabled: 1
+    path: Assets/Scenes/Cinematic - Bad Ending.unity
+    guid: 10731d69f9d49724eae7a74ed49008d7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
   m_UseUCBPForAssetBundles: 0
