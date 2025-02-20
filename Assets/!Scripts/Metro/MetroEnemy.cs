@@ -25,8 +25,9 @@ namespace Metro.Enemy
                 _doorManagerScript = FindObjectOfType<Metro.Animation.MetroDoorManager>();
             }
             
-            // Synchronize the private variable with the public one
             _roomIndex = roomIndex;
+    
+            Debug.Log($"[SETUP] Enemy {gameObject.name} initialized with room index {_roomIndex}");
         }
 
         private void Update()

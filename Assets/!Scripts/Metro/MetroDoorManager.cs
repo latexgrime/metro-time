@@ -153,25 +153,41 @@ namespace Metro.Animation
 
         public void EnemyDeactivated(GameObject enemy, int roomIndex)
         {
-            // Preventing a bunch of debugs spawm.
+            // Preventing debug spams.
             if (deactivatedEnemies.Contains(enemy)) return;
-            
-            if (roomIndex == currentRoomIndex && roomIndex < enemiesPerRoom.Length)
+    
+            if (roomIndex < enemiesPerRoom.Length)
             {
                 deactivatedEnemies.Add(enemy);
-                enemiesPerRoom[roomIndex].Remove(enemy);
-                
-                // Only log key milestones.
-                if (enemiesPerRoom[roomIndex].Count <= 3 && enemiesPerRoom[roomIndex].Count > 0)
+        
+                // Verify the enemy is in this room's list before removing..
+                if (enemiesPerRoom[roomIndex].Contains(enemy))
                 {
-                    Debug.Log($"Room {roomIndex}: {enemiesPerRoom[roomIndex].Count} enemies remaining");
+                    enemiesPerRoom[roomIndex].Remove(enemy);
+            
+                    // Only log key milestones.
+                    if (enemiesPerRoom[roomIndex].Count <= 3 && enemiesPerRoom[roomIndex].Count > 0)
+                    {
+                        Debug.Log($"Room {roomIndex}: {enemiesPerRoom[roomIndex].Count} enemies remaining");
+                    }
+                    else if (enemiesPerRoom[roomIndex].Count == 0)
+                    {
+                        Debug.Log($"Room {roomIndex}: All enemies defeated!");
+                        // Check if room should open door.
+                        if (roomIndex == currentRoomIndex)
+                        {
+                            OpenDoor(roomIndex);
+                        }
+                        else
+                        {
+                            Debug.Log($"[INFO] Room {roomIndex} cleared but player is in room {currentRoomIndex}");
+                        }
+                    }
                 }
-                else if (enemiesPerRoom[roomIndex].Count == 0)
+                else
                 {
-                    Debug.Log($"Room {roomIndex}: All enemies defeated!");
+                    Debug.LogWarning($"Enemy {enemy.name} not found in room {roomIndex} list");
                 }
-
-                CheckRoomProgress();
             }
         }
 
