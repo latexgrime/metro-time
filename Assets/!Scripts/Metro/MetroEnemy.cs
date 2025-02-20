@@ -6,7 +6,6 @@ namespace Metro.Enemy
     /// <summary>
     /// Represents an enemy that is tracked by MetroDoorManager.
     /// </summary>
-
     public class MetroEnemy : MonoBehaviour
     {
         #region Variables
@@ -15,7 +14,8 @@ namespace Metro.Enemy
         [SerializeField] private BaseEnemy _baseEnemyScript;
         [SerializeField] private Metro.Animation.MetroDoorManager _doorManagerScript;
         private int _roomIndex;
-
+        
+        private bool isDeactivationReported = false;
         #endregion
 
         private void Start()
@@ -24,22 +24,23 @@ namespace Metro.Enemy
             {
                 _doorManagerScript = FindObjectOfType<Metro.Animation.MetroDoorManager>();
             }
-    
+            
             // Synchronize the private variable with the public one
             _roomIndex = roomIndex;
-    
-            Debug.Log($"[ENEMY DEBUG] {gameObject.name} initialized in room {_roomIndex}");
         }
-        
+
         private void Update()
         {
+            // If we've already reported deactivation, don't check again
+            if (isDeactivationReported) return;
+            
             BaseEnemy enemy = GetComponent<BaseEnemy>();
 
             if (enemy != null && enemy.IsDeactivated())
             {
                 _doorManagerScript.EnemyDeactivated(gameObject, _roomIndex);
+                isDeactivationReported = true;
             }
-
         }
 
         public void Initialize(Metro.Animation.MetroDoorManager manager, int assignedRoomIndex)

@@ -18,11 +18,11 @@ MonoBehaviour:
   weaponIcon: {fileID: 21300000, guid: 0f460e9b267c8e44faade9d9315f1584, type: 3}
   weaponIconTint: {r: 1, g: 1, b: 1, a: 1}
   damage: 50
-  fireRate: 1
+  fireRate: 3
   range: 100
   spread: 0.01
   bulletsPerShot: 1
-  maxAmmo: 15
+  maxAmmo: 20
   magazineSize: 5
   reloadTime: 2
   isAutomatic: 0
