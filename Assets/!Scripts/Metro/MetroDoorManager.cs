@@ -44,7 +44,7 @@ namespace Metro.Animation
             InitializeEnemyLists();
             AutoRegisterExistingEnemies();
             
-            // Print summary after a slight delay to ensure all registrations complete
+            // Debug stuff.
             Invoke("PrintEnemySummary", 0.5f);
         }
 
@@ -81,7 +81,7 @@ namespace Metro.Animation
 
             foreach (GameObject enemy in allEnemies)
             {
-                if (registeredEnemies.Contains(enemy)) continue; // Skip already registered enemies
+                if (registeredEnemies.Contains(enemy)) continue;
 
                 Metro.Enemy.MetroEnemy metroEnemy = enemy.GetComponent<Metro.Enemy.MetroEnemy>();
 
@@ -147,14 +147,13 @@ namespace Metro.Animation
                 if (!enemiesPerRoom[roomIndex].Contains(enemy))
                 {
                     enemiesPerRoom[roomIndex].Add(enemy);
-                    // No debug here - summary will be printed after all registrations
                 }
             }
         }
 
         public void EnemyDeactivated(GameObject enemy, int roomIndex)
         {
-            // Prevent duplicate reports
+            // Preventing a bunch of debugs spawm.
             if (deactivatedEnemies.Contains(enemy)) return;
             
             if (roomIndex == currentRoomIndex && roomIndex < enemiesPerRoom.Length)
@@ -162,7 +161,7 @@ namespace Metro.Animation
                 deactivatedEnemies.Add(enemy);
                 enemiesPerRoom[roomIndex].Remove(enemy);
                 
-                // Only log key milestones
+                // Only log key milestones.
                 if (enemiesPerRoom[roomIndex].Count <= 3 && enemiesPerRoom[roomIndex].Count > 0)
                 {
                     Debug.Log($"Room {roomIndex}: {enemiesPerRoom[roomIndex].Count} enemies remaining");
