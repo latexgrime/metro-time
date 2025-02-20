@@ -6002,9 +6002,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 721002907}
-        m_TargetAssemblyTypeName: MainMenu.Buttons.MainMenuButtonFunctions, Assembly-CSharp
-        m_MethodName: Play
+      - m_Target: {fileID: 7094318404333088385, guid: 2db0948374dbd8946bcee9a87fefe1b9, type: 3}
+        m_TargetAssemblyTypeName: ShowingControls, Assembly-CSharp
+        m_MethodName: ShowControls
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
