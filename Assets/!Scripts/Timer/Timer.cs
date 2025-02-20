@@ -3,7 +3,7 @@ using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.Events;
-
+using UnityEngine.SceneManagement;
 public class Timer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI timerText;
@@ -55,7 +55,7 @@ public class Timer : MonoBehaviour
     }
     public void RestartGame()
     {
-        //STUFF HAPPENING FOR SURE
+        SceneManager.LoadScene("Gameplay");
     }
 
     public void TimerSound()
