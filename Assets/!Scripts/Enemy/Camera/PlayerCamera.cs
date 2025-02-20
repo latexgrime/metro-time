@@ -12,13 +12,13 @@ namespace _Scripts.Camera
     {
         private InputManager _inputManager;
         
-        private float _xDefaultSensitivity;
-        private float _yDefaultSensitivity;
+        private float _xDefaultSensitivity = 0.5f;
+        private float _yDefaultSensitivity = 0.5f;
         
         [Range(0,1)]
-        [SerializeField] private float sensitivityX;
+        [SerializeField] private float sensitivityX = 0.5f;
         [Range(0,1)]
-        [SerializeField] private float sensitivityY;
+        [SerializeField] private float sensitivityY = 0.5f;
 
         private Transform _camTargetOrientation;
 
@@ -29,14 +29,29 @@ namespace _Scripts.Camera
         {
             _inputManager = FindFirstObjectByType<InputManager>();
             
+            // Set inspector values as defaults if they are different from the initialized values
+            if (sensitivityX != _xDefaultSensitivity) _xDefaultSensitivity = sensitivityX;
+            if (sensitivityY != _yDefaultSensitivity) _yDefaultSensitivity = sensitivityY;
+            
+            // Load saved sensitivity values from PlayerPrefs if they exist
+            LoadSavedSensitivity();
+            
             // Makes cursor invisible and locks in in the middle of the screen.
             MakeCursorInvisible();
-
-            _xDefaultSensitivity = sensitivityX;
-            _yDefaultSensitivity = sensitivityY;
             
             // Get the reference to the CamTargetOrientation game object.
             _camTargetOrientation = GameObject.FindGameObjectWithTag("Player").transform.Find("CamTargetOrientation");
+        }
+
+        private void LoadSavedSensitivity()
+        {
+            // -1 is used as a flag to indicate no saved value
+            float savedX = PlayerPrefs.GetFloat("Camera_Sensitivity_X", -1f);
+            float savedY = PlayerPrefs.GetFloat("Camera_Sensitivity_Y", -1f);
+            
+            // Only apply saved values if they exist
+            if (savedX >= 0f) sensitivityX = savedX;
+            if (savedY >= 0f) sensitivityY = savedY;
         }
 
         public void MakeCursorInvisible()
@@ -64,23 +79,23 @@ namespace _Scripts.Camera
 
         public Vector2 GetSensitivityValues()
         {
-            return new Vector2(sensitivityX,sensitivityY);
+            return new Vector2(sensitivityX, sensitivityY);
         }
         
         public void SetXSensitivityValue(float value)
         {
-            sensitivityX = value;
+            sensitivityX = Mathf.Clamp01(value);
         }
 
         public void SetYSensitivityValue(float value)
         {
-            sensitivityY = value;
+            sensitivityY = Mathf.Clamp01(value);
         }
 
         public void SetBothSensitivityValues(float valueX, float valueY)
         {
-            sensitivityX = valueX;
-            sensitivityY = valueY;
+            sensitivityX = Mathf.Clamp01(valueX);
+            sensitivityY = Mathf.Clamp01(valueY);
         }
 
         private void Update()
@@ -102,6 +117,5 @@ namespace _Scripts.Camera
             transform.rotation = Quaternion.Euler(_xRotation, _yRotation, 0);
             _camTargetOrientation.rotation = Quaternion.Euler(0, _yRotation, 0);
         }
-
     }
 }
