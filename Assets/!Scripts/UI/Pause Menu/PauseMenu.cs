@@ -162,6 +162,7 @@ public class PauseMenu : MonoBehaviour
     public void CloseSettings()
     {
         settingsPanel.SetActive(false);
+        cameraSettingsPanel.SetActive(false);
         dlssSettingsPanel.SetActive(false);
         cameraSettingsPanel.SetActive(false);
         pauseMenuUI.SetActive(true);
