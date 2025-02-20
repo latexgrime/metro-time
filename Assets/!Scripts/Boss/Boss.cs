@@ -46,10 +46,18 @@ namespace _Scripts.Boss
         private EnemySpawner _enemySpawner;
         private AmmoSpawner _ammoSpawner;
 
+        private Animator _bossAnimator;
+
+        // Animator parameters.
+        private static readonly string IsAttackingParam = "IsAttacking";
+        private static readonly string BeginAttackTrigger = "BeginAttack";
+        private static readonly string StopAttackTrigger = "StopAttack";
+        private static readonly string DeactivateTrigger = "Deactivate";
+        private static readonly string ReactivateTrigger = "Reactivate";
+        
         protected override void Start()
         {
             base.Start();
-            
             // Initialize components.
             ammoDropper = null;
             if (agent != null) agent.enabled = false;
@@ -81,6 +89,7 @@ namespace _Scripts.Boss
             
             _enemySpawner = GetComponent<EnemySpawner>();
             _ammoSpawner = GetComponent<AmmoSpawner>();
+            _bossAnimator = GetComponentInChildren<Animator>();
             
             StartCooldownPhase();
         }
@@ -107,6 +116,7 @@ namespace _Scripts.Boss
         {
             if (!isAttacking)
             {
+                _bossAnimator?.SetBool("IsAttacking", true);
                 StartAttackCycle();
             }
 
@@ -116,6 +126,7 @@ namespace _Scripts.Boss
                 _currentAttackPhase++;
                 if (_currentAttackPhase > 2) // After all attacks, go to cooldown.
                 {
+                    // Only start cooldown phase when ALL attack phases are done
                     StartCooldownPhase();
                 }
                 else
@@ -138,9 +149,11 @@ namespace _Scripts.Boss
             _currentPhase = BossPhase.Attack;
             _phaseStartTime = Time.time;
             isAttacking = false;
-            _currentAttackPhase = 0; // Reset attack cycle.
-            
-            // Shield activation effects.
+            _currentAttackPhase = 0;
+    
+            // Trigger Reactivated when cooldown ends
+            _bossAnimator?.SetTrigger("Reactivated");
+    
             ActivateShield();
             SpawnEnemies();
         }
@@ -150,18 +163,24 @@ namespace _Scripts.Boss
             _currentPhase = BossPhase.Cooldown;
             _phaseStartTime = Time.time;
             isAttacking = false;
-            
-            // Generate random cooldown duration.
+
+            // Only trigger StopAttack when completely done with all attack phases
+
+            // Set IsAttacking to false
+            _bossAnimator?.SetBool("IsAttacking", false);
+
+            // Trigger Deactivated for cooldown phase
+            _bossAnimator?.SetTrigger("Deactivated");
+
             _currentCooldownDuration = Random.Range(cooldownDurationRange.x, cooldownDurationRange.y);
-            
+
             // Stop any ongoing attack coroutines.
             if (_currentAttackCoroutine != null)
             {
                 StopCoroutine(_currentAttackCoroutine);
                 _currentAttackCoroutine = null;
             }
-            
-            // Shield deactivation effects.
+
             DeactivateShield();
             SpawnAmmo();        
         }
@@ -217,7 +236,10 @@ namespace _Scripts.Boss
         private void StartAttackCycle()
         {
             isAttacking = true;
-            attackTimer = 5f; // Each attack lasts 5 seconds(maybe I'll add it to the inspector later).
+            attackTimer = 5f;
+    
+            // Set IsAttacking to true when attack sequence begins.
+            _bossAnimator?.SetBool("IsAttacking", true);
 
             // Stop any previous attack coroutine.
             if (_currentAttackCoroutine != null)
