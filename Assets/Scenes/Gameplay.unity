@@ -1497,16 +1497,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Timer
       objectReference: {fileID: 0}
+    - target: {fileID: 9150030866209244356, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
+      propertyPath: remainingTime
+      value: 300
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
---- !u!224 &63015362 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6339386521739284271, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
-  m_PrefabInstance: {fileID: 63015361}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &63525780
 GameObject:
   m_ObjectHideFlags: 0
@@ -3204,7 +3203,7 @@ RectTransform:
   - {fileID: 1931919528}
   - {fileID: 1132383798}
   - {fileID: 991330767}
-  - {fileID: 63015362}
+  - {fileID: 234675908}
   m_Father: {fileID: 2076447161}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3588,6 +3587,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 198131253}
   m_CullTransparentMesh: 1
+--- !u!224 &234675908 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7062595977196907904, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
+  m_PrefabInstance: {fileID: 63015361}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &243135634
 PrefabInstance:
   m_ObjectHideFlags: 0
