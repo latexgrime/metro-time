@@ -3969,7 +3969,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bcbb7c18f12c15f46bd7795ccc7c6aa7, type: 2}
+  - {fileID: 2100000, guid: af3b518ae78ce824d9a2d28eb07ba998, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9020,6 +9020,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1330200606}
   - component: {fileID: 1330200607}
+  - component: {fileID: 1330200608}
   m_Layer: 0
   m_Name: ScrollSkiesPlaceHolders
   m_TagString: Untagged
@@ -9062,8 +9063,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0315bb8cac49754198c983ac7231c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteScrollSpeed: 0.5
+  spriteScrollSpeed: 4
   scrollMaterial: {fileID: 2100000, guid: bcbb7c18f12c15f46bd7795ccc7c6aa7, type: 2}
+--- !u!114 &1330200608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330200605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0315bb8cac49754198c983ac7231c90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteScrollSpeed: 4
+  scrollMaterial: {fileID: 2100000, guid: af3b518ae78ce824d9a2d28eb07ba998, type: 2}
 --- !u!1 &1341808194
 GameObject:
   m_ObjectHideFlags: 0
