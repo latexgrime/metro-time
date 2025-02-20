@@ -30,6 +30,9 @@ namespace Metro.Animation
         [Tooltip("Tag used to identify enemies.")]
         [SerializeField] private string enemyTag = "Enemy";
 
+        private HashSet<GameObject> registeredEnemies = new HashSet<GameObject>();
+
+
         #endregion
 
         #region Unity Methods
@@ -38,11 +41,6 @@ namespace Metro.Animation
         {
             InitializeEnemyLists();
             AutoRegisterExistingEnemies();
-        }
-
-        private void Update()
-        {
-            CheckRoomProgress();
         }
 
         #endregion
@@ -67,6 +65,8 @@ namespace Metro.Animation
 
             foreach (GameObject enemy in allEnemies)
             {
+                if (registeredEnemies.Contains(enemy)) continue; // Skip already registered enemies
+
                 Metro.Enemy.MetroEnemy metroEnemy = enemy.GetComponent<Metro.Enemy.MetroEnemy>();
 
                 if (metroEnemy != null)
@@ -76,6 +76,8 @@ namespace Metro.Animation
                     if (roomIndex >= 0 && roomIndex < enemiesPerRoom.Length)
                     {
                         RegisterEnemy(enemy, roomIndex);
+                        registeredEnemies.Add(enemy); // Mark this enemy as registered
+                        Debug.Log($"Enemy '{enemy.name}' registered in room {roomIndex}");
                     }
                     else
                     {
@@ -89,15 +91,20 @@ namespace Metro.Animation
             }
         }
 
+
         private void CheckRoomProgress()
         {
+            Debug.Log($"Checking room progress for room {currentRoomIndex}. Remaining enemies: {enemiesPerRoom[currentRoomIndex].Count}");
+
             if (currentRoomIndex >= enemiesPerRoom.Length) return;
 
             if (enemiesPerRoom[currentRoomIndex].Count == 0)
             {
+                Debug.Log($"All enemies defeated in room {currentRoomIndex}, opening door!");
                 OpenDoor(currentRoomIndex);
             }
         }
+
 
         private void OpenDoor(int roomIndex)
         {
@@ -123,15 +130,27 @@ namespace Metro.Animation
         {
             if (roomIndex < enemiesPerRoom.Length)
             {
-                enemiesPerRoom[roomIndex].Add(enemy);
+                if (!enemiesPerRoom[roomIndex].Contains(enemy))
+                {
+                    enemiesPerRoom[roomIndex].Add(enemy);
+                    Debug.Log($"Enemy '{enemy.name}' added to room {roomIndex}. Total enemies now: {enemiesPerRoom[roomIndex].Count}");
+                }
+                else
+                {
+                    Debug.LogWarning($"Enemy '{enemy.name}' was already added to room {roomIndex}, skipping duplicate.");
+                }
             }
         }
 
+
         public void EnemyDeactivated(GameObject enemy, int roomIndex)
         {
-            if (roomIndex < enemiesPerRoom.Length)
+            if (roomIndex == currentRoomIndex && roomIndex < enemiesPerRoom.Length)
             {
                 enemiesPerRoom[roomIndex].Remove(enemy);
+                Debug.Log($"Enemy '{enemy.name}' removed from room {roomIndex}. Remaining enemies: {enemiesPerRoom[roomIndex].Count}");
+
+                CheckRoomProgress();
             }
         }
 
@@ -143,8 +162,9 @@ namespace Metro.Animation
             }
 
             currentRoomIndex++;
-        }
 
+            Debug.Log($"Player entered room {currentRoomIndex}");
+        }
         #endregion
     }
 }
