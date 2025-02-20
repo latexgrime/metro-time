@@ -679,7 +679,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 9ecffd5d53a7f714f848945137080005, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1001 &33366219
 PrefabInstance:
@@ -1416,7 +1416,27 @@ PrefabInstance:
       objectReference: {fileID: 2004479527}
     - target: {fileID: 9150030866209244356, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
       propertyPath: remainingTime
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 9150030866209244356, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
+      propertyPath: timerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9150030866209244356, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
+      propertyPath: timerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 234675909}
+    - target: {fileID: 9150030866209244356, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
+      propertyPath: timerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadSceneByName
+      objectReference: {fileID: 0}
+    - target: {fileID: 9150030866209244356, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
+      propertyPath: timerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SceneNavigation, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9150030866209244356, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
+      propertyPath: timerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Cinematic - Bad Ending
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1424,8 +1444,16 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7062595977196907904, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2004479528}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3219474544006202678, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 234675909}
   m_SourcePrefab: {fileID: 100100000, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
+--- !u!1 &63015362 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3219474544006202678, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
+  m_PrefabInstance: {fileID: 63015361}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &63525780
 GameObject:
   m_ObjectHideFlags: 0
@@ -3620,6 +3648,20 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7062595977196907904, guid: ea2eaaf4e2ae7cb408897d8ec948ea55, type: 3}
   m_PrefabInstance: {fileID: 63015361}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &234675909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63015362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 066ada04f804bbf4ab3e945bc0cc93b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingScreen: {fileID: 0}
+  showDebugLogs: 1
 --- !u!1001 &243135634
 PrefabInstance:
   m_ObjectHideFlags: 0
