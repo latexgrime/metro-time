@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Mainmenu.Camera
 {
     /// <summary>
-    /// Moves the camera left and right, the higher the numbers the more violent the shake is.
+    /// Moves the camera up and down, the higher the numbers the more violent the shake is.
     /// </summary>
 
     public class CameraGlitch
