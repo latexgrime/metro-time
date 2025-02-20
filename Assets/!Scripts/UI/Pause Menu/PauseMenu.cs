@@ -45,8 +45,15 @@ public class PauseMenu : MonoBehaviour
 
     private void SetupInitialUI()
     {
-        pauseMenuUI.SetActive(false);
-        settingsPanel.SetActive(false);
+        if (pauseMenuUI != null)
+        {
+            pauseMenuUI.SetActive(false);
+        }
+
+        if (settingsPanel != null)
+        {
+            settingsPanel.SetActive(false);
+        }
     }
 
     private void LoadDLSSSettings()
@@ -169,6 +176,6 @@ public class PauseMenu : MonoBehaviour
         PlayerPrefs.SetFloat("DLSS_Sharpness", sharpness);
         PlayerPrefs.Save();
 
-        dlssSharpnessValueText.text = $"{(sharpness * 100):0}%";
+        dlssSharpnessValueText.text = $"Sharpness: {(sharpness * 100):0}%";
     }
 }
