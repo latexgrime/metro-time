@@ -33,15 +33,17 @@ public class Timer : MonoBehaviour
         if (remainingTime > 0)
         {
             remainingTime -= Time.deltaTime;
+            if (remainingTime <= 60)
+            {
+                timerText.color = Color.red;
+            }
         }
         else if (remainingTime <= 0 && !soundPlayed)
         {
             remainingTime = 0;
-            timerText.color = Color.red;
             TimerSound();
             soundPlayed = true;
         }
-
         int minutes = Mathf.FloorToInt(remainingTime / 60);
         int seconds = Mathf.FloorToInt(remainingTime % 60);
 
