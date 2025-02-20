@@ -9,7 +9,7 @@ namespace _Scripts.Enemy
     {
         [Header("- Distance Settings")]
         [SerializeField] protected float minKeepDistance = 8f; // Minimum distance to maintain from player.
-        [SerializeField] protected float maxChaseDistance = 15f; // Max distance.
+        [SerializeField] protected float maxChaseDistance = 100f; // Max distance.
         
         [Header("- Shield Settings")]
         [SerializeField] protected float maxShield = 100f;
