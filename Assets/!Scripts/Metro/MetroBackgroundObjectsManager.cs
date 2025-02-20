@@ -11,18 +11,23 @@ namespace Metro.Scroller
 
         private void OnTriggerEnter(Collider other)
         {
-            if (spriteRenderers.Length == 0 || spritesToRender.Length == 0)
-                return;
-
-            for (int i = 0; i < spriteRenderers.Length; i++)
+            if (other.CompareTag( "PlayerCollider"))
             {
-                if (i < spritesToRender.Length) 
-                {
-                    spriteRenderers[i].sprite = spritesToRender[i];
-                }
-            }
+                Debug.Log("Change sprites");
+                if (spriteRenderers.Length == 0 || spritesToRender.Length == 0)
+                    return;
 
-            gameObject.SetActive(false);
+                for (int i = 0; i < spriteRenderers.Length; i++)
+                {
+                    if (i < spritesToRender.Length)
+                    {
+                        spriteRenderers[i].sprite = spritesToRender[i];
+                    }
+                }
+
+                gameObject.SetActive(false);
+
+            }
         }
     }
 }
